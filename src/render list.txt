@@ -1,0 +1,75 @@
+import React from 'react';
+import './style.css';
+import champ from './champs.json';
+import { useState } from 'react';
+
+for (let i = 0; i < champ.length; i++) {
+  //console.log(champ[i].name)
+  //console.log(champ[i].icon)
+}
+
+class Character {
+  constructor(name, icon) {
+    this.name = name;
+    this.icon = icon;
+  }
+}
+const players = [];
+
+//var a = new Character('george', 23);
+//players.push(a);
+for (let i = 0; i < champ.length; i++) {
+  //var char = new Character(champ[i].name, champ[i].icon);
+  var char = { i, name: champ[i].name, icon: champ[i].icon };
+  players.push(char);
+}
+
+//players.forEach((Element) => console.log(Element));
+
+function deleteElement(pos) {
+  console.log(players[pos]);
+  players.splice(pos, 1);
+  console.debug(players);
+  //players.splice(pos, 1);
+  //players.forEach((Element) => console.log(Element));
+}
+
+const Item = ({ pos, id, name, icon, onRemove }) => {
+  return (
+    <div>
+      <h5>Position in list: {pos}</h5>
+      <h5>Position in json: {id}</h5>
+      <h5>Name: {name}</h5>
+      <h5>Icon path: {icon}</h5>
+      <button id={id} onClick={() => onRemove(id)}>
+        Delete {name}
+      </button>
+      <br />
+      <br />
+    </div>
+  );
+};
+
+const List = ({ list, onRemove }) => (
+  <div>
+    {list.map((item) => (
+      <Item
+        pos={list.indexOf(item)}
+        id={item.id}
+        name={item.name}
+        icon={item.icon}
+        onRemove={onRemove}
+      />
+    ))}
+  </div>
+);
+
+export default function App() {
+  const [list, setList] = useState(champ);
+
+  function remove(pos) {
+    const arr = list.filter((item) => item.id !== pos);
+    setList(arr);
+  }
+  return <List list={list} onRemove={remove} />;
+}
