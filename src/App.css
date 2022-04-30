@@ -17,6 +17,23 @@ label {
   position: relative;
   margin: 10px;
   cursor: pointer;
+  width: fit-content;
+}
+
+.list
+{
+  width: 600px;
+  justify-self: center;
+}
+
+#root
+{
+  display: grid;
+}
+
+.champ
+{
+  display: inline-block;
 }
 
 label:before {
@@ -38,8 +55,8 @@ label:before {
 }
 
 label img {
-  height: 100px;
-  width: 100px;
+  height: 50px;
+  width: 50px;
   transition-duration: 0.2s;
   transform-origin: 50% 50%;
 }
@@ -58,4 +75,5 @@ label img {
   transform: scale(0.9);
   box-shadow: 0 0 5px #333;
   z-index: -1;
+  position: relative;
 }
