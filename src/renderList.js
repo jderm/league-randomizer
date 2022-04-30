@@ -1,28 +1,12 @@
 import React from "react";
 import champ from "./champions.json";
 import { useState } from "react";
-import './App.css';
-
-
-export default function App() {
-  const [list, setList] = useState(champ);
-  const [textarea, setTextarea] = useState("");
-  
-  function remove(pos) {
-    const arr = list.filter((item) => item.id !== pos);
-    setList(arr);
-  }
-  
-  return <List list={list} onRemove={remove} />;
-}
-
-
+import "./App.css";
 
 const Item = ({ pos, id, name, icon, onRemove }) => {
-    var inpId = "champ" + id;
-    var iconPath = "/"+icon;
+  var inpId = "champ" + id;
+  var iconPath = "/" + icon;
   return (
-    
     <div className="champ" id={name}>
       {/* <h5>Position in list: {pos}</h5>
       <h5>Position in json: {id}</h5>
@@ -41,12 +25,8 @@ const Item = ({ pos, id, name, icon, onRemove }) => {
   );
 };
 
-
-
 const List = ({ list, onRemove }) => (
   <div className="list">
-    <input type="text" id="myInput" value={textarea} onChange={myFunction()} placeholder="Search for names.." title="Type in a name"></input>
-
     {list.map((item) => (
       <Item
         pos={list.indexOf(item)}
@@ -59,27 +39,25 @@ const List = ({ list, onRemove }) => (
   </div>
 );
 
+function App() {
+  const [list, setList] = useState(champ);
+  const [filter, setFilter] = useState('');
 
+  function remove(pos) {
+    const arr = list.filter((item) => item.id !== pos);
+    setList(arr);
+  }
 
-function myFunction() {
-  console.log("idk");
-  var input, filter, ul, li, a, i, txtValue;
-  // input = document.getElementById("myInput");
-  filter = input.value.toUpperCase();
-  // ul = document.getElementsByClassName("list");
-  // li = ul.getElementsByClassName("champ");
-//   if(input != "")
-//   {
-//   for (i = 0; i < li.length; i++) {
-//       a = li[i].getElementById();
-//       txtValue = a.textContent || a.innerText;
-//       if (txtValue.toUpperCase().indexOf(filter) > -1) {
-//           li[i].style.display = "";
-//       } else {
-//           li[i].style.display = "none";
-//       }
-//   }
-// }
+  return (
+    <div>
+      <input id="filter"
+          name="filter"
+          type="text"
+          value={filter}
+          onChange={event => setFilter(event.target.value)}
+        />
+      <List list={list} onRemove={remove} />
+    </div>
+  );
 }
-
-
+export default App;
