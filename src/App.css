@@ -6,7 +6,7 @@
   display: inline-block;
 }👈*/
 
-input[type="checkbox"][id^="champ"] {
+input[type="checkbox"][labelid^="champ"] {
   display: none;
 }
 
@@ -20,20 +20,16 @@ label {
   width: fit-content;
 }
 
-.list
-{
-  width: 600px;
+.list {
+  width: 700px;
   justify-self: center;
 }
 
-#root
-{
-  display: grid;
-}
-
-.champ
-{
+.champ {
   display: inline-block;
+  outline: black solid;
+  margin: 5px;
+  padding: 4px;
 }
 
 label:before {
@@ -76,4 +72,15 @@ label img {
   box-shadow: 0 0 5px #333;
   z-index: -1;
   position: relative;
+}
+
+.champSearch {
+  display: block;
+  width: 600px;
+}
+
+.idk {
+  display: grid;
+  justify-content: center;
+  width: 600px;
 }
