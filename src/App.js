@@ -17,9 +17,9 @@ import "./App.css";
 import Page from "./pages/page1";
 
 export default function App() {
-  const count = useSelector(selectCount);
+  //const count = useSelector(selectCount);
   const list = useSelector(selectList);
-  const dispatch = useDispatch();
+  const  dispatch = useDispatch();
 
   var [idk, setIdk] = useState(0);
 
@@ -32,24 +32,58 @@ export default function App() {
     case 0:
       return (
         <div>
-          <ButtonNavigation fun={changePage}/>
-          <Page prev={[]} current={list.banPhase1} banArrayType="BAN_ARRAY_1"/>
+          <ButtonNavigation fnc={changePage}/>
+          <div>Number of players:</div>
+          <select
+            value={list.settings.numberOfPlayers}
+            onChange={(e) => dispatch(changeNumOfPlayers(e.target.value))}
+          >
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+          </select>
+
+          <select value={list.settings.normOrDraft} onChange>
+          <option value="false">Normal</option>
+            <option value="true">Draft</option>
+          </select>
+
+          <div>Players:</div>
+          {/*create mapper for player names by selected number of players*/}
         </div>
       );
-
+      
     case 1:
       return (
         <div>
-          <ButtonNavigation fun={changePage}/>
-          <Page prev={list.banPhase1} current={list.banPhase1.concat(list.banPhase2)} banArrayType="BAN_ARRAY_2"/>
-          {/* <p>pp</p> */}
+          <ButtonNavigation fnc={changePage}/>
+          <div>Your team bans:</div>
+          <Page prev={[]} current={list.banPhase1} banArrayType="BAN_ARRAY_1"/>
         </div>
       );
 
     case 2:
       return (
         <div>
-          <ButtonNavigation fun={changePage}/>
+          <ButtonNavigation fnc={changePage}/>
+          <div>Enemy bans:</div>
+          <Page prev={list.banPhase1} current={list.banPhase1.concat(list.banPhase2)} banArrayType="BAN_ARRAY_2"/>
+          {/* <p>pp</p> */}
+        </div>
+      );
+
+    case 3:
+      return (
+        <div>
+          <ButtonNavigation fnc={changePage}/>
+          <div>Optional bans:</div>
           <Page prev={list.banPhase1.concat(list.banPhase2)} current={list.banPhase1.concat(list.banPhase2, list.banPhase3)} banArrayType="BAN_ARRAY_3"/>
           {/* <div>Number of players:</div>
           <select
@@ -72,10 +106,10 @@ export default function App() {
 
 
       //this one use useless...mayb will use later for picks
-    case 3:
+    case 4:
       return (
         <div>
-          <ButtonNavigation fun={changePage}/>
+          <ButtonNavigation fnc={changePage}/>
           <Page prev={list.banPhase1.concat(list.banPhase2, list.banPhase3)} current={list.banPhase1.concat(list.banPhase2)} banArrayType="BAN_ARRAY_4"/>
           {/* <p>pp2</p>
           <h1>Count : {count}</h1>
@@ -102,18 +136,18 @@ export default function App() {
     default:
       return (
         <div>
-          <ButtonNavigation fun={changePage}/>
+          <ButtonNavigation fnc={changePage}/>
           <p>pp2</p>
         </div>
       );
   }
 }
 
-const ButtonNavigation = ({fun}) => {
+const ButtonNavigation = ({fnc}) => {
   return(
   <div>
-    <button onClick={() => fun(-1)}>back</button>
-    <button onClick={() => fun(+1)}>next</button>
+    <button onClick={() => fnc(-1)}>back</button>
+    <button onClick={() => fnc(+1)}>next</button>
   </div>
   );
 }

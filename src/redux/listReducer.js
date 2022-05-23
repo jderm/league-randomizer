@@ -22,6 +22,12 @@ export const listSlice = createSlice({
   name: "list",
   initialState,
   reducers: {
+
+    //
+    //
+    // 
+    //add reducer for setting w switch
+
     add: (state, { payload }) => {
       state.idk.push(payload);
     },

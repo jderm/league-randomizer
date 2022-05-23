@@ -10,7 +10,7 @@ import {
 import champ from "../champions.json";
 
 export default function Page({ changePage, current, prev, banArrayType }) {
-  const list = useSelector(selectList);
+  //const list = useSelector(selectList);
   const [searchTerm, setSearchTerm] = useState("");
   const dispatch = useDispatch();
 
