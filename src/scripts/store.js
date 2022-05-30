@@ -1,10 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
-import counterReducer from './counterReducer';
+//import counterReducer from './counterReducer';
 import listReducer from './listReducer';
 
 export default configureStore({
   reducer: {
-    counter: counterReducer,
+    //counter: counterReducer,
     list: listReducer,
   },
 });

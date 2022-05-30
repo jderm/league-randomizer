@@ -1,153 +1,246 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  decrement,
-  increment,
-  incrementByAmount,
-  selectCount,
-} from "./redux/counterReducer";
-import {
-  add,
-  deleteRandom,
-  changeNumOfPlayers,
-  selectList,
-} from "./redux/listReducer";
+import { selectList, editSettings } from "./scripts/listReducer";
 import "./App.css";
 
-import Page from "./pages/page1";
+import Page from "./scripts/Page";
+
+import champ from "./champions.json";
 
 export default function App() {
-  //const count = useSelector(selectCount);
   const list = useSelector(selectList);
-  const  dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   var [idk, setIdk] = useState(0);
 
+  var [randLane, setRandLane] = useState({});
+  var [randChamp, setrandChamp] = useState({});
+
   function changePage(val) {
     setIdk((idk += val));
-    console.log(idk);
+    //console.log(idk);
   }
+
+  const CreateTable = ({ numOfCells }) => {
+    let table = [];
+    let tempTable = [];
+    for (var a = 0; a < numOfCells; a++) {
+      tempTable.push(<th>{list.pickedChamps[a].name}</th>);
+    }
+    table.push(<tr>{tempTable}</tr>);
+    tempTable = [];
+
+    for (var a = 0; a < numOfCells; a++) {
+      tempTable.push(
+        <td>
+          <img src={champ[list.pickedChamps[a].id].icon}></img>
+        </td>
+      );
+    }
+    table.push(<tr>{tempTable}</tr>);
+    tempTable = [];
+
+    for (var a = 0; a < numOfCells; a++) {
+      tempTable.push(<td>{list.settings.players[a].name}</td>);
+    }
+    table.push(<tr>{tempTable}</tr>);
+    tempTable = [];
+
+    for (var a = 0; a < numOfCells; a++) {
+      tempTable.push(<td>{list.settings.availableLanes[a].name}</td>);
+    }
+    table.push(<tr>{tempTable}</tr>);
+    return table;
+  };
+
+  function RandomizeChamps() {}
+
+  function RandomizeLanes() {}
 
   switch (idk) {
     case 0:
       return (
         <div>
-          <ButtonNavigation fnc={changePage}/>
-          <div>Number of players:</div>
+          <ButtonNavigation fnc={changePage} />
+          <h3>Normal or draft:</h3>
+          <select value={list.settings.normOrDraft} onChange>
+            <option value="false">Normal</option>
+            <option value="true">Draft</option>
+          </select>
+
+          <h3>Number of players:</h3>
           <select
-            value={list.settings.numberOfPlayers}
-            onChange={(e) => dispatch(changeNumOfPlayers(e.target.value))}
+            value={list.settings.players.length}
+            onChange={(e) =>
+              dispatch(
+                editSettings({
+                  count: e.target.value,
+                  type: "CHANGE_NUMBER_OF_PLAYERS",
+                })
+              )
+            }
           >
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
             <option value="4">4</option>
             <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-            <option value="10">10</option>
           </select>
 
-          <select value={list.settings.normOrDraft} onChange>
-          <option value="false">Normal</option>
-            <option value="true">Draft</option>
-          </select>
-
-          <div>Players:</div>
+          <h3>Players:</h3>
           {/*create mapper for player names by selected number of players*/}
+          {list.settings.players.map((item) => (
+            <div>
+              <h5>Player: {item.id + 1}</h5>
+              <input
+                type="text"
+                id={"playerName" + item.id}
+                name={"playerName" + item.id}
+                value={item.name}
+                onChange={(event) =>
+                  dispatch(
+                    editSettings({
+                      id: item.id,
+                      name: event.target.value,
+                      type: "CHANGE_PLAYER_NAME",
+                    })
+                  )
+                }
+              />
+            </div>
+          ))}
+
+          <h3>Number of lanes:</h3>
+          <select
+            value={list.settings.availableLanes.length}
+            onChange={(e) =>
+              dispatch(
+                editSettings({
+                  count: e.target.value,
+                  type: "CHANGE_NUMBER_OF_LANES",
+                })
+              )
+            }
+          >
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+
+          <h3>Lanes:</h3>
+          {list.settings.availableLanes.map((item) => (
+            <div>
+              <h5>Lane: {item.id + 1}</h5>
+              <input
+                type="text"
+                id={"lane" + item.id}
+                name={"lane" + item.id}
+                value={item.name}
+                onChange={(event) =>
+                  dispatch(
+                    editSettings({
+                      id: item.id,
+                      name: event.target.value,
+                      type: "CHANGE_LANE_NAME",
+                    })
+                  )
+                }
+              />
+            </div>
+          ))}
         </div>
       );
-      
+
     case 1:
       return (
         <div>
-          <ButtonNavigation fnc={changePage}/>
-          <div>Your team bans:</div>
-          <Page prev={[]} current={list.banPhase1} banArrayType="BAN_ARRAY_1"/>
+          <ButtonNavigation fnc={changePage} />
+          <h3>Your team bans:</h3>
+          <Page
+            prev={[]}
+            current={list.banPhase1}
+            //combined={list.banPhase1}
+            numberOfBans={5}
+            banArrayType="BAN_ARRAY_1"
+          />
         </div>
       );
 
     case 2:
       return (
         <div>
-          <ButtonNavigation fnc={changePage}/>
-          <div>Enemy bans:</div>
-          <Page prev={list.banPhase1} current={list.banPhase1.concat(list.banPhase2)} banArrayType="BAN_ARRAY_2"/>
-          {/* <p>pp</p> */}
+          <ButtonNavigation fnc={changePage} />
+          <h3>Enemy bans:</h3>
+          <Page
+            prev={list.banPhase1}
+            current={list.banPhase2}
+            //combined={list.banPhase1.concat(list.banPhase2)}
+            numberOfBans={5}
+            banArrayType="BAN_ARRAY_2"
+          />
         </div>
       );
 
     case 3:
       return (
         <div>
-          <ButtonNavigation fnc={changePage}/>
-          <div>Optional bans:</div>
-          <Page prev={list.banPhase1.concat(list.banPhase2)} current={list.banPhase1.concat(list.banPhase2, list.banPhase3)} banArrayType="BAN_ARRAY_3"/>
-          {/* <div>Number of players:</div>
-          <select
-            value={list.settings.numberOfPlayers}
-            onChange={(e) => dispatch(changeNumOfPlayers(e.target.value))}
-          >
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-            <option value="10">10</option>
-          </select> */}
+          <ButtonNavigation fnc={changePage} />
+          <h3>Optional bans:</h3>
+          <Page
+            prev={list.banPhase1.concat(list.banPhase2)}
+            current={list.banPhase3}
+            //combined={list.banPhase1.concat(list.banPhase2, list.banPhase3)}
+            numberOfBans={5}
+            banArrayType="BAN_ARRAY_3"
+          />
         </div>
       );
 
-
-      //this one use useless...mayb will use later for picks
     case 4:
       return (
         <div>
-          <ButtonNavigation fnc={changePage}/>
-          <Page prev={list.banPhase1.concat(list.banPhase2, list.banPhase3)} current={list.banPhase1.concat(list.banPhase2)} banArrayType="BAN_ARRAY_4"/>
-          {/* <p>pp2</p>
-          <h1>Count : {count}</h1>
-          <button
-            onClick={() => {
-              dispatch(increment());
-            }}
-          >
-            increment
-          </button>
-          <button
-            onClick={() => {
-              dispatch(decrement());
-            }}
-          >
-            decrement
-          </button>
-          <button onClick={() => dispatch(incrementByAmount(Number(10) || 0))}>
-            increment by 10
-          </button> */}
+          <ButtonNavigation fnc={changePage} />
+          <h3>Player picks:</h3>
+          <Page
+            prev={list.banPhase1.concat(list.banPhase2, list.banPhase3)}
+            current={list.pickedChamps}
+            //combined={list.banPhase1.concat(list.banPhase2, list.banPhase3, list.pickedChamps)}
+            numberOfBans={list.settings.players.length}
+            banArrayType="BAN_ARRAY_4"
+          />
+        </div>
+      );
+
+    case 5:
+      return (
+        <div>
+          <ButtonNavigation fnc={changePage} />
+          <table>
+            <CreateTable numOfCells={list.settings.players.length} />
+          </table>
+          {/* <CreateTable numofCells={list.settings.players.count}/> */}
+          <button onClick={() => RandomizeChamps}>Randomize champions</button>
+          <button onClick={() => RandomizeLanes}>Randomize lanes</button>
         </div>
       );
 
     default:
       return (
         <div>
-          <ButtonNavigation fnc={changePage}/>
-          <p>pp2</p>
+          <ButtonNavigation fnc={changePage} />
+          <h3>Default page</h3>
         </div>
       );
   }
 }
 
-const ButtonNavigation = ({fnc}) => {
-  return(
-  <div>
-    <button onClick={() => fnc(-1)}>back</button>
-    <button onClick={() => fnc(+1)}>next</button>
-  </div>
+const ButtonNavigation = ({ fnc }) => {
+  return (
+    <div>
+      <button onClick={() => fnc(-1)}>back</button>
+      <button onClick={() => fnc(+1)}>next</button>
+    </div>
   );
-}
+};

@@ -1,23 +1,31 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
-  add,
-  deleteRandom,
-  changeNumOfPlayers,
-  selectList,
   ban,
-} from "../redux/listReducer";
+} from "./listReducer";
 import champ from "../champions.json";
 
-export default function Page({ changePage, current, prev, banArrayType }) {
-  //const list = useSelector(selectList);
+export default function Page({
+  prev,
+  current,
+  banArrayType,
+  numberOfBans,
+}) {
   const [searchTerm, setSearchTerm] = useState("");
   const dispatch = useDispatch();
 
   return (
     <div>
-      {/* <button onClick={() => changePage(-1)}>back</button>
-      <button onClick={() => changePage(+1)}>next</button> */}
+      <h4>Selected champions:</h4>
+      <ol>
+        {current.map((item) => (
+          <li>
+            Item ID: {item.id}, Item name: {item.name}
+          </li>
+        ))}
+      </ol>
+      <h4>Picks/bans remaining: ({numberOfBans - current.length})</h4>
+
       <input
         id="filter"
         name="filter"
@@ -45,9 +53,12 @@ export default function Page({ changePage, current, prev, banArrayType }) {
               id={item.id}
               name={item.name}
               icon={item.icon}
-              //checked={list.champs[item.id].banned}
               checked={current.some((e) => e.id === item.id)}
-              change={() => dispatch(ban({id:item.id, name:item.name, type:banArrayType}))}
+              change={() =>
+                dispatch(
+                  ban({ id: item.id, name: item.name, type: banArrayType })
+                )
+              }
             />
           </div>
         ))}
@@ -55,8 +66,9 @@ export default function Page({ changePage, current, prev, banArrayType }) {
   );
 }
 
+
 const Item = ({ pos, id, name, icon, checked, change }) => {
-  var inpId = "champ" + id;
+  //var inpId = "champ" + id;
 
   return (
     <div className="champ" id={name}>
@@ -68,12 +80,12 @@ const Item = ({ pos, id, name, icon, checked, change }) => {
       <input
         type="checkbox"
         id={id}
-        labelid={inpId}
+        labelid={"champ" + id}
         checked={checked}
         onChange={() => change(id)}
       />
-      <label for={inpId} onClick={() => change(id)}>
-        <img src={icon} />
+      <label for={"champ" + id} onClick={() => change(id)}>
+        <img src={icon} alt={name} />
       </label>
     </div>
   );
