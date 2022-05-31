@@ -3,7 +3,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { selectList, editSettings } from "./scripts/listReducer";
 import "./App.css";
 
-import Page from "./scripts/Page";
+import Page from "./scripts/ChampListPage";
+import Settings from "./scripts/SettingsPage";
 
 import champ from "./champions.json";
 
@@ -61,8 +62,9 @@ export default function App() {
     case 0:
       return (
         <div>
-          <ButtonNavigation fnc={changePage} />
-          <h3>Normal or draft:</h3>
+          <ButtonNavigation fnc={changePage} idk={idk} />
+          <Settings/>
+          {/* <h3>Normal or draft:</h3>
           <select value={list.settings.normOrDraft} onChange>
             <option value="false">Normal</option>
             <option value="true">Draft</option>
@@ -88,7 +90,6 @@ export default function App() {
           </select>
 
           <h3>Players:</h3>
-          {/*create mapper for player names by selected number of players*/}
           {list.settings.players.map((item) => (
             <div>
               <h5>Player: {item.id + 1}</h5>
@@ -149,14 +150,14 @@ export default function App() {
                 }
               />
             </div>
-          ))}
+          ))} */}
         </div>
       );
 
     case 1:
       return (
         <div>
-          <ButtonNavigation fnc={changePage} />
+          <ButtonNavigation fnc={changePage} idk={idk} />
           <h3>Your team bans:</h3>
           <Page
             prev={[]}
@@ -171,7 +172,7 @@ export default function App() {
     case 2:
       return (
         <div>
-          <ButtonNavigation fnc={changePage} />
+          <ButtonNavigation fnc={changePage} idk={idk} />
           <h3>Enemy bans:</h3>
           <Page
             prev={list.banPhase1}
@@ -186,7 +187,7 @@ export default function App() {
     case 3:
       return (
         <div>
-          <ButtonNavigation fnc={changePage} />
+          <ButtonNavigation fnc={changePage} idk={idk} />
           <h3>Optional bans:</h3>
           <Page
             prev={list.banPhase1.concat(list.banPhase2)}
@@ -201,7 +202,7 @@ export default function App() {
     case 4:
       return (
         <div>
-          <ButtonNavigation fnc={changePage} />
+          <ButtonNavigation fnc={changePage} idk={idk} />
           <h3>Player picks:</h3>
           <Page
             prev={list.banPhase1.concat(list.banPhase2, list.banPhase3)}
@@ -216,7 +217,7 @@ export default function App() {
     case 5:
       return (
         <div>
-          <ButtonNavigation fnc={changePage} />
+          <ButtonNavigation fnc={changePage} idk={idk} />
           <table>
             <CreateTable numOfCells={list.settings.players.length} />
           </table>
@@ -229,18 +230,39 @@ export default function App() {
     default:
       return (
         <div>
-          <ButtonNavigation fnc={changePage} />
+          <ButtonNavigation fnc={changePage} idk={idk} />
           <h3>Default page</h3>
         </div>
       );
   }
 }
 
-const ButtonNavigation = ({ fnc }) => {
-  return (
-    <div>
-      <button onClick={() => fnc(-1)}>back</button>
-      <button onClick={() => fnc(+1)}>next</button>
-    </div>
-  );
+const ButtonNavigation = ({ fnc, idk }) => {
+  if(idk === 0)
+  {
+    return (
+      <div>
+        <button onClick={() => fnc(+1)}>next</button>
+      </div>
+    );
+  }
+
+  else if(idk > 0)
+  {
+    return (
+      <div>
+        <button onClick={() => fnc(+1)}>next</button>
+        <button onClick={() => fnc(-1)}>back</button>
+      </div>
+    );
+  }
+
+  else if(idk === 5)
+  {
+    return (
+      <div>
+        <button onClick={() => fnc(-1)}>back</button>
+      </div>
+    );
+  }
 };
