@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { selectList, editSettings } from "./listReducer";
+import { selectList, editSettings } from "../redux/listReducer";
 
 export default function Settings() {
   const list = useSelector(selectList);

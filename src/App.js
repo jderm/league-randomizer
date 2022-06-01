@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { selectList, editSettings } from "./scripts/listReducer";
+import { selectList, editSettings } from "./redux/listReducer";
 import "./App.css";
 
-import Page from "./scripts/ChampListPage";
-import Settings from "./scripts/SettingsPage";
+import Page from "./pages/ChampListPage";
+import Settings from "./pages/SettingsPage";
+import Randomize from "./pages/RandomizePage";
 
 import champ from "./champions.json";
 
@@ -219,11 +220,12 @@ export default function App() {
         <div>
           <ButtonNavigation fnc={changePage} idk={idk} />
           <table>
-            <CreateTable numOfCells={list.settings.players.length} />
+            {/* <CreateTable numOfCells={list.settings.players.length} /> */}
+            <Randomize/>
           </table>
           {/* <CreateTable numofCells={list.settings.players.count}/> */}
-          <button onClick={() => RandomizeChamps}>Randomize champions</button>
-          <button onClick={() => RandomizeLanes}>Randomize lanes</button>
+          {/* <button onClick={() => RandomizeChamps}>Randomize champions</button>
+          <button onClick={() => RandomizeLanes}>Randomize lanes</button> */}
         </div>
       );
 
@@ -247,6 +249,15 @@ const ButtonNavigation = ({ fnc, idk }) => {
     );
   }
 
+  else if(idk === 5)
+  {
+    return (
+      <div>
+        <button onClick={() => fnc(-1)}>back</button>
+      </div>
+    );
+  }
+
   else if(idk > 0)
   {
     return (
@@ -257,12 +268,4 @@ const ButtonNavigation = ({ fnc, idk }) => {
     );
   }
 
-  else if(idk === 5)
-  {
-    return (
-      <div>
-        <button onClick={() => fnc(-1)}>back</button>
-      </div>
-    );
-  }
 };

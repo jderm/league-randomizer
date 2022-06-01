@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
   ban,
-} from "./listReducer";
+} from "../redux/listReducer";
 import champ from "../champions.json";
 
 export default function Page({
