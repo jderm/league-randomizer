@@ -1,91 +1,99 @@
 import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { selectList, editSettings } from "../redux/listReducer";
+import { useSelector } from "react-redux";
+import { selectList } from "../redux/listReducer";
 import champ from "../champions.json";
 
 export default function Randomize() {
   const list = useSelector(selectList);
-  var [table, setTable] = useState(CreateList);
+  var [champions, setChampions] = useState(CreateChampionsList);
+  var [players] = useState(CreatePlayersList);
+  //var players = CreatePlayersList;
+  var [lanes, setLanes] = useState(CreateLanesList);
+  //const dispatch = useDispatch();
 
-  const dispatch = useDispatch();
-  //var [randChamp, setrandChamp] = useState({});
-
-  function CreateList()
-  {
-    var arr = {champions:[], players:[], lanes:[]};
+  function CreateChampionsList() {
+    var arr = [];
 
     list.pickedChamps.forEach((element) => {
-      //var ico = champ.filter(el => el.id === element.id);
-      arr.champions.push({
+      arr.push({
         id: element.id,
         name: element.name,
-        icon:champ[element.id].icon,
+        icon: champ[element.id].icon,
       });
-    });
-  
-    list.settings.players.forEach((element) => {
-      arr.players.push({ id: element.id, name: element.name });
-    });
-  
-    list.settings.availableLanes.forEach((element) => {
-      arr.lanes.push({ id: element.id, name: element.name });
     });
     return arr;
   }
 
-  console.log(table)
-  
+  function CreatePlayersList() {
+    var arr = [];
+
+    list.settings.players.forEach((element) => {
+      arr.push({ id: element.id, name: element.name });
+    });
+    return arr;
+  }
+
+  function CreateLanesList() {
+    var arr = [];
+    list.settings.availableLanes.forEach((element) => {
+      arr.push({ id: element.id, name: element.name });
+    });
+    return arr;
+  }
+
+  function RandomizeChamps() {
+    var tempArr = champions;
+    var tempArr2 = [];
+    var arrLength = tempArr.length;
+    for (var i = 0; i < arrLength; i++) {
+      var tempArrLength = tempArr.length;
+      var rand = Math.floor(Math.random() * tempArrLength);
+      tempArr2.push(tempArr[rand]);
+      tempArr.splice(rand, 1);
+    }
+
+    tempArr = tempArr2;
+    setChampions(tempArr);
+  }
+
+  function RandomizeLanes() {
+    var tempArr = lanes;
+    var tempArr2 = [];
+    var arrLength = tempArr.length;
+    for (var i = 0; i < arrLength; i++) {
+      var tempArrLength = tempArr.length;
+      var rand = Math.floor(Math.random() * tempArrLength);
+      tempArr2.push(tempArr[rand]);
+      tempArr.splice(rand, 1);
+    }
+
+    tempArr = tempArr2;
+    setLanes(tempArr);
+  }
   return (
     <div>
       <table>
         <tbody>
-        <CreateTable numOfCells={table.players.length} list={table} />
+          <CreateTable
+            numOfCells={champions.length}
+            champions={champions}
+            players={players}
+            lanes={lanes}
+          />
         </tbody>
       </table>
-      {/* <CreateTable numofCells={list.settings.players.count}/> */}
-      <button onClick={() => RandomizeChamps}>Randomize champions</button>
-      <button onClick={() => RandomizeLanes}>Randomize lanes</button>
+
+      <button onClick={() => RandomizeChamps()}>Randomize champions</button>
+      <button onClick={() => RandomizeLanes()}>Randomize lanes</button>
     </div>
   );
 }
 
-function RandomizeChamps() {}
-
-function RandomizeLanes() {}
-
-const CreateTable = ({ numOfCells, list }) => {
-  //create new object array
-  //assign to usestate variable
-  //create new temp array
-  //randomize it
-  //render
-
-//   var arr = {champions:[], players:[], lanes:[]};
-
-//   list.pickedChamps.forEach((element) => {
-//     //var ico = champ.filter(el => el.id === element.id);
-//     arr.champions.push({
-//       id: element.id,
-//       name: element.name,
-//       icon:champ[element.id].icon,
-//     });
-//   });
-
-//   list.settings.players.forEach((element) => {
-//     arr.players.push({ id: element.id, name: element.name });
-//   });
-
-//   list.settings.availableLanes.forEach((element) => {
-//     arr.lanes.push({ id: element.id, name: element.name });
-//   });
-
-//  // setTable(arr);
-//   console.log(arr);
-
+const CreateTable = ({ numOfCells, champions, players, lanes }) => {
   let table = [];
   let tempTable = [];
   for (var a = 0; a < numOfCells; a++) {
-    tempTable.push(<th>{list.champions[a].name}</th>);
+    tempTable.push(<th>{champions[a].name}</th>);
   }
   table.push(<tr>{tempTable}</tr>);
   tempTable = [];
@@ -93,7 +101,7 @@ const CreateTable = ({ numOfCells, list }) => {
   for (var a = 0; a < numOfCells; a++) {
     tempTable.push(
       <td>
-        <img src={list.champions[a].icon}></img>
+        <img src={champions[a].icon}></img>
       </td>
     );
   }
@@ -101,16 +109,14 @@ const CreateTable = ({ numOfCells, list }) => {
   tempTable = [];
 
   for (var a = 0; a < numOfCells; a++) {
-    tempTable.push(<td>{list.players[a].name}</td>);
+    tempTable.push(<td>{players[a].name}</td>);
   }
   table.push(<tr>{tempTable}</tr>);
   tempTable = [];
 
   for (var a = 0; a < numOfCells; a++) {
-    tempTable.push(<td>{list.lanes[a].name}</td>);
+    tempTable.push(<td>{lanes[a].name}</td>);
   }
   table.push(<tr>{tempTable}</tr>);
-
-
   return table;
 };

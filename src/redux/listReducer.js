@@ -17,6 +17,8 @@ const initialState = {
     normOrDraft: false,
     players: [{ id: 0, name: "Player 1" }],
     availableLanes: defaultLaneNames,
+    gameType: false,
+    optBans: false,
   },
 };
 
@@ -24,22 +26,6 @@ export const listSlice = createSlice({
   name: "list",
   initialState,
   reducers: {
-    //
-    //
-    //
-    //add reducer for setting w switch
-
-    //
-    //
-    //
-    //fix mutating
-
-    // deleteRandom: (state, action) => {
-    //   const rand = Math.floor(Math.random() * action.payload);
-    //   console.log(rand);
-    //   state.splice(rand, 1);
-    // },
-
     editSettings: (state, { payload }) => {
       switch (payload.type) {
         case "CHANGE_PLAYER_NAME":
@@ -93,7 +79,6 @@ export const listSlice = createSlice({
                   name: defaultLaneNames[availableLanesLength].name,
                 });
               }
-              //len = payload.count;
             }
             //removing players by input players
             var tmp = playersArrayLenght - payloadLength;
@@ -107,7 +92,6 @@ export const listSlice = createSlice({
           var payloadLength = payload.count;
 
           if (availableLanesLength < payloadLength) {
-            //var id = state.settings.availableLanes.length;
             for (
               availableLanesLength;
               availableLanesLength < payloadLength;
@@ -126,6 +110,18 @@ export const listSlice = createSlice({
             var tmp = availableLanesLength - payloadLength;
             state.settings.availableLanes.splice(payloadLength, tmp);
           }
+          break;
+
+        case "CHANGE_GAME_TYPE":
+          if (payload.value === "true") {
+            state.settings.gameType = true;
+          } else if (payload.value === "false") {
+            state.settings.gameType = false;
+          }
+          break;
+
+        case "OPTIONAL_BANS":
+          state.settings.optBans = !state.settings.optBans;
           break;
       }
     },

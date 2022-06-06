@@ -2,17 +2,44 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { selectList, editSettings } from "../redux/listReducer";
 
-export default function Settings() {
+export default function Settings({
+  setGameType,
+  setOptBans,
+  changePagesOrder,
+}) {
   const list = useSelector(selectList);
   const dispatch = useDispatch();
 
   return (
     <div>
       <h3>Normal or draft:</h3>
-      <select value={list.settings.normOrDraft} onChange>
+      <select
+        value={list.settings.gameType}
+        onChange={(e) => {
+          dispatch(
+            editSettings({ type: "CHANGE_GAME_TYPE", value: e.target.value })
+          );
+          changePagesOrder(0, e.target.value);
+        }}
+      >
         <option value="false">Normal</option>
         <option value="true">Draft</option>
       </select>
+
+      <p>
+        Optional bans:{" "}
+        <input
+          type="checkbox"
+          id="optionalBans"
+          name="optionalBans"
+          value={list.settings.optBans}
+          checked={list.settings.optBans}
+          onChange={(e) => {
+            dispatch(editSettings({ type: "OPTIONAL_BANS" }));
+            changePagesOrder(1, e.target.value);
+          }}
+        />
+      </p>
 
       <h3>Number of players:</h3>
       <select
@@ -34,7 +61,6 @@ export default function Settings() {
       </select>
 
       <h3>Players:</h3>
-      {/*create mapper for player names by selected number of players*/}
       {list.settings.players.map((item) => (
         <div>
           <h5>Player: {item.id + 1}</h5>

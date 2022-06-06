@@ -1,16 +1,9 @@
 import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import {
-  ban,
-} from "../redux/listReducer";
+import { useDispatch } from "react-redux";
+import { ban } from "../redux/listReducer";
 import champ from "../champions.json";
 
-export default function Page({
-  prev,
-  current,
-  banArrayType,
-  numberOfBans,
-}) {
+export default function Page({ prev, current, banArrayType, numberOfBans }) {
   const [searchTerm, setSearchTerm] = useState("");
   const dispatch = useDispatch();
 
@@ -37,7 +30,7 @@ export default function Page({
       />
       {champ
         .filter((val) => {
-          if (searchTerm == "") {
+          if (searchTerm === "") {
             return val;
           } else if (
             val.name.toLowerCase().includes(searchTerm.toLowerCase())
@@ -66,17 +59,12 @@ export default function Page({
   );
 }
 
-
 const Item = ({ pos, id, name, icon, checked, change }) => {
-  //var inpId = "champ" + id;
-
   return (
     <div className="champ" id={name}>
       <h5>Position in list: {pos}</h5>
       <h5>Position in json: {id}</h5>
       <h5>Name: {name}</h5>
-      {/* <h5>Icon path: {icon}</h5> */}
-
       <input
         type="checkbox"
         id={id}
