@@ -13,6 +13,7 @@ export default function App() {
 
   var [page, setPage] = useState(0);
 
+  //MANAGING AVAILABLE PAGES AND THEIR ORDER
   function changePagesOrder(type, val) {
     if (type === 0) {
       if (val === "true") {
@@ -34,12 +35,14 @@ export default function App() {
     }
   }
 
+  //CHANGE PAGE FUNCTION
   function changePage(val) {
     var e = page + val;
     setPage(e);
   }
-
+  
   switch (availablePages[page]) {
+    //SETTINGS PAGE
     case 0:
       return (
         <div>
@@ -48,6 +51,7 @@ export default function App() {
         </div>
       );
 
+    //ALLY TEAM BANS PAGE
     case 1:
       return (
         <div>
@@ -62,6 +66,7 @@ export default function App() {
         </div>
       );
 
+    //ENEMY TEAM BANS PAGE
     case 2:
       return (
         <div>
@@ -76,6 +81,7 @@ export default function App() {
         </div>
       );
 
+    //OPTIONAL BANS PAGE
     case 3:
       return (
         <div>
@@ -90,6 +96,7 @@ export default function App() {
         </div>
       );
 
+    //PICKING CHAMPIONS PAGE
     case 4:
       return (
         <div>
@@ -99,7 +106,7 @@ export default function App() {
             maxBans={list.settings.players.length}
             numberOfPickedCHamps={list.pickedChamps}
           />
-          <h3>Player picks:</h3>
+          <h3 className="center">Player picks:</h3>
           <Page
             prev={list.banPhase1.concat(list.banPhase2, list.banPhase3)}
             current={list.pickedChamps}
@@ -109,9 +116,10 @@ export default function App() {
         </div>
       );
 
+    //RANDOMIZE PAGE
     case 5:
       return (
-        <div>
+        <div className="center">
           <ButtonNavigation fnc={changePage} page={availablePages[page]} />
           <table>
             <Randomize />
@@ -119,9 +127,10 @@ export default function App() {
         </div>
       );
 
+    //DEFAULT PAGE
     default:
       return (
-        <div>
+        <div className="center">
           <ButtonNavigation fnc={changePage} page={availablePages[page]} />
           <h3>Default page</h3>
         </div>
@@ -129,10 +138,11 @@ export default function App() {
   }
 }
 
+//NAVIGATION BUTTONS
 const ButtonNavigation = ({ fnc, page, maxBans, numberOfPickedCHamps }) => {
   if (page === 0) {
     return (
-      <div>
+      <div className="buttonsCenter">
         <button onClick={() => fnc(+1)}>next</button>
       </div>
     );
@@ -140,13 +150,13 @@ const ButtonNavigation = ({ fnc, page, maxBans, numberOfPickedCHamps }) => {
     if (maxBans - numberOfPickedCHamps.length !== 0) {
       console.log(maxBans - numberOfPickedCHamps.length);
       return (
-        <div>
+        <div className="buttonsCenter">
           <button onClick={() => fnc(-1)}>back</button>
         </div>
       );
     } else {
       return (
-        <div>
+        <div className="buttonsCenter">
           <button onClick={() => fnc(+1)}>next</button>
           <button onClick={() => fnc(-1)}>back</button>
         </div>
@@ -154,13 +164,13 @@ const ButtonNavigation = ({ fnc, page, maxBans, numberOfPickedCHamps }) => {
     }
   } else if (page === 5) {
     return (
-      <div>
+      <div className="buttonsCenter">
         <button onClick={() => fnc(-1)}>back</button>
       </div>
     );
   } else if (page > 0) {
     return (
-      <div>
+      <div className="buttonsCenter">
         <button onClick={() => fnc(+1)}>next</button>
         <button onClick={() => fnc(-1)}>back</button>
       </div>

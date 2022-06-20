@@ -6,7 +6,7 @@
   display: inline-block;
 }👈*/
 
-input[type="checkbox"][labelid^="champ"] {
+input[type="checkbox"][labelid^="Item"] {
   display: none;
 }
 
@@ -83,4 +83,14 @@ label img {
   display: grid;
   justify-content: center;
   width: 600px;
+}
+
+.center, h3 {
+  display: grid;
+  justify-content: center;
+}
+
+.buttonsCenter{
+  display: flex;
+  justify-content: center;
 }

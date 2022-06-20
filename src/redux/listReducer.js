@@ -128,6 +128,7 @@ export const listSlice = createSlice({
 
     ban: (state, { payload }) => {
       switch (payload.type) {
+        //ALLY TEAM BANS
         case "BAN_ARRAY_1":
           var resp = state.banPhase1.some((e) => e.id === payload.id);
           if (resp) {
@@ -148,6 +149,7 @@ export const listSlice = createSlice({
             state.banPhase2 = tempArr;
           }
           break;
+        //ENEMY TEAM BANS
         case "BAN_ARRAY_2":
           var resp = state.banPhase2.some((e) => e.id === payload.id);
           if (resp) {
@@ -168,6 +170,7 @@ export const listSlice = createSlice({
             state.banPhase3 = tempArr;
           }
           break;
+        //OPTIONAL BANS
         case "BAN_ARRAY_3":
           var resp = state.banPhase3.some((e) => e.id === payload.id);
           if (resp) {
@@ -188,7 +191,7 @@ export const listSlice = createSlice({
             state.pickedChamps = tempArr;
           }
           break;
-
+        //PLAYER PICKS
         case "BAN_ARRAY_4":
           var resp = state.pickedChamps.some((e) => e.id === payload.id);
           if (resp) {
@@ -197,7 +200,7 @@ export const listSlice = createSlice({
             );
             state.pickedChamps = tempArr;
           } else {
-            if (state.pickedChamps.length < 5) {
+            if (state.pickedChamps.length < state.settings.players.length) {
               state.pickedChamps.push({ id: payload.id, name: payload.name });
             }
           }

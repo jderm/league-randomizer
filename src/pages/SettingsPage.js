@@ -11,7 +11,7 @@ export default function Settings({
   const dispatch = useDispatch();
 
   return (
-    <div>
+    <div className="center">
       <h3>Normal or draft:</h3>
       <select
         value={list.settings.gameType}
