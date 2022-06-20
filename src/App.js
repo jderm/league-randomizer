@@ -5,6 +5,7 @@ import "./App.css";
 import Page from "./pages/ChampListPage";
 import Settings from "./pages/SettingsPage";
 import Randomize from "./pages/RandomizePage";
+import { TextField, Button, Checkbox, Input } from "@mui/material";
 
 var availablePages = [0, 4, 5];
 
@@ -143,7 +144,7 @@ const ButtonNavigation = ({ fnc, page, maxBans, numberOfPickedCHamps }) => {
   if (page === 0) {
     return (
       <div className="buttonsCenter">
-        <button onClick={() => fnc(+1)}>next</button>
+        <Button variant="contained" onClick={() => fnc(+1)}>next</Button>
       </div>
     );
   } else if (page === 4) {
@@ -151,28 +152,28 @@ const ButtonNavigation = ({ fnc, page, maxBans, numberOfPickedCHamps }) => {
       console.log(maxBans - numberOfPickedCHamps.length);
       return (
         <div className="buttonsCenter">
-          <button onClick={() => fnc(-1)}>back</button>
+          <Button variant="contained" onClick={() => fnc(-1)}>back</Button>
         </div>
       );
     } else {
       return (
         <div className="buttonsCenter">
-          <button onClick={() => fnc(+1)}>next</button>
-          <button onClick={() => fnc(-1)}>back</button>
+          <Button variant="contained" onClick={() => fnc(+1)}>next</Button>
+          <Button variant="contained" onClick={() => fnc(-1)}>back</Button>
         </div>
       );
     }
   } else if (page === 5) {
     return (
       <div className="buttonsCenter">
-        <button onClick={() => fnc(-1)}>back</button>
+        <Button variant="contained" onClick={() => fnc(-1)}>back</Button>
       </div>
     );
   } else if (page > 0) {
     return (
       <div className="buttonsCenter">
-        <button onClick={() => fnc(+1)}>next</button>
-        <button onClick={() => fnc(-1)}>back</button>
+        <Button variant="contained" onClick={() => fnc(+1)}>next</Button>
+        <Button variant="contained" onClick={() => fnc(-1)}>back</Button>
       </div>
     );
   }

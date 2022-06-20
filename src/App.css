@@ -94,3 +94,18 @@ label img {
   display: flex;
   justify-content: center;
 }
+
+html{
+  background-color:#f699ff;
+  background-image:
+  radial-gradient(at 54% 53%, hsla(30,83%,79%,1) 0px, transparent 50%),
+  radial-gradient(at 54% 70%, hsla(350,69%,72%,1) 0px, transparent 50%),
+  radial-gradient(at 62% 41%, hsla(268,84%,65%,1) 0px, transparent 50%),
+  radial-gradient(at 26% 25%, hsla(273,83%,77%,1) 0px, transparent 50%),
+  radial-gradient(at 5% 70%, hsla(140,85%,68%,1) 0px, transparent 50%),
+  radial-gradient(at 68% 26%, hsla(241,91%,67%,1) 0px, transparent 50%),
+  radial-gradient(at 49% 50%, hsla(244,67%,76%,1) 0px, transparent 50%);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center; 
+}
