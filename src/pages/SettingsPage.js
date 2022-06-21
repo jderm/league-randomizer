@@ -8,6 +8,7 @@ import {
   Input,
   Select,
   MenuItem,
+  FormControlLabel,
 } from "@mui/material";
 
 export default function Settings({
@@ -20,6 +21,9 @@ export default function Settings({
 
   return (
     <div className="center">
+      
+      <h1>League of Legends randomizer</h1>
+      <div className="settingsContainer">
       <h3>Normal or draft:</h3>
       {/* <select
         value={list.settings.gameType}
@@ -36,6 +40,7 @@ export default function Settings({
       <Select
         value={list.settings.gameType}
         variant="filled"
+        style={{"width":"100%"}}
         onChange={(e) => {
           dispatch(
             editSettings({ type: "CHANGE_GAME_TYPE", value: e.target.value })
@@ -46,10 +51,10 @@ export default function Settings({
         <MenuItem value="false">Normal</MenuItem>
         <MenuItem value="true">Draft</MenuItem>
       </Select>
-
-      <p>
-        Optional bans:{" "}
-        {/* <input
+      </div>
+      {/* <p className="center">
+        Optional bans:{" "} */}
+      {/* <input
           type="checkbox"
           id="optionalBans"
           name="optionalBans"
@@ -60,19 +65,26 @@ export default function Settings({
             changePagesOrder(1, e.target.value);
           }}
         /> */}
-        <Checkbox
-          id="optionalBans"
-          name="optionalBans"
-          variant="filled"
-          value={list.settings.optBans}
-          checked={list.settings.optBans}
-          onChange={(e) => {
-            dispatch(editSettings({ type: "OPTIONAL_BANS" }));
-            changePagesOrder(1, e.target.value);
-          }}
+        <div className="settingsContainer">
+        <FormControlLabel
+          label="Optional bans"
+          // style={{"justify-self":"center", "padding":20}}
+          control={
+            <Checkbox
+              id="optionalBans"
+              name="optionalBans"
+              value={list.settings.optBans}
+              checked={list.settings.optBans}
+              onChange={(e) => {
+                dispatch(editSettings({ type: "OPTIONAL_BANS" }));
+                changePagesOrder(1, e.target.value);
+              }}
+            />
+          }
         />
-      </p>
-
+        </div>
+      {/* </p> */}
+      <div className="settingsContainer">
       <h3>Number of players:</h3>
       {/* <select
         value={list.settings.players.length}
@@ -94,6 +106,7 @@ export default function Settings({
       <Select
         value={list.settings.players.length}
         variant="filled"
+        style={{"width":"100%"}}
         onChange={(e) =>
           dispatch(
             editSettings({
@@ -109,11 +122,13 @@ export default function Settings({
         <MenuItem value="4">4</MenuItem>
         <MenuItem value="5">5</MenuItem>
       </Select>
+      </div>
 
+      <div className="settingsContainer">
       <h3>Players:</h3>
       {list.settings.players.map((item) => (
-        <div>
-          <h5>Player: {item.id + 1}</h5>
+        <div style={{"width":"100%", "margin-top":"5px", "margin-bottom":"5px"}}>
+          {/* <h5>Player: {item.id + 1}</h5> */}
           {/* <input
             type="text"
             id={"playerName" + item.id}
@@ -133,7 +148,9 @@ export default function Settings({
             id={"playerName" + item.id}
             variant="filled"
             name={"playerName" + item.id}
+            
             value={item.name}
+            fullWidth
             onChange={(event) =>
               dispatch(
                 editSettings({
@@ -146,7 +163,9 @@ export default function Settings({
           />
         </div>
       ))}
+      </div>
 
+      <div className="settingsContainer">
       <h3>Number of lanes:</h3>
       {/* <select
         value={list.settings.availableLanes.length}
@@ -168,6 +187,7 @@ export default function Settings({
       <Select
         value={list.settings.availableLanes.length}
         variant="filled"
+        style={{"width":"100%"}}
         onChange={(e) =>
           dispatch(
             editSettings({
@@ -183,11 +203,13 @@ export default function Settings({
         <MenuItem value="4">4</MenuItem>
         <MenuItem value="5">5</MenuItem>
       </Select>
+      </div>
 
+      <div className="settingsContainer">
       <h3>Lanes:</h3>
       {list.settings.availableLanes.map((item) => (
-        <div>
-          <h5>Lane: {item.id + 1}</h5>
+        <div style={{"width":"100%", "margin-top":"5px", "margin-bottom":"5px"}}>
+          {/* <h5>Lane: {item.id + 1}</h5> */}
           {/* <input
             type="text"
             id={"lane" + item.id}
@@ -208,6 +230,7 @@ export default function Settings({
             variant="filled"
             name={"lane" + item.id}
             value={item.name}
+            fullWidth
             onChange={(event) =>
               dispatch(
                 editSettings({
@@ -220,6 +243,7 @@ export default function Settings({
           />
         </div>
       ))}
+      </div>
     </div>
   );
 }

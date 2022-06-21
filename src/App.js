@@ -144,7 +144,7 @@ const ButtonNavigation = ({ fnc, page, maxBans, numberOfPickedCHamps }) => {
   if (page === 0) {
     return (
       <div className="buttonsCenter">
-        <Button variant="contained" onClick={() => fnc(+1)}>next</Button>
+        <Button variant="contained" style={{"background-color": "#72737369", "color": "#000"}} size="large" onClick={() => fnc(+1)}>next</Button>
       </div>
     );
   } else if (page === 4) {
@@ -152,28 +152,28 @@ const ButtonNavigation = ({ fnc, page, maxBans, numberOfPickedCHamps }) => {
       console.log(maxBans - numberOfPickedCHamps.length);
       return (
         <div className="buttonsCenter">
-          <Button variant="contained" onClick={() => fnc(-1)}>back</Button>
+          <Button variant="contained" style={{"background-color": "#72737369", "color": "#000"}} size="large" onClick={() => fnc(-1)}>back</Button>
         </div>
       );
     } else {
       return (
         <div className="buttonsCenter">
-          <Button variant="contained" onClick={() => fnc(+1)}>next</Button>
-          <Button variant="contained" onClick={() => fnc(-1)}>back</Button>
+          <Button variant="contained" style={{"background-color": "#72737369", "color": "#000"}} size="large" onClick={() => fnc(+1)}>next</Button>
+          <Button variant="contained" style={{"background-color": "#72737369", "color": "#000"}} size="large" onClick={() => fnc(-1)}>back</Button>
         </div>
       );
     }
   } else if (page === 5) {
     return (
       <div className="buttonsCenter">
-        <Button variant="contained" onClick={() => fnc(-1)}>back</Button>
+        <Button variant="contained" style={{"background-color": "#72737369", "color": "#000"}} size="large" onClick={() => fnc(-1)}>back</Button>
       </div>
     );
   } else if (page > 0) {
     return (
       <div className="buttonsCenter">
-        <Button variant="contained" onClick={() => fnc(+1)}>next</Button>
-        <Button variant="contained" onClick={() => fnc(-1)}>back</Button>
+        <Button variant="contained" style={{"background-color": "#72737369", "color": "#000"}} size="large" onClick={() => fnc(+1)}>next</Button>
+        <Button variant="contained" style={{"background-color": "#72737369", "color": "#000"}} size="large" onClick={() => fnc(-1)}>back</Button>
       </div>
     );
   }

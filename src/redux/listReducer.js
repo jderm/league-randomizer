@@ -83,6 +83,14 @@ export const listSlice = createSlice({
             //removing players by input players
             var tmp = playersArrayLenght - payloadLength;
             state.settings.players.splice(payloadLength, tmp);
+
+            //ADJUST TO NUM OF PICKED CHAMPS NOT BE HIGHET THAN NUM OF PLAYERS
+            //(NEED TO TEST LATER)
+            if(state.settings.players.length < state.pickedChamps.length)
+            {
+              var tmp = playersArrayLenght - payloadLength;
+              state.pickedChamps.splice(payloadLength, tmp);
+            }
           }
           break;
 

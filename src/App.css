@@ -10,7 +10,7 @@ input[type="checkbox"][labelid^="Item"] {
   display: none;
 }
 
-label {
+.labelClass {
   border: 1px solid #fff;
   padding: 10px;
   display: block;
@@ -32,7 +32,7 @@ label {
   padding: 4px;
 }
 
-label:before {
+.labelClass:before {
   background-color: white;
   color: white;
   content: " ";
@@ -50,7 +50,7 @@ label:before {
   transform: scale(0);
 }
 
-label img {
+.labelClass img {
   height: 50px;
   width: 50px;
   transition-duration: 0.2s;
@@ -85,9 +85,12 @@ label img {
   width: 600px;
 }
 
-.center, h3 {
+.center, h3, h1 {
   display: grid;
   justify-content: center;
+  /* align-items: center;
+  justify-self: center; */
+
 }
 
 .buttonsCenter{
@@ -108,4 +111,29 @@ html{
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center; 
+}
+
+h1 {
+  background-image: linear-gradient(to left, violet, indigo, blue, green, yellow, orange, red);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-align: center;
+}
+
+/* h5{
+  margin-top: 0;
+} */
+
+/* .inheritWidth{
+  width: inherit;
+} */
+
+.settingsContainer{
+  /* display: contents; */
+  display: grid;
+  justify-items: center;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  margin-left: 30px;
+  margin-right: 30px;
 }

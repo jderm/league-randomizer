@@ -125,6 +125,7 @@ export default function Page({ prev, current, banArrayType, numberOfBans }) {
                         />
                         <label
                           for={"Item" + i}
+                          className="labelClass"
                           onClick={() =>
                             dispatch(
                               ban({
