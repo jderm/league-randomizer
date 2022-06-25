@@ -11,7 +11,17 @@ import {
 import "../Style.css";
 import "../App.css";
 
-export default function Page({ prev, current, banArrayType, numberOfBans }) {
+import {
+  TextField,
+  Button,
+  Checkbox,
+  Input,
+  Select,
+  MenuItem,
+  FormControlLabel,
+} from "@mui/material";
+
+export default function Page({ prev, current, banArrayType, numberOfBans, title }) {
   //const list = useSelector(selectList);
   const [searchTerm, setSearchTerm] = useState("");
   const dispatch = useDispatch();
@@ -21,10 +31,12 @@ export default function Page({ prev, current, banArrayType, numberOfBans }) {
   //
 
   //CHAMP LIST FILTERED OF BANNED CHAMPS
-  const banFilteredChampArr = champ.filter((val) =>
+  var banFilteredChampArr = champ.filter((val) =>
     prev.every((e) => e.id !== val.id)
   );
-  const ITEM_SIZE = 200;
+
+  console.log(banFilteredChampArr);
+  const ITEM_SIZE = 150;
 
   // const cache=React.useRef(
   //   new CellMeasurerCache({
@@ -47,9 +59,10 @@ export default function Page({ prev, current, banArrayType, numberOfBans }) {
   });
 
   return (
-    <div style={{ width: "100%", height: "80vh" }}>
-      <div className="center">
-        <input
+    <div>
+      <div className="CenterContent">
+        <h3>{title}</h3>
+        {/* <input
         id="filter"
         name="filter"
         type="text"
@@ -57,7 +70,18 @@ export default function Page({ prev, current, banArrayType, numberOfBans }) {
         onChange={(event) => {
           setSearchTerm(event.target.value);
         }}
-      />
+      /> */}
+      <TextField
+            id="filter"
+            variant="filled"
+            name="filter"
+            
+            value={searchTerm}
+            fullWidth
+            onChange={(event) => {
+              setSearchTerm(event.target.value);
+            }}
+          />
       <h4>Selected champions:</h4>
       <ol>
         {current.map((item) => (
@@ -68,6 +92,8 @@ export default function Page({ prev, current, banArrayType, numberOfBans }) {
       </ol>
       <h4>Picks/bans remaining: ({numberOfBans - current.length})</h4>
       </div>
+      <div id="ChampionSelector" style={{"display": "flex", "justify-content": "center"}}>
+      <div style={{ width: "100%", height: "calc(100vh - (289px + 43px + 25px + 38px))", "maxWidth":"1500px" }}>
       <AutoSizer>
         {({ width, height }) => {
           //num of items per row depends on size of each items and window width
@@ -105,7 +131,7 @@ export default function Page({ prev, current, banArrayType, numberOfBans }) {
                     // >
                       //RENDERING ITEM
                       <div className="Item" key={i}>
-                        <p>{searchFilteredChampArr[i].name}</p>
+                        <h4>{searchFilteredChampArr[i].name}</h4>
                         <input
                           type="checkbox"
                           id={i}
@@ -156,6 +182,8 @@ export default function Page({ prev, current, banArrayType, numberOfBans }) {
           );
         }}
       </AutoSizer>
+    </div>
+    </div>
     </div>
   );
 }

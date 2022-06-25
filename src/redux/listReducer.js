@@ -86,12 +86,13 @@ export const listSlice = createSlice({
 
             //ADJUST TO NUM OF PICKED CHAMPS NOT BE HIGHET THAN NUM OF PLAYERS
             //(NEED TO TEST LATER)
-            if(state.settings.players.length < state.pickedChamps.length)
+            
+          }
+          if(state.settings.players.length < state.pickedChamps.length)
             {
               var tmp = playersArrayLenght - payloadLength;
               state.pickedChamps.splice(payloadLength, tmp);
             }
-          }
           break;
 
         case "CHANGE_NUMBER_OF_LANES":
@@ -118,6 +119,11 @@ export const listSlice = createSlice({
             var tmp = availableLanesLength - payloadLength;
             state.settings.availableLanes.splice(payloadLength, tmp);
           }
+          if(state.settings.availableLanes.length < state.pickedChamps.length)
+            {
+              var tmp = playersArrayLenght - payloadLength;
+              state.pickedChamps.splice(payloadLength, tmp);
+            }
           break;
 
         case "CHANGE_GAME_TYPE":

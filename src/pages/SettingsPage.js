@@ -20,10 +20,10 @@ export default function Settings({
   const dispatch = useDispatch();
 
   return (
-    <div className="center">
+    <div className="CenterContent">
       
       <h1>League of Legends randomizer</h1>
-      <div className="settingsContainer">
+      <div className="SettingsContainer">
       <h3>Normal or draft:</h3>
       {/* <select
         value={list.settings.gameType}
@@ -52,7 +52,7 @@ export default function Settings({
         <MenuItem value="true">Draft</MenuItem>
       </Select>
       </div>
-      {/* <p className="center">
+      {/* <p className="CenterContent">
         Optional bans:{" "} */}
       {/* <input
           type="checkbox"
@@ -65,10 +65,10 @@ export default function Settings({
             changePagesOrder(1, e.target.value);
           }}
         /> */}
-        <div className="settingsContainer">
+        <div className="SettingsContainer">
         <FormControlLabel
           label="Optional bans"
-          // style={{"justify-self":"center", "padding":20}}
+          // style={{"justify-self":"CenterContent", "padding":20}}
           control={
             <Checkbox
               id="optionalBans"
@@ -84,7 +84,7 @@ export default function Settings({
         />
         </div>
       {/* </p> */}
-      <div className="settingsContainer">
+      <div className="SettingsContainer">
       <h3>Number of players:</h3>
       {/* <select
         value={list.settings.players.length}
@@ -124,7 +124,7 @@ export default function Settings({
       </Select>
       </div>
 
-      <div className="settingsContainer">
+      <div className="SettingsContainer">
       <h3>Players:</h3>
       {list.settings.players.map((item) => (
         <div style={{"width":"100%", "margin-top":"5px", "margin-bottom":"5px"}}>
@@ -165,7 +165,7 @@ export default function Settings({
       ))}
       </div>
 
-      <div className="settingsContainer">
+      <div className="SettingsContainer">
       <h3>Number of lanes:</h3>
       {/* <select
         value={list.settings.availableLanes.length}
@@ -205,7 +205,7 @@ export default function Settings({
       </Select>
       </div>
 
-      <div className="settingsContainer">
+      <div className="SettingsContainer">
       <h3>Lanes:</h3>
       {list.settings.availableLanes.map((item) => (
         <div style={{"width":"100%", "margin-top":"5px", "margin-bottom":"5px"}}>

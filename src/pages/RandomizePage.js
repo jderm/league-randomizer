@@ -2,6 +2,15 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { selectList } from "../redux/listReducer";
 import champ from "../champions.json";
+import {
+  TextField,
+  Button,
+  Checkbox,
+  Input,
+  Select,
+  MenuItem,
+  FormControlLabel,
+} from "@mui/material";
 
 export default function Randomize() {
   const list = useSelector(selectList);
@@ -71,8 +80,8 @@ export default function Randomize() {
     setLanes(tempArr);
   }
   return (
-    <div>
-      <table>
+    <div className="CenterContent">
+      {/* <table>
         <tbody>
           <CreateTable
             numOfCells={champions.length}
@@ -81,10 +90,21 @@ export default function Randomize() {
             lanes={lanes}
           />
         </tbody>
-      </table>
+      </table> */}
+      <div style={{"display": "flex", "justify-content": "center", "flex-flow": "row wrap"}}>
+      <CreateTable
+            numOfCells={champions.length}
+            champions={champions}
+            players={players}
+            lanes={lanes}
+          />
+      </div>
 
-      <button onClick={() => RandomizeChamps()}>Randomize champions</button>
-      <button onClick={() => RandomizeLanes()}>Randomize lanes</button>
+      {/* <button onClick={() => RandomizeChamps()}>Randomize champions</button>
+      <button onClick={() => RandomizeLanes()}>Randomize lanes</button> */}
+      <Button variant="contained" style={{"background-color": "#72737369", "color": "#000", "margin": "30px"}} size="large" onClick={() => RandomizeChamps()}>Randomize champions</Button>
+      <Button variant="contained" style={{"background-color": "#72737369", "color": "#000", "margin": "30px"}} size="large" onClick={() => RandomizeLanes()}>Randomize lanes</Button>
+      
     </div>
   );
 }
@@ -92,31 +112,42 @@ export default function Randomize() {
 const CreateTable = ({ numOfCells, champions, players, lanes }) => {
   let table = [];
   let tempTable = [];
-  for (var a = 0; a < numOfCells; a++) {
-    tempTable.push(<th>{champions[a].name}</th>);
-  }
-  table.push(<tr>{tempTable}</tr>);
-  tempTable = [];
-
-  for (var a = 0; a < numOfCells; a++) {
-    tempTable.push(
-      <td>
+  for(var a = 0; a < numOfCells; a++)
+  {
+    table.push(
+      <div className="randItem" style={{"margin": "20px"}}>
+        <h4>{champions[a].name}</h4>
         <img src={champions[a].icon}></img>
-      </td>
-    );
+        <h5>{players[a].name}</h5>
+        <h5>{lanes[a].name}</h5>
+      </div>
+    )
   }
-  table.push(<tr>{tempTable}</tr>);
-  tempTable = [];
+  // for (var a = 0; a < numOfCells; a++) {
+  //   tempTable.push(<th>{champions[a].name}</th>);
+  // }
+  // table.push(<tr>{tempTable}</tr>);
+  // tempTable = [];
 
-  for (var a = 0; a < numOfCells; a++) {
-    tempTable.push(<td>{players[a].name}</td>);
-  }
-  table.push(<tr>{tempTable}</tr>);
-  tempTable = [];
+  // for (var a = 0; a < numOfCells; a++) {
+  //   tempTable.push(
+  //     <td>
+  //       <img src={champions[a].icon}></img>
+  //     </td>
+  //   );
+  // }
+  // table.push(<tr>{tempTable}</tr>);
+  // tempTable = [];
 
-  for (var a = 0; a < numOfCells; a++) {
-    tempTable.push(<td>{lanes[a].name}</td>);
-  }
-  table.push(<tr>{tempTable}</tr>);
+  // for (var a = 0; a < numOfCells; a++) {
+  //   tempTable.push(<td>{players[a].name}</td>);
+  // }
+  // table.push(<tr>{tempTable}</tr>);
+  // tempTable = [];
+
+  // for (var a = 0; a < numOfCells; a++) {
+  //   tempTable.push(<td>{lanes[a].name}</td>);
+  // }
+  // table.push(<tr>{tempTable}</tr>);
   return table;
 };
