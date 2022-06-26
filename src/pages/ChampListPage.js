@@ -30,12 +30,15 @@ export default function Page({ prev, current, banArrayType, numberOfBans, title 
   //just temporary (need to edit for actuall list of bans)
   //
 
+  //console.log(prev);
+  //console.log("Current ban array:"+current);
   //CHAMP LIST FILTERED OF BANNED CHAMPS
+  
   var banFilteredChampArr = champ.filter((val) =>
     prev.every((e) => e.id !== val.id)
   );
-
-  console.log(banFilteredChampArr);
+  //console.log(champ);
+  //console.log(banFilteredChampArr);
   const ITEM_SIZE = 150;
 
   // const cache=React.useRef(
@@ -85,14 +88,15 @@ export default function Page({ prev, current, banArrayType, numberOfBans, title 
       <h4>Selected champions:</h4>
       <ol>
         {current.map((item) => (
-          <li>
-            Item ID: {item.id}, Item name: {item.name}
+          <li key={item.id}>
+            {/* Item ID: {item.id}, Item name: {item.name} */}
+            {item.name}
           </li>
         ))}
       </ol>
       <h4>Picks/bans remaining: ({numberOfBans - current.length})</h4>
       </div>
-      <div id="ChampionSelector" style={{"display": "flex", "justify-content": "center"}}>
+      <div id="ChampionSelector" style={{"display": "flex", "justifyContent": "center"}}>
       <div style={{ width: "100%", height: "calc(100vh - (289px + 43px + 25px + 38px))", "maxWidth":"1500px" }}>
       <AutoSizer>
         {({ width, height }) => {
@@ -130,19 +134,19 @@ export default function Page({ prev, current, banArrayType, numberOfBans, title 
                     //   rowIndex={index}
                     // >
                       //RENDERING ITEM
-                      <div className="Item" key={i}>
+                      <div className="Item" key={searchFilteredChampArr[i].id}>
                         <h4>{searchFilteredChampArr[i].name}</h4>
                         <input
                           type="checkbox"
                           id={i}
-                          labelid={"Item" + i}
+                          labelid={"Item" + searchFilteredChampArr[i].id}
                           checked={current.some(
-                            (e) => e.id === i
+                            (e) => e.id === searchFilteredChampArr[i].id
                           )}
                           onChange={() =>
                             dispatch(
                               ban({
-                                id: i,
+                                id: searchFilteredChampArr[i].id,
                                 name: searchFilteredChampArr[i].name,
                                 type: banArrayType,
                               })
@@ -150,12 +154,12 @@ export default function Page({ prev, current, banArrayType, numberOfBans, title 
                           }
                         />
                         <label
-                          for={"Item" + i}
+                          htmlFor={"Item" + searchFilteredChampArr[i].id}
                           className="labelClass"
                           onClick={() =>
                             dispatch(
                               ban({
-                                id: i,
+                                id: searchFilteredChampArr[i].id,
                                 name: searchFilteredChampArr[i].name,
                                 type: banArrayType,
                               })

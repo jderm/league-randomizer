@@ -1,802 +1,802 @@
 [
 	{
-		"id":"0",
+		"id":0,
 		"name":"Aatrox",
-		"icon":"champicons/AatroxSquare.png"
+		"icon":"/champicons/AatroxSquare.png"
 	},
 	{
-		"id":"1",
+		"id":1,
 		"name":"Ahri",
-		"icon":"champicons/AhriSquare.png"
+		"icon":"/champicons/AhriSquare.png"
 	},
 	{
-		"id":"2",
+		"id":2,
 		"name":"Akali",
-		"icon":"champicons/AkaliSquare.png"
+		"icon":"/champicons/AkaliSquare.png"
 	},
 	{
-		"id":"3",
+		"id":3,
 		"name":"Akshan",
-		"icon":"champicons/Akshan_OriginalSquare.png"
+		"icon":"/champicons/Akshan_OriginalSquare.png"
 	},
 	{
-		"id":"4",
+		"id":4,
 		"name":"Alistar",
-		"icon":"champicons/AlistarSquare.png"
+		"icon":"/champicons/AlistarSquare.png"
 	},
 	{
-		"id":"5",
+		"id":5,
 		"name":"Amumu",
-		"icon":"champicons/AmumuSquare.png"
+		"icon":"/champicons/AmumuSquare.png"
 	},
 	{
-		"id":"6",
+		"id":6,
 		"name":"Anivia",
-		"icon":"champicons/AniviaSquare.png"
+		"icon":"/champicons/AniviaSquare.png"
 	},
 	{
-		"id":"7",
+		"id":7,
 		"name":"Annie",
-		"icon":"champicons/AnnieSquare.png"
+		"icon":"/champicons/AnnieSquare.png"
 	},
 	{
-		"id":"8",
+		"id":8,
 		"name":"Aphelios",
-		"icon":"champicons/Aphelios_OriginalSquare.png"
+		"icon":"/champicons/Aphelios_OriginalSquare.png"
 	},
 	{
-		"id":"9",
+		"id":9,
 		"name":"Ashe",
-		"icon":"champicons/AsheSquare.png"
+		"icon":"/champicons/AsheSquare.png"
 	},
 	{
-		"id":"10",
+		"id":10,
 		"name":"Aurelion Sol",
-		"icon":"champicons/Aurelion_SolSquare.png"
+		"icon":"/champicons/Aurelion_SolSquare.png"
 	},
 	{
-		"id":"11",
+		"id":11,
 		"name":"Azir",
-		"icon":"champicons/AzirSquare.png"
+		"icon":"/champicons/AzirSquare.png"
 	},
 	{
-		"id":"12",
+		"id":12,
 		"name":"Bard",
-		"icon":"champicons/BardSquare.png"
+		"icon":"/champicons/BardSquare.png"
 	},
 	{
-		"id":"13",
+		"id":13,
 		"name":"Bel'Veth",
-		"icon":"champicons/Bel-27Veth_OriginalSquare.png"
+		"icon":"/champicons/Bel-27Veth_OriginalSquare.png"
 	},
 	{
-		"id":"14",
+		"id":14,
 		"name":"Blitzcrank",
-		"icon":"champicons/BlitzcrankSquare.png"
+		"icon":"/champicons/BlitzcrankSquare.png"
 	},
 	{
-		"id":"15",
+		"id":15,
 		"name":"Brand",
-		"icon":"champicons/BrandSquare.png"
+		"icon":"/champicons/BrandSquare.png"
 	},
 	{
-		"id":"16",
+		"id":16,
 		"name":"Braum",
-		"icon":"champicons/BraumSquare.png"
+		"icon":"/champicons/BraumSquare.png"
 	},
 	{
-		"id":"17",
+		"id":17,
 		"name":"Caitlyn",
-		"icon":"champicons/CaitlynSquare.png"
+		"icon":"/champicons/CaitlynSquare.png"
 	},
 	{
-		"id":"18",
+		"id":18,
 		"name":"Camille",
-		"icon":"champicons/CamilleSquare.png"
+		"icon":"/champicons/CamilleSquare.png"
 	},
 	{
-		"id":"19",
+		"id":19,
 		"name":"Cassiopeia",
-		"icon":"champicons/CassiopeiaSquare.png"
+		"icon":"/champicons/CassiopeiaSquare.png"
 	},
 	{
-		"id":"20",
+		"id":20,
 		"name":"Cho'Gath",
-		"icon":"champicons/Cho-27GathSquare.png"
+		"icon":"/champicons/Cho-27GathSquare.png"
 	},
 	{
-		"id":"21",
+		"id":21,
 		"name":"Corki",
-		"icon":"champicons/CorkiSquare.png"
+		"icon":"/champicons/CorkiSquare.png"
 	},
 	{
-		"id":"22",
+		"id":22,
 		"name":"Darius",
-		"icon":"champicons/DariusSquare.png"
+		"icon":"/champicons/DariusSquare.png"
 	},
 	{
-		"id":"23",
+		"id":23,
 		"name":"Diana",
-		"icon":"champicons/DianaSquare.png"
+		"icon":"/champicons/DianaSquare.png"
 	},
 	{
-		"id":"24",
+		"id":24,
 		"name":"Dr. Mundo",
-		"icon":"champicons/Dr._Mundo_OriginalSquare.png"
+		"icon":"/champicons/Dr._Mundo_OriginalSquare.png"
 	},
 	{
-		"id":"25",
+		"id":25,
 		"name":"Draven",
-		"icon":"champicons/DravenSquare.png"
+		"icon":"/champicons/DravenSquare.png"
 	},
 	{
-		"id":"26",
+		"id":26,
 		"name":"Ekko",
-		"icon":"champicons/EkkoSquare.png"
+		"icon":"/champicons/EkkoSquare.png"
 	},
 	{
-		"id":"27",
+		"id":27,
 		"name":"Elise",
-		"icon":"champicons/EliseSquare.png"
+		"icon":"/champicons/EliseSquare.png"
 	},
 	{
-		"id":"28",
+		"id":28,
 		"name":"Evelynn",
-		"icon":"champicons/EvelynnSquare.png"
+		"icon":"/champicons/EvelynnSquare.png"
 	},
 	{
-		"id":"29",
+		"id":29,
 		"name":"Ezreal",
-		"icon":"champicons/EzrealSquare.png"
+		"icon":"/champicons/EzrealSquare.png"
 	},
 	{
-		"id":"30",
+		"id":30,
 		"name":"Fiddlesticks",
-		"icon":"champicons/Fiddlesticks_OriginalSquare.png"
+		"icon":"/champicons/Fiddlesticks_OriginalSquare.png"
 	},
 	{
-		"id":"31",
+		"id":31,
 		"name":"Fiora",
-		"icon":"champicons/FioraSquare.png"
+		"icon":"/champicons/FioraSquare.png"
 	},
 	{
-		"id":"32",
+		"id":32,
 		"name":"Fizz",
-		"icon":"champicons/FizzSquare.png"
+		"icon":"/champicons/FizzSquare.png"
 	},
 	{
-		"id":"33",
+		"id":33,
 		"name":"Galio",
-		"icon":"champicons/GalioSquare.png"
+		"icon":"/champicons/GalioSquare.png"
 	},
 	{
-		"id":"34",
+		"id":34,
 		"name":"Gangplank",
-		"icon":"champicons/GangplankSquare.png"
+		"icon":"/champicons/GangplankSquare.png"
 	},
 	{
-		"id":"35",
+		"id":35,
 		"name":"Garen",
-		"icon":"champicons/GarenSquare.png"
+		"icon":"/champicons/GarenSquare.png"
 	},
 	{
-		"id":"36",
+		"id":36,
 		"name":"Gnar",
-		"icon":"champicons/GnarSquare.png"
+		"icon":"/champicons/GnarSquare.png"
 	},
 	{
-		"id":"37",
+		"id":37,
 		"name":"Gragas",
-		"icon":"champicons/GragasSquare.png"
+		"icon":"/champicons/GragasSquare.png"
 	},
 	{
-		"id":"38",
+		"id":38,
 		"name":"Graves",
-		"icon":"champicons/GravesSquare.png"
+		"icon":"/champicons/GravesSquare.png"
 	},
 	{
-		"id":"39",
+		"id":39,
 		"name":"Gwen",
-		"icon":"champicons/Gwen_OriginalSquare.png"
+		"icon":"/champicons/Gwen_OriginalSquare.png"
 	},
 	{
-		"id":"40",
+		"id":40,
 		"name":"Hecarim",
-		"icon":"champicons/HecarimSquare.png"
+		"icon":"/champicons/HecarimSquare.png"
 	},
 	{
-		"id":"41",
+		"id":41,
 		"name":"Heimerdinger",
-		"icon":"champicons/HeimerdingerSquare.png"
+		"icon":"/champicons/HeimerdingerSquare.png"
 	},
 	{
-		"id":"42",
+		"id":42,
 		"name":"Illaoi",
-		"icon":"champicons/IllaoiSquare.png"
+		"icon":"/champicons/IllaoiSquare.png"
 	},
 	{
-		"id":"43",
+		"id":43,
 		"name":"Irelia",
-		"icon":"champicons/IreliaSquare.png"
+		"icon":"/champicons/IreliaSquare.png"
 	},
 	{
-		"id":"44",
+		"id":44,
 		"name":"Ivern",
-		"icon":"champicons/IvernSquare.png"
+		"icon":"/champicons/IvernSquare.png"
 	},
 	{
-		"id":"45",
+		"id":45,
 		"name":"Janna",
-		"icon":"champicons/JannaSquare.png"
+		"icon":"/champicons/JannaSquare.png"
 	},
 	{
-		"id":"46",
+		"id":46,
 		"name":"Jarvan IV",
-		"icon":"champicons/Jarvan_IVSquare.png"
+		"icon":"/champicons/Jarvan_IVSquare.png"
 	},
 	{
-		"id":"47",
+		"id":47,
 		"name":"Jax",
-		"icon":"champicons/JaxSquare.png"
+		"icon":"/champicons/JaxSquare.png"
 	},
 	{
-		"id":"48",
+		"id":48,
 		"name":"Jayce",
-		"icon":"champicons/JayceSquare.png"
+		"icon":"/champicons/JayceSquare.png"
 	},
 	{
-		"id":"49",
+		"id":49,
 		"name":"Jhin",
-		"icon":"champicons/JhinSquare.png"
+		"icon":"/champicons/JhinSquare.png"
 	},
 	{
-		"id":"50",
+		"id":50,
 		"name":"Jinx",
-		"icon":"champicons/JinxSquare.png"
+		"icon":"/champicons/JinxSquare.png"
 	},
 	{
-		"id":"51",
+		"id":51,
 		"name":"Kai'Sa",
-		"icon":"champicons/Kai-27SaSquare.png"
+		"icon":"/champicons/Kai-27SaSquare.png"
 	},
 	{
-		"id":"52",
+		"id":52,
 		"name":"Kalista",
-		"icon":"champicons/KalistaSquare.png"
+		"icon":"/champicons/KalistaSquare.png"
 	},
 	{
-		"id":"53",
+		"id":53,
 		"name":"Karma",
-		"icon":"champicons/KarmaSquare.png"
+		"icon":"/champicons/KarmaSquare.png"
 	},
 	{
-		"id":"54",
+		"id":54,
 		"name":"Karthus",
-		"icon":"champicons/KarthusSquare.png"
+		"icon":"/champicons/KarthusSquare.png"
 	},
 	{
-		"id":"55",
+		"id":55,
 		"name":"Kassadin",
-		"icon":"champicons/Kassadin_OriginalSquare.png"
+		"icon":"/champicons/Kassadin_OriginalSquare.png"
 	},
 	{
-		"id":"56",
+		"id":56,
 		"name":"Katarina",
-		"icon":"champicons/KatarinaSquare.png"
+		"icon":"/champicons/KatarinaSquare.png"
 	},
 	{
-		"id":"57",
+		"id":57,
 		"name":"Kayle",
-		"icon":"champicons/Kayle_OriginalSquare.png"
+		"icon":"/champicons/Kayle_OriginalSquare.png"
 	},
 	{
-		"id":"58",
+		"id":58,
 		"name":"Kayn",
-		"icon":"champicons/KaynSquare.png"
+		"icon":"/champicons/KaynSquare.png"
 	},
 	{
-		"id":"59",
+		"id":59,
 		"name":"Kennen",
-		"icon":"champicons/KennenSquare.png"
+		"icon":"/champicons/KennenSquare.png"
 	},
 	{
-		"id":"60",
+		"id":60,
 		"name":"Kha'Zix",
-		"icon":"champicons/Kha-27ZixSquare.png"
+		"icon":"/champicons/Kha-27ZixSquare.png"
 	},
 	{
-		"id":"61",
+		"id":61,
 		"name":"Kindred",
-		"icon":"champicons/KindredSquare.png"
+		"icon":"/champicons/KindredSquare.png"
 	},
 	{
-		"id":"62",
+		"id":62,
 		"name":"Kled",
-		"icon":"champicons/KledSquare.png"
+		"icon":"/champicons/KledSquare.png"
 	},
 	{
-		"id":"63",
+		"id":63,
 		"name":"Kog'Maw",
-		"icon":"champicons/Kog-27MawSquare.png"
+		"icon":"/champicons/Kog-27MawSquare.png"
 	},
 	{
-		"id":"64",
+		"id":64,
 		"name":"LeBlanc",
-		"icon":"champicons/LeBlancSquare.png"
+		"icon":"/champicons/LeBlancSquare.png"
 	},
 	{
-		"id":"65",
+		"id":65,
 		"name":"Lee Sin",
-		"icon":"champicons/Lee_SinSquare.png"
+		"icon":"/champicons/Lee_SinSquare.png"
 	},
 	{
-		"id":"66",
+		"id":66,
 		"name":"Leona",
-		"icon":"champicons/LeonaSquare.png"
+		"icon":"/champicons/LeonaSquare.png"
 	},
 	{
-		"id":"67",
+		"id":67,
 		"name":"Lillia",
-		"icon":"champicons/Lillia_OriginalSquare.png"
+		"icon":"/champicons/Lillia_OriginalSquare.png"
 	},
 	{
-		"id":"68",
+		"id":68,
 		"name":"Lissandra",
-		"icon":"champicons/LissandraSquare.png"
+		"icon":"/champicons/LissandraSquare.png"
 	},
 	{
-		"id":"69",
+		"id":69,
 		"name":"Lucian",
-		"icon":"champicons/LucianSquare.png"
+		"icon":"/champicons/LucianSquare.png"
 	},
 	{
-		"id":"70",
+		"id":70,
 		"name":"Lulu",
-		"icon":"champicons/LuluSquare.png"
+		"icon":"/champicons/LuluSquare.png"
 	},
 	{
-		"id":"71",
+		"id":71,
 		"name":"Lux",
-		"icon":"champicons/LuxSquare.png"
+		"icon":"/champicons/LuxSquare.png"
 	},
 	{
-		"id":"72",
+		"id":72,
 		"name":"Malphite",
-		"icon":"champicons/MalphiteSquare.png"
+		"icon":"/champicons/MalphiteSquare.png"
 	},
 	{
-		"id":"73",
+		"id":73,
 		"name":"Malzahar",
-		"icon":"champicons/MalzaharSquare.png"
+		"icon":"/champicons/MalzaharSquare.png"
 	},
 	{
-		"id":"74",
+		"id":74,
 		"name":"Maokai",
-		"icon":"champicons/MaokaiSquare.png"
+		"icon":"/champicons/MaokaiSquare.png"
 	},
 	{
-		"id":"75",
+		"id":75,
 		"name":"Master Yi",
-		"icon":"champicons/Master_YiSquare.png"
+		"icon":"/champicons/Master_YiSquare.png"
 	},
 	{
-		"id":"76",
+		"id":76,
 		"name":"Miss Fortune",
-		"icon":"champicons/Miss_FortuneSquare.png"
+		"icon":"/champicons/Miss_FortuneSquare.png"
 	},
 	{
-		"id":"77",
+		"id":77,
 		"name":"Mordekaiser",
-		"icon":"champicons/Mordekaiser_OriginalSquare.png"
+		"icon":"/champicons/Mordekaiser_OriginalSquare.png"
 	},
 	{
-		"id":"78",
+		"id":78,
 		"name":"Morgana",
-		"icon":"champicons/MorganaSquare.png"
+		"icon":"/champicons/MorganaSquare.png"
 	},
 	{
-		"id":"79",
+		"id":79,
 		"name":"Nami",
-		"icon":"champicons/NamiSquare.png"
+		"icon":"/champicons/NamiSquare.png"
 	},
 	{
-		"id":"80",
+		"id":80,
 		"name":"Nasus",
-		"icon":"champicons/NasusSquare.png"
+		"icon":"/champicons/NasusSquare.png"
 	},
 	{
-		"id":"81",
+		"id":81,
 		"name":"Nautilus",
-		"icon":"champicons/NautilusSquare.png"
+		"icon":"/champicons/NautilusSquare.png"
 	},
 	{
-		"id":"82",
+		"id":82,
 		"name":"Neeko",
-		"icon":"champicons/NeekoSquare.png"
+		"icon":"/champicons/NeekoSquare.png"
 	},
 	{
-		"id":"83",
+		"id":83,
 		"name":"Nidalee",
-		"icon":"champicons/NidaleeSquare.png"
+		"icon":"/champicons/NidaleeSquare.png"
 	},
 	{
-		"id":"84",
+		"id":84,
 		"name":"Nocturne",
-		"icon":"champicons/NocturneSquare.png"
+		"icon":"/champicons/NocturneSquare.png"
 	},
 	{
-		"id":"85",
+		"id":85,
 		"name":"Nunu",
-		"icon":"champicons/NunuSquare.png"
+		"icon":"/champicons/NunuSquare.png"
 	},
 	{
-		"id":"86",
+		"id":86,
 		"name":"Olaf",
-		"icon":"champicons/OlafSquare.png"
+		"icon":"/champicons/OlafSquare.png"
 	},
 	{
-		"id":"87",
+		"id":87,
 		"name":"Orianna",
-		"icon":"champicons/OriannaSquare.png"
+		"icon":"/champicons/OriannaSquare.png"
 	},
 	{
-		"id":"88",
+		"id":88,
 		"name":"Ornn",
-		"icon":"champicons/OrnnSquare.png"
+		"icon":"/champicons/OrnnSquare.png"
 	},
 	{
-		"id":"89",
+		"id":89,
 		"name":"Pantheon",
-		"icon":"champicons/Pantheon_OriginalSquare.png"
+		"icon":"/champicons/Pantheon_OriginalSquare.png"
 	},
 	{
-		"id":"90",
+		"id":90,
 		"name":"Poppy",
-		"icon":"champicons/PoppySquare.png"
+		"icon":"/champicons/PoppySquare.png"
 	},
 	{
-		"id":"91",
+		"id":91,
 		"name":"Pyke",
-		"icon":"champicons/PykeSquare.png"
+		"icon":"/champicons/PykeSquare.png"
 	},
 	{
-		"id":"92",
+		"id":92,
 		"name":"Qiyana",
-		"icon":"champicons/Qiyana_OriginalSquare.png"
+		"icon":"/champicons/Qiyana_OriginalSquare.png"
 	},
 	{
-		"id":"93",
+		"id":93,
 		"name":"Quinn",
-		"icon":"champicons/QuinnSquare.png"
+		"icon":"/champicons/QuinnSquare.png"
 	},
 	{
-		"id":"94",
+		"id":94,
 		"name":"Rakan",
-		"icon":"champicons/RakanSquare.png"
+		"icon":"/champicons/RakanSquare.png"
 	},
 	{
-		"id":"95",
+		"id":95,
 		"name":"Rammus",
-		"icon":"champicons/RammusSquare.png"
+		"icon":"/champicons/RammusSquare.png"
 	},
 	{
-		"id":"96",
+		"id":96,
 		"name":"Rek'Sai",
-		"icon":"champicons/Rek-27SaiSquare.png"
+		"icon":"/champicons/Rek-27SaiSquare.png"
 	},
 	{
-		"id":"97",
+		"id":97,
 		"name":"Rell",
-		"icon":"champicons/Rell_OriginalSquare.png"
+		"icon":"/champicons/Rell_OriginalSquare.png"
 	},
 	{
-		"id":"98",
+		"id":98,
 		"name":"Renata Glasc",
-		"icon":"champicons/Renata_Glasc_OriginalSquare (1).png"
+		"icon":"/champicons/Renata_Glasc_OriginalSquare (1).png"
 	},
 	{
-		"id":"99",
+		"id":99,
 		"name":"Renekton",
-		"icon":"champicons/RenektonSquare.png"
+		"icon":"/champicons/RenektonSquare.png"
 	},
 	{
-		"id":"100",
+		"id":100,
 		"name":"Rengar",
-		"icon":"champicons/RengarSquare.png"
+		"icon":"/champicons/RengarSquare.png"
 	},
 	{
-		"id":"101",
+		"id":101,
 		"name":"Riven",
-		"icon":"champicons/RivenSquare.png"
+		"icon":"/champicons/RivenSquare.png"
 	},
 	{
-		"id":"102",
+		"id":102,
 		"name":"Rumble",
-		"icon":"champicons/RumbleSquare.png"
+		"icon":"/champicons/RumbleSquare.png"
 	},
 	{
-		"id":"103",
+		"id":103,
 		"name":"Ryze",
-		"icon":"champicons/RyzeSquare.png"
+		"icon":"/champicons/RyzeSquare.png"
 	},
 	{
-		"id":"104",
+		"id":104,
 		"name":"Samira",
-		"icon":"champicons/Samira_OriginalSquare.png"
+		"icon":"/champicons/Samira_OriginalSquare.png"
 	},
 	{
-		"id":"105",
+		"id":105,
 		"name":"Sejuani",
-		"icon":"champicons/SejuaniSquare.png"
+		"icon":"/champicons/SejuaniSquare.png"
 	},
 	{
-		"id":"106",
+		"id":106,
 		"name":"Senna",
-		"icon":"champicons/Senna_OriginalSquare.png"
+		"icon":"/champicons/Senna_OriginalSquare.png"
 	},
 	{
-		"id":"107",
+		"id":107,
 		"name":"Seraphine",
-		"icon":"champicons/Seraphine_OriginalSquare.png"
+		"icon":"/champicons/Seraphine_OriginalSquare.png"
 	},
 	{
-		"id":"108",
+		"id":108,
 		"name":"Sett",
-		"icon":"champicons/Sett_OriginalSquare.png"
+		"icon":"/champicons/Sett_OriginalSquare.png"
 	},
 	{
-		"id":"109",
+		"id":109,
 		"name":"Shaco",
-		"icon":"champicons/ShacoSquare.png"
+		"icon":"/champicons/ShacoSquare.png"
 	},
 	{
-		"id":"110",
+		"id":110,
 		"name":"Shen",
-		"icon":"champicons/ShenSquare.png"
+		"icon":"/champicons/ShenSquare.png"
 	},
 	{
-		"id":"111",
+		"id":111,
 		"name":"Shyvana",
-		"icon":"champicons/ShyvanaSquare.png"
+		"icon":"/champicons/ShyvanaSquare.png"
 	},
 	{
-		"id":"112",
+		"id":112,
 		"name":"Singed",
-		"icon":"champicons/SingedSquare.png"
+		"icon":"/champicons/SingedSquare.png"
 	},
 	{
-		"id":"113",
+		"id":113,
 		"name":"Sion",
-		"icon":"champicons/SionSquare.png"
+		"icon":"/champicons/SionSquare.png"
 	},
 	{
-		"id":"114",
+		"id":114,
 		"name":"Sivir",
-		"icon":"champicons/SivirSquare.png"
+		"icon":"/champicons/SivirSquare.png"
 	},
 	{
-		"id":"115",
+		"id":115,
 		"name":"Skarner",
-		"icon":"champicons/SkarnerSquare.png"
+		"icon":"/champicons/SkarnerSquare.png"
 	},
 	{
-		"id":"116",
+		"id":116,
 		"name":"Sona",
-		"icon":"champicons/SonaSquare.png"
+		"icon":"/champicons/SonaSquare.png"
 	},
 	{
-		"id":"117",
+		"id":117,
 		"name":"Soraka",
-		"icon":"champicons/SorakaSquare.png"
+		"icon":"/champicons/SorakaSquare.png"
 	},
 	{
-		"id":"118",
+		"id":118,
 		"name":"Swain",
-		"icon":"champicons/SwainSquare.png"
+		"icon":"/champicons/SwainSquare.png"
 	},
 	{
-		"id":"119",
+		"id":119,
 		"name":"Sylas",
-		"icon":"champicons/SylasSquare.png"
+		"icon":"/champicons/SylasSquare.png"
 	},
 	{
-		"id":"120",
+		"id":120,
 		"name":"Syndra",
-		"icon":"champicons/SyndraSquare.png"
+		"icon":"/champicons/SyndraSquare.png"
 	},
 	{
-		"id":"121",
+		"id":121,
 		"name":"Tahm Kench",
-		"icon":"champicons/Tahm_KenchSquare.png"
+		"icon":"/champicons/Tahm_KenchSquare.png"
 	},
 	{
-		"id":"122",
+		"id":122,
 		"name":"Taliyah",
-		"icon":"champicons/TaliyahSquare.png"
+		"icon":"/champicons/TaliyahSquare.png"
 	},
 	{
-		"id":"123",
+		"id":123,
 		"name":"Talon",
-		"icon":"champicons/TalonSquare.png"
+		"icon":"/champicons/TalonSquare.png"
 	},
 	{
-		"id":"124",
+		"id":124,
 		"name":"Taric",
-		"icon":"champicons/TaricSquare.png"
+		"icon":"/champicons/TaricSquare.png"
 	},
 	{
-		"id":"125",
+		"id":125,
 		"name":"Teemo",
-		"icon":"champicons/TeemoSquare.png"
+		"icon":"/champicons/TeemoSquare.png"
 	},
 	{
-		"id":"126",
+		"id":126,
 		"name":"Thresh",
-		"icon":"champicons/ThreshSquare.png"
+		"icon":"/champicons/ThreshSquare.png"
 	},
 	{
-		"id":"127",
+		"id":127,
 		"name":"Tristana",
-		"icon":"champicons/TristanaSquare.png"
+		"icon":"/champicons/TristanaSquare.png"
 	},
 	{
-		"id":"128",
+		"id":128,
 		"name":"Trundle",
-		"icon":"champicons/TrundleSquare.png"
+		"icon":"/champicons/TrundleSquare.png"
 	},
 	{
-		"id":"129",
+		"id":129,
 		"name":"Tryndamere",
-		"icon":"champicons/TryndamereSquare.png"
+		"icon":"/champicons/TryndamereSquare.png"
 	},
 	{
-		"id":"130",
+		"id":130,
 		"name":"Twisted Fate",
-		"icon":"champicons/Twisted_FateSquare.png"
+		"icon":"/champicons/Twisted_FateSquare.png"
 	},
 	{
-		"id":"131",
+		"id":131,
 		"name":"Twitch",
-		"icon":"champicons/TwitchSquare.png"
+		"icon":"/champicons/TwitchSquare.png"
 	},
 	{
-		"id":"132",
+		"id":132,
 		"name":"Udyr",
-		"icon":"champicons/UdyrSquare.png"
+		"icon":"/champicons/UdyrSquare.png"
 	},
 	{
-		"id":"133",
+		"id":133,
 		"name":"Urgot",
-		"icon":"champicons/UrgotSquare.png"
+		"icon":"/champicons/UrgotSquare.png"
 	},
 	{
-		"id":"134",
+		"id":134,
 		"name":"Varus",
-		"icon":"champicons/VarusSquare.png"
+		"icon":"/champicons/VarusSquare.png"
 	},
 	{
-		"id":"135",
+		"id":135,
 		"name":"Vayne",
-		"icon":"champicons/VayneSquare.png"
+		"icon":"/champicons/VayneSquare.png"
 	},
 	{
-		"id":"136",
+		"id":136,
 		"name":"Veigar",
-		"icon":"champicons/VeigarSquare.png"
+		"icon":"/champicons/VeigarSquare.png"
 	},
 	{
-		"id":"137",
+		"id":137,
 		"name":"Vel'Koz",
-		"icon":"champicons/Vel-27KozSquare.png"
+		"icon":"/champicons/Vel-27KozSquare.png"
 	},
 	{
-		"id":"138",
+		"id":138,
 		"name":"Vex",
-		"icon":"champicons/Vex_OriginalSquare.png"
+		"icon":"/champicons/Vex_OriginalSquare.png"
 	},
 	{
-		"id":"139",
+		"id":139,
 		"name":"Viego",
-		"icon":"champicons/Viego_OriginalSquare.png"
+		"icon":"/champicons/Viego_OriginalSquare.png"
 	},
 	{
-		"id":"140",
+		"id":140,
 		"name":"Viktor",
-		"icon":"champicons/ViktorSquare.png"
+		"icon":"/champicons/ViktorSquare.png"
 	},
 	{
-		"id":"141",
+		"id":141,
 		"name":"Vi",
-		"icon":"champicons/ViSquare.png"
+		"icon":"/champicons/ViSquare.png"
 	},
 	{
-		"id":"142",
+		"id":142,
 		"name":"Vladimir",
-		"icon":"champicons/VladimirSquare.png"
+		"icon":"/champicons/VladimirSquare.png"
 	},
 	{
-		"id":"143",
+		"id":143,
 		"name":"Volibear",
-		"icon":"champicons/Volibear_OriginalSquare.png"
+		"icon":"/champicons/Volibear_OriginalSquare.png"
 	},
 	{
-		"id":"144",
+		"id":144,
 		"name":"Warwick",
-		"icon":"champicons/WarwickSquare.png"
+		"icon":"/champicons/WarwickSquare.png"
 	},
 	{
-		"id":"145",
+		"id":145,
 		"name":"Wukong",
-		"icon":"champicons/WukongSquare.png"
+		"icon":"/champicons/WukongSquare.png"
 	},
 	{
-		"id":"146",
+		"id":146,
 		"name":"Xayah",
-		"icon":"champicons/XayahSquare.png"
+		"icon":"/champicons/XayahSquare.png"
 	},
 	{
-		"id":"147",
+		"id":147,
 		"name":"Xerath",
-		"icon":"champicons/XerathSquare.png"
+		"icon":"/champicons/XerathSquare.png"
 	},
 	{
-		"id":"148",
+		"id":148,
 		"name":"Xin Zhao",
-		"icon":"champicons/Xin_ZhaoSquare.png"
+		"icon":"/champicons/Xin_ZhaoSquare.png"
 	},
 	{
-		"id":"149",
+		"id":149,
 		"name":"Yasuo",
-		"icon":"champicons/YasuoSquare.png"
+		"icon":"/champicons/YasuoSquare.png"
 	},
 	{
-		"id":"150",
+		"id":150,
 		"name":"Yone",
-		"icon":"champicons/Yone_OriginalSquare.png"
+		"icon":"/champicons/Yone_OriginalSquare.png"
 	},
 	{
-		"id":"151",
+		"id":151,
 		"name":"Yorick",
-		"icon":"champicons/YorickSquare.png"
+		"icon":"/champicons/YorickSquare.png"
 	},
 	{
-		"id":"152",
+		"id":152,
 		"name":"Yuumi",
-		"icon":"champicons/Yuumi_OriginalSquare.png"
+		"icon":"/champicons/Yuumi_OriginalSquare.png"
 	},
 	{
-		"id":"153",
+		"id":153,
 		"name":"Zac",
-		"icon":"champicons/ZacSquare.png"
+		"icon":"/champicons/ZacSquare.png"
 	},
 	{
-		"id":"154",
+		"id":154,
 		"name":"Zed",
-		"icon":"champicons/ZedSquare.png"
+		"icon":"/champicons/ZedSquare.png"
 	},
 	{
-		"id":"155",
+		"id":155,
 		"name":"Zeri",
-		"icon":"champicons/Zeri_OriginalSquare.png"
+		"icon":"/champicons/Zeri_OriginalSquare.png"
 	},
 	{
-		"id":"156",
+		"id":156,
 		"name":"Ziggs",
-		"icon":"champicons/ZiggsSquare.png"
+		"icon":"/champicons/ZiggsSquare.png"
 	},
 	{
-		"id":"157",
+		"id":157,
 		"name":"Zilean",
-		"icon":"champicons/ZileanSquare.png"
+		"icon":"/champicons/ZileanSquare.png"
 	},
 	{
-		"id":"158",
+		"id":158,
 		"name":"Zoe",
-		"icon":"champicons/ZoeSquare.png"
+		"icon":"/champicons/ZoeSquare.png"
 	},
 	{
-		"id":"159",
+		"id":159,
 		"name":"Zyra",
-		"icon":"champicons/ZyraSquare.png"
+		"icon":"/champicons/ZyraSquare.png"
 	}
 ]

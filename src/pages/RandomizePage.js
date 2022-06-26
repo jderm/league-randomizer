@@ -91,7 +91,7 @@ export default function Randomize() {
           />
         </tbody>
       </table> */}
-      <div style={{"display": "flex", "justify-content": "center", "flex-flow": "row wrap"}}>
+      <div style={{"display": "flex", "justifyContent": "center", "flexFlow": "row wrap"}}>
       <CreateTable
             numOfCells={champions.length}
             champions={champions}
@@ -102,8 +102,8 @@ export default function Randomize() {
 
       {/* <button onClick={() => RandomizeChamps()}>Randomize champions</button>
       <button onClick={() => RandomizeLanes()}>Randomize lanes</button> */}
-      <Button variant="contained" style={{"background-color": "#72737369", "color": "#000", "margin": "30px"}} size="large" onClick={() => RandomizeChamps()}>Randomize champions</Button>
-      <Button variant="contained" style={{"background-color": "#72737369", "color": "#000", "margin": "30px"}} size="large" onClick={() => RandomizeLanes()}>Randomize lanes</Button>
+      <Button variant="contained" style={{"backgroundColor": "#72737369", "color": "#000", "margin": "30px"}} size="large" onClick={() => RandomizeChamps()}>Randomize champions</Button>
+      <Button variant="contained" style={{"backgroundColor": "#72737369", "color": "#000", "margin": "30px"}} size="large" onClick={() => RandomizeLanes()}>Randomize lanes</Button>
       
     </div>
   );
@@ -115,7 +115,7 @@ const CreateTable = ({ numOfCells, champions, players, lanes }) => {
   for(var a = 0; a < numOfCells; a++)
   {
     table.push(
-      <div className="randItem" style={{"margin": "20px"}}>
+      <div className="randItem" style={{"margin": "20px"}} key={champions[a].id}>
         <h4>{champions[a].name}</h4>
         <img src={champions[a].icon}></img>
         <h5>{players[a].name}</h5>

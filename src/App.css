@@ -145,8 +145,9 @@ h1 {
 ol{
   margin: 0;
 height: 105px;
-align-items: center;
+/* align-items: center; */
 display: grid;
+justify-content: center;
 }
 
 h4{

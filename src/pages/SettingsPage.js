@@ -127,7 +127,7 @@ export default function Settings({
       <div className="SettingsContainer">
       <h3>Players:</h3>
       {list.settings.players.map((item) => (
-        <div style={{"width":"100%", "margin-top":"5px", "margin-bottom":"5px"}}>
+        <div style={{"width":"100%", "marginTop":"5px", "marginBottom":"5px"}} key={item.id}>
           {/* <h5>Player: {item.id + 1}</h5> */}
           {/* <input
             type="text"
@@ -208,7 +208,7 @@ export default function Settings({
       <div className="SettingsContainer">
       <h3>Lanes:</h3>
       {list.settings.availableLanes.map((item) => (
-        <div style={{"width":"100%", "margin-top":"5px", "margin-bottom":"5px"}}>
+        <div style={{"width":"100%", "marginTop":"5px", "marginBottom":"5px"}} key={item.id}>
           {/* <h5>Lane: {item.id + 1}</h5> */}
           {/* <input
             type="text"

@@ -163,7 +163,7 @@ const ButtonNavigation = ({ fnc, page, maxBans, numberOfPickedCHamps }) => {
       <div className="NavigationButtons">
         <Button
           variant="contained"
-          style={{ "background-color": "#72737369", color: "#000" }}
+          style={{ "backgroundColor": "#72737369", color: "#000" }}
           size="large"
           onClick={() => fnc(+1)}
         >
@@ -173,12 +173,12 @@ const ButtonNavigation = ({ fnc, page, maxBans, numberOfPickedCHamps }) => {
     );
   } else if (page === 4) {
     if (maxBans - numberOfPickedCHamps.length !== 0) {
-      console.log(maxBans - numberOfPickedCHamps.length);
+      //console.log(maxBans - numberOfPickedCHamps.length);
       return (
         <div className="NavigationButtons">
           <Button
             variant="contained"
-            style={{ "background-color": "#72737369", color: "#000" }}
+            style={{ "backgroundColor": "#72737369", color: "#000" }}
             size="large"
             onClick={() => fnc(-1)}
           >
@@ -191,7 +191,7 @@ const ButtonNavigation = ({ fnc, page, maxBans, numberOfPickedCHamps }) => {
         <div className="NavigationButtons">
           <Button
             variant="contained"
-            style={{ "background-color": "#72737369", color: "#000" }}
+            style={{ "backgroundColor": "#72737369", color: "#000" }}
             size="large"
             onClick={() => fnc(+1)}
           >
@@ -199,7 +199,7 @@ const ButtonNavigation = ({ fnc, page, maxBans, numberOfPickedCHamps }) => {
           </Button>
           <Button
             variant="contained"
-            style={{ "background-color": "#72737369", color: "#000" }}
+            style={{ "backgroundColor": "#72737369", color: "#000" }}
             size="large"
             onClick={() => fnc(-1)}
           >
@@ -213,7 +213,7 @@ const ButtonNavigation = ({ fnc, page, maxBans, numberOfPickedCHamps }) => {
       <div className="NavigationButtons">
         <Button
           variant="contained"
-          style={{ "background-color": "#72737369", color: "#000" }}
+          style={{ "backgroundColor": "#72737369", color: "#000" }}
           size="large"
           onClick={() => fnc(-1)}
         >
@@ -226,7 +226,7 @@ const ButtonNavigation = ({ fnc, page, maxBans, numberOfPickedCHamps }) => {
       <div className="NavigationButtons">
         <Button
           variant="contained"
-          style={{ "background-color": "#72737369", color: "#000" }}
+          style={{ "backgroundColor": "#72737369", color: "#000" }}
           size="large"
           onClick={() => fnc(+1)}
         >
@@ -234,7 +234,7 @@ const ButtonNavigation = ({ fnc, page, maxBans, numberOfPickedCHamps }) => {
         </Button>
         <Button
           variant="contained"
-          style={{ "background-color": "#72737369", color: "#000" }}
+          style={{ "backgroundColor": "#72737369", color: "#000" }}
           size="large"
           onClick={() => fnc(-1)}
         >
