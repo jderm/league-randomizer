@@ -15,7 +15,7 @@ export default function Settings({ changePagesOrder }) {
 
   return (
     <div className="CenterContent">
-      <h1>League of Legends randomizer</h1>
+      <h1>League of Legends Randomizer</h1>
       <div className="SettingsContainer">
         <h3>Normal or draft:</h3>
         <Select
