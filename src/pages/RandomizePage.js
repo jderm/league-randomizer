@@ -2,23 +2,13 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { selectList } from "../redux/listReducer";
 import champ from "../champions.json";
-import {
-  TextField,
-  Button,
-  Checkbox,
-  Input,
-  Select,
-  MenuItem,
-  FormControlLabel,
-} from "@mui/material";
+import { Button } from "@mui/material";
 
 export default function Randomize() {
   const list = useSelector(selectList);
   var [champions, setChampions] = useState(CreateChampionsList);
   var [players] = useState(CreatePlayersList);
-  //var players = CreatePlayersList;
   var [lanes, setLanes] = useState(CreateLanesList);
-  //const dispatch = useDispatch();
 
   function CreateChampionsList() {
     var arr = [];
@@ -81,47 +71,56 @@ export default function Randomize() {
   }
   return (
     <div className="CenterContent">
-      {/* <table>
-        <tbody>
-          <CreateTable
-            numOfCells={champions.length}
-            champions={champions}
-            players={players}
-            lanes={lanes}
-          />
-        </tbody>
-      </table> */}
-      <div style={{"display": "flex", "justifyContent": "center", "flexFlow": "row wrap"}}>
-      <CreateTable
-            numOfCells={champions.length}
-            champions={champions}
-            players={players}
-            lanes={lanes}
-          />
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          flexFlow: "row wrap",
+        }}
+      >
+        <CreateTable
+          numOfCells={champions.length}
+          champions={champions}
+          players={players}
+          lanes={lanes}
+        />
       </div>
 
-      {/* <button onClick={() => RandomizeChamps()}>Randomize champions</button>
-      <button onClick={() => RandomizeLanes()}>Randomize lanes</button> */}
-      <Button variant="contained" style={{"backgroundColor": "#72737369", "color": "#000", "margin": "30px"}} size="large" onClick={() => RandomizeChamps()}>Randomize champions</Button>
-      <Button variant="contained" style={{"backgroundColor": "#72737369", "color": "#000", "margin": "30px"}} size="large" onClick={() => RandomizeLanes()}>Randomize lanes</Button>
-      
+      <Button
+        variant="contained"
+        style={{ backgroundColor: "#72737369", color: "#000", margin: "30px" }}
+        size="large"
+        onClick={() => RandomizeChamps()}
+      >
+        Randomize champions
+      </Button>
+      <Button
+        variant="contained"
+        style={{ backgroundColor: "#72737369", color: "#000", margin: "30px" }}
+        size="large"
+        onClick={() => RandomizeLanes()}
+      >
+        Randomize lanes
+      </Button>
     </div>
   );
 }
 
 const CreateTable = ({ numOfCells, champions, players, lanes }) => {
   let table = [];
-  let tempTable = [];
-  for(var a = 0; a < numOfCells; a++)
-  {
+  for (var a = 0; a < numOfCells; a++) {
     table.push(
-      <div className="randItem" style={{"margin": "20px"}} key={champions[a].id}>
+      <div
+        className="randItem"
+        style={{ margin: "20px" }}
+        key={champions[a].id}
+      >
         <h4>{champions[a].name}</h4>
         <img src={champions[a].icon}></img>
         <h5>{players[a].name}</h5>
         <h5>{lanes[a].name}</h5>
       </div>
-    )
+    );
   }
   // for (var a = 0; a < numOfCells; a++) {
   //   tempTable.push(<th>{champions[a].name}</th>);

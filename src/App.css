@@ -1,21 +1,11 @@
-/*👉ul {
-  list-style-type: none;
-}👈*/
-
-/*👉li {
-  display: inline-block;
-}👈*/
-
 input[type="checkbox"][labelid^="Item"] {
   display: none;
 }
 
 .labelClass {
-  /* border: 1px solid #fff; */
   padding: 10px;
   display: block;
   position: relative;
-  /* margin: 10px; */
   cursor: pointer;
   width: fit-content;
 }
@@ -57,10 +47,6 @@ input[type="checkbox"][labelid^="Item"] {
   transform-origin: 50% 50%;
 }
 
-:checked + label {
-  /* border-color: rgb(0, 0, 0); */
-}
-
 :checked + label:before {
   content: "✓";
   background-color: grey;
@@ -85,12 +71,11 @@ input[type="checkbox"][labelid^="Item"] {
   width: 600px;
 }
 
-.CenterContent, h3, h1 {
+.CenterContent,
+h3,
+h1 {
   display: grid;
   justify-content: center;
-  /* align-items: center;
-  justify-self: center; */
-  
 }
 
 .NavigationButtons {
@@ -98,23 +83,17 @@ input[type="checkbox"][labelid^="Item"] {
   justify-content: center;
 }
 
-/* html{
-  background-color:#f699ff;
-  background-image:
-  radial-gradient(at 54% 53%, hsla(30,83%,79%,1) 0px, transparent 50%),
-  radial-gradient(at 54% 70%, hsla(350,69%,72%,1) 0px, transparent 50%),
-  radial-gradient(at 62% 41%, hsla(268,84%,65%,1) 0px, transparent 50%),
-  radial-gradient(at 26% 25%, hsla(273,83%,77%,1) 0px, transparent 50%),
-  radial-gradient(at 5% 70%, hsla(140,85%,68%,1) 0px, transparent 50%),
-  radial-gradient(at 68% 26%, hsla(241,91%,67%,1) 0px, transparent 50%),
-  radial-gradient(at 49% 50%, hsla(244,67%,76%,1) 0px, transparent 50%);
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-position: center; 
-} */
-
 h1 {
-  background-image: linear-gradient(to left, violet, indigo, blue, green, yellow, orange, red);
+  background-image: linear-gradient(
+    to left,
+    violet,
+    indigo,
+    blue,
+    green,
+    yellow,
+    orange,
+    red
+  );
   background-clip: text;
   -webkit-text-fill-color: transparent;
   text-align: center;
@@ -124,16 +103,7 @@ h1 {
   box-sizing: border-box;
 }
 
-/* h5{
-  margin-top: 0;
-} */
-
-/* .inheritWidth{
-  width: inherit;
-} */
-
 .SettingsContainer {
-  /* display: contents; */
   display: grid;
   justify-items: center;
   margin-top: 10px;
@@ -142,22 +112,27 @@ h1 {
   margin-right: 30px;
 }
 
-ol{
+ol {
   margin: 0;
-height: 105px;
-/* align-items: center; */
-display: grid;
-justify-content: center;
+  height: 105px;
+  display: grid;
+  justify-content: center;
 }
 
-h4{
+h4 {
   text-align: center;
 }
 
-
-
 html {
-  background: linear-gradient(270deg, #59c6c6, #cc7184, #83d06d, #dbd981, #8b81db, #ce9292);
+  background: linear-gradient(
+    270deg,
+    #59c6c6,
+    #cc7184,
+    #83d06d,
+    #dbd981,
+    #8b81db,
+    #ce9292
+  );
   background-size: 1200% 1200%;
   -webkit-animation: AnimationName 60s ease infinite;
   -moz-animation: AnimationName 60s ease infinite;
@@ -166,22 +141,46 @@ html {
 }
 
 @-webkit-keyframes AnimationName {
-  0%{background-position:0% 50%}
-  50%{background-position:100% 50%}
-  100%{background-position:0% 50%}
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 @-moz-keyframes AnimationName {
-  0%{background-position:0% 50%}
-  50%{background-position:100% 50%}
-  100%{background-position:0% 50%}
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 @-o-keyframes AnimationName {
-  0%{background-position:0% 50%}
-  50%{background-position:100% 50%}
-  100%{background-position:0% 50%}
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 @keyframes AnimationName {
-  0%{background-position:0% 50%}
-  50%{background-position:100% 50%}
-  100%{background-position:0% 50%}
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }

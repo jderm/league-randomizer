@@ -23,7 +23,6 @@ body,
 .Item {
   width: 150px;
   height: 150px;
-  /* display: inline-flex; */
   display: grid;
   flex-direction: row;
   justify-content: center;

@@ -42,7 +42,6 @@ export const listSlice = createSlice({
           var payloadLength = payload.count;
           if (playersArrayLenght < payloadLength) {
             if (availableLanesLength < payloadLength) {
-              //adding lanes by input players
               for (
                 availableLanesLength;
                 availableLanesLength < payloadLength;
@@ -54,7 +53,6 @@ export const listSlice = createSlice({
                 });
               }
             }
-            //adding players by input players
             for (
               playersArrayLenght;
               playersArrayLenght < payloadLength;
@@ -66,9 +64,7 @@ export const listSlice = createSlice({
               });
             }
           } else if (playersArrayLenght > payloadLength) {
-            //var idLane = idLane;
             if (availableLanesLength < payloadLength) {
-              //adding lanes by input players
               for (
                 availableLanesLength;
                 availableLanesLength < payloadLength;
@@ -80,19 +76,13 @@ export const listSlice = createSlice({
                 });
               }
             }
-            //removing players by input players
             var tmp = playersArrayLenght - payloadLength;
             state.settings.players.splice(payloadLength, tmp);
-
-            //ADJUST TO NUM OF PICKED CHAMPS NOT BE HIGHET THAN NUM OF PLAYERS
-            //(NEED TO TEST LATER)
-            
           }
-          if(state.settings.players.length < state.pickedChamps.length)
-            {
-              var tmp = playersArrayLenght - payloadLength;
-              state.pickedChamps.splice(payloadLength, tmp);
-            }
+          if (state.settings.players.length < state.pickedChamps.length) {
+            var tmp = playersArrayLenght - payloadLength;
+            state.pickedChamps.splice(payloadLength, tmp);
+          }
           break;
 
         case "CHANGE_NUMBER_OF_LANES":
@@ -119,11 +109,12 @@ export const listSlice = createSlice({
             var tmp = availableLanesLength - payloadLength;
             state.settings.availableLanes.splice(payloadLength, tmp);
           }
-          if(state.settings.availableLanes.length < state.pickedChamps.length)
-            {
-              var tmp = playersArrayLenght - payloadLength;
-              state.pickedChamps.splice(payloadLength, tmp);
-            }
+          if (
+            state.settings.availableLanes.length < state.pickedChamps.length
+          ) {
+            var tmp = playersArrayLenght - payloadLength;
+            state.pickedChamps.splice(payloadLength, tmp);
+          }
           break;
 
         case "CHANGE_GAME_TYPE":

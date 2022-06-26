@@ -5,7 +5,7 @@ import "./App.css";
 import Page from "./pages/ChampListPage";
 import Settings from "./pages/SettingsPage";
 import Randomize from "./pages/RandomizePage";
-import { TextField, Button, Checkbox, Input } from "@mui/material";
+import { Button } from "@mui/material";
 
 var availablePages = [0, 4, 5];
 
@@ -60,7 +60,6 @@ export default function App() {
         <div id="Page">
           <ButtonNavigation fnc={changePage} page={availablePages[page]} />
           <div id="AllyBans">
-            {/* <h3>Your team bans:</h3> */}
             <Page
               prev={[]}
               current={list.banPhase1}
@@ -79,7 +78,6 @@ export default function App() {
           <ButtonNavigation fnc={changePage} page={availablePages[page]} />
 
           <div id="EnemyBans">
-            {/* <h3>Enemy bans:</h3> */}
             <Page
               prev={list.banPhase1}
               current={list.banPhase2}
@@ -97,7 +95,6 @@ export default function App() {
         <div id="Page">
           <ButtonNavigation fnc={changePage} page={availablePages[page]} />
           <div id="OptionalBans">
-            {/* <h3>Optional bans:</h3> */}
             <Page
               prev={list.banPhase1.concat(list.banPhase2)}
               current={list.banPhase3}
@@ -120,7 +117,6 @@ export default function App() {
             numberOfPickedCHamps={list.pickedChamps}
           />
           <div id="ChampPicks">
-            {/* <h3>Player picks:</h3> */}
             <Page
               prev={list.banPhase1.concat(list.banPhase2, list.banPhase3)}
               current={list.pickedChamps}
@@ -137,10 +133,8 @@ export default function App() {
       return (
         <div id="Page">
           <ButtonNavigation fnc={changePage} page={availablePages[page]} />
-          {/* <table> */}
           <div id="Randomize">
             <Randomize />
-            {/* </table> */}
           </div>
         </div>
       );
@@ -163,7 +157,7 @@ const ButtonNavigation = ({ fnc, page, maxBans, numberOfPickedCHamps }) => {
       <div className="NavigationButtons">
         <Button
           variant="contained"
-          style={{ "backgroundColor": "#72737369", color: "#000" }}
+          style={{ backgroundColor: "#72737369", color: "#000" }}
           size="large"
           onClick={() => fnc(+1)}
         >
@@ -173,12 +167,11 @@ const ButtonNavigation = ({ fnc, page, maxBans, numberOfPickedCHamps }) => {
     );
   } else if (page === 4) {
     if (maxBans - numberOfPickedCHamps.length !== 0) {
-      //console.log(maxBans - numberOfPickedCHamps.length);
       return (
         <div className="NavigationButtons">
           <Button
             variant="contained"
-            style={{ "backgroundColor": "#72737369", color: "#000" }}
+            style={{ backgroundColor: "#72737369", color: "#000" }}
             size="large"
             onClick={() => fnc(-1)}
           >
@@ -191,7 +184,7 @@ const ButtonNavigation = ({ fnc, page, maxBans, numberOfPickedCHamps }) => {
         <div className="NavigationButtons">
           <Button
             variant="contained"
-            style={{ "backgroundColor": "#72737369", color: "#000" }}
+            style={{ backgroundColor: "#72737369", color: "#000" }}
             size="large"
             onClick={() => fnc(+1)}
           >
@@ -199,7 +192,7 @@ const ButtonNavigation = ({ fnc, page, maxBans, numberOfPickedCHamps }) => {
           </Button>
           <Button
             variant="contained"
-            style={{ "backgroundColor": "#72737369", color: "#000" }}
+            style={{ backgroundColor: "#72737369", color: "#000" }}
             size="large"
             onClick={() => fnc(-1)}
           >
@@ -213,7 +206,7 @@ const ButtonNavigation = ({ fnc, page, maxBans, numberOfPickedCHamps }) => {
       <div className="NavigationButtons">
         <Button
           variant="contained"
-          style={{ "backgroundColor": "#72737369", color: "#000" }}
+          style={{ backgroundColor: "#72737369", color: "#000" }}
           size="large"
           onClick={() => fnc(-1)}
         >
@@ -226,7 +219,7 @@ const ButtonNavigation = ({ fnc, page, maxBans, numberOfPickedCHamps }) => {
       <div className="NavigationButtons">
         <Button
           variant="contained"
-          style={{ "backgroundColor": "#72737369", color: "#000" }}
+          style={{ backgroundColor: "#72737369", color: "#000" }}
           size="large"
           onClick={() => fnc(+1)}
         >
@@ -234,7 +227,7 @@ const ButtonNavigation = ({ fnc, page, maxBans, numberOfPickedCHamps }) => {
         </Button>
         <Button
           variant="contained"
-          style={{ "backgroundColor": "#72737369", color: "#000" }}
+          style={{ backgroundColor: "#72737369", color: "#000" }}
           size="large"
           onClick={() => fnc(-1)}
         >
