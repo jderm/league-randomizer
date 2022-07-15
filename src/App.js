@@ -3,12 +3,18 @@ import { useSelector } from "react-redux";
 import { selectList } from "./redux/listReducer";
 import "./App.css";
 import Page from "./pages/ChampListPage";
+import DraftPickPage from "./pages/DraftPickPage";
 import Settings from "./pages/SettingsPage";
 import Randomize from "./pages/RandomizePage";
 import { Button } from "@mui/material";
 
 var availablePages = [0, 4, 5];
-
+//0 = SETTINGS
+//1 = ALLY TEAM BANS
+//2 = ENEMY BANS
+//3 = OPTIONAL BANS
+//4 = CHAMP PICKS
+//5 = RANDOMIZE
 export default function App() {
   const list = useSelector(selectList);
 
@@ -54,22 +60,33 @@ export default function App() {
         </div>
       );
 
-    //ALLY TEAM BANS PAGE
     case 1:
-      return (
+      return(
         <div id="Page">
-          <ButtonNavigation fnc={changePage} page={availablePages[page]} />
-          <div id="AllyBans">
-            <Page
-              prev={[]}
-              current={list.banPhase1}
-              numberOfBans={5}
-              banArrayType="BAN_ARRAY_1"
-              title="Your team bans:"
-            />
+          <ButtonNavigation fnc={changePage} page={availablePages[page]} maxBans={10}
+            numberOfPickedCHamps={list.draftPicks}/>
+          <div>
+            <DraftPickPage prev={[]} arrayOfPicks={list.draftPicks} firstTeamPick={list.firstPickTeam}/>
           </div>
         </div>
-      );
+      )
+
+    //ALLY TEAM BANS PAGE
+    // case 1:
+    //   return (
+    //     <div id="Page">
+    //       <ButtonNavigation fnc={changePage} page={availablePages[page]} />
+    //       <div id="AllyBans">
+    //         <Page
+    //           prev={[]}
+    //           current={list.banPhase1}
+    //           numberOfBans={5}
+    //           banArrayType="BAN_ARRAY_1"
+    //           title="Your team bans:"
+    //         />
+    //       </div>
+    //     </div>
+    //   );
 
     //ENEMY TEAM BANS PAGE
     case 2:

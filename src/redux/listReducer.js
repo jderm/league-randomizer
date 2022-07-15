@@ -20,6 +20,10 @@ const initialState = {
     gameType: false,
     optBans: false,
   },
+
+
+  draftPicks: [],
+  firstPickTeam: null
 };
 
 export const listSlice = createSlice({
@@ -40,7 +44,7 @@ export const listSlice = createSlice({
           var playersArrayLenght = state.settings.players.length;
           var availableLanesLength = state.settings.availableLanes.length;
           var payloadLength = payload.count;
-          if (playersArrayLenght < payloadLength) {
+          if (playersArrayLenght < payloadLength && state.settings.gameType === "false") {
             if (availableLanesLength < payloadLength) {
               for (
                 availableLanesLength;
@@ -63,7 +67,7 @@ export const listSlice = createSlice({
                 name: "Player " + (playersArrayLenght + 1),
               });
             }
-          } else if (playersArrayLenght > payloadLength) {
+          } else if (playersArrayLenght > payloadLength && state.settings.gameType === "false") {
             if (availableLanesLength < payloadLength) {
               for (
                 availableLanesLength;
@@ -90,7 +94,7 @@ export const listSlice = createSlice({
           var availableLanesLength = state.settings.availableLanes.length;
           var payloadLength = payload.count;
 
-          if (availableLanesLength < payloadLength) {
+          if (availableLanesLength < payloadLength && state.settings.gameType === "false") {
             for (
               availableLanesLength;
               availableLanesLength < payloadLength;
@@ -101,7 +105,7 @@ export const listSlice = createSlice({
                 name: defaultLaneNames[availableLanesLength].name,
               });
             }
-          } else if (availableLanesLength > payloadLength) {
+          } else if (availableLanesLength > payloadLength && state.settings.gameType === "false") {
             if (playersArrayLenght >= payloadLength) {
               var tmp = playersArrayLenght - payloadLength;
               state.settings.players.splice(payloadLength, tmp);
@@ -120,6 +124,20 @@ export const listSlice = createSlice({
         case "CHANGE_GAME_TYPE":
           if (payload.value === "true") {
             state.settings.gameType = true;
+            if(state.settings.players.length < 5)
+            {
+              var playersArrayLenght = state.settings.players.length;
+              for (
+                playersArrayLenght;
+                playersArrayLenght < 5;
+                playersArrayLenght++
+              ) {
+                state.settings.players.push({
+                  id: playersArrayLenght,
+                  name: "Player " + (playersArrayLenght + 1),
+                });
+              }
+            }
           } else if (payload.value === "false") {
             state.settings.gameType = false;
           }
@@ -129,6 +147,22 @@ export const listSlice = createSlice({
           state.settings.optBans = !state.settings.optBans;
           break;
       }
+    },
+
+    firstPick: (state, payload) => {
+      state.firstPickTeam = payload.payload;
+    },
+
+    draftPick: (state, {payload}) => {
+      var resp = state.draftPicks.some((e) => e.id === payload.id);
+          if (resp) {
+            const tempArr = state.draftPicks.filter(
+              (item) => item.id !== payload.id
+            );
+            state.draftPicks = tempArr;
+          } else {
+              state.draftPicks.push({ pickPos: payload.pickPos, team: payload.team, id: payload.id, name: payload.name });
+          }
     },
 
     ban: (state, { payload }) => {
@@ -215,7 +249,7 @@ export const listSlice = createSlice({
   },
 });
 
-export const { add, deleteRandom, changeNumOfPlayers, ban, editSettings } =
+export const { add, deleteRandom, changeNumOfPlayers, ban, draftPick, firstPick, editSettings } =
   listSlice.actions;
 
 export const selectList = (state) => state.list;
