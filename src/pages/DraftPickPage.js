@@ -371,10 +371,59 @@ export default function Page({
     // }
   };
 
-  return (
-    <div>
-      <NavButtons />
-      <ChampPickComponent />
-    </div>
-  );
+
+  //PROBLEM -> NEED TO RUN ONLY AFTER FIRST RUN OF SCRIPT CUZ IT WILL RUN EVERYTIME AFTER UPDATE OF ANY VARIABLE IN SCRIPT
+  if(firstTeamPick !== null)
+  {
+    if(draftPicks.length === 0)
+    {
+      setDraftPage(0);
+      return(
+        <div>
+          <NavButtons/>
+          <ChampPickComponent/>
+        </div>
+      )
+    }
+    else
+    {
+      if(draftPicks.length === 10)
+      {
+        setDraftPage(10);
+        return(
+          <div>
+            <NavButtons/>
+            <ChampPickComponent/>
+          </div>
+        )
+      }
+      else
+      {
+        setDraftPage(playersWithoutPick[0].page);
+        return(
+          <div>
+            <NavButtons/>
+            <ChampPickComponent/>
+          </div>
+        )
+      }
+    }
+  }
+  else
+  {
+    return(
+      <div>
+        <NavButtons/>
+        <RadioButton/>
+      </div>
+    )
+  }
+
+
+  // return (
+  //   <div>
+  //     <NavButtons />
+  //     <ChampPickComponent />
+  //   </div>
+  // );
 }
