@@ -119,7 +119,7 @@ export default function Page({
       currTeamPattern = enemyTeamPattern;
       //setCurrTeamPattern(enemyTeamPattern);
     }
-    console.log(currTeamPattern);
+    // console.log(currTeamPattern);
   }
 
   const NavButtons = () => {
@@ -158,6 +158,7 @@ export default function Page({
   const RadioButton = (val) => {
     var id = "rftp" + val.val;
     var text = "";
+    var checked = null;
     if (val.val === "0") {
       text = "Ally team";
     } else if (val.val === "1") {
@@ -165,40 +166,58 @@ export default function Page({
     }
 
     if (firstTeamPick === val.val) {
-      return (
-        <>
-          <label htmlFor={id}>{text}</label>
-          <input
-            type="radio"
-            name="test"
-            value={val.val}
-            id={id}
-            onChange={(e) => {
-              dispatch(firstPick(e.target.value));
-              changePattern(e.target.value);
-            }}
-            checked={true}
-          />
-        </>
-      );
+      checked = true;
+      // return (
+      //   <>
+      //     <label htmlFor={id}>{text}</label>
+      //     <input
+      //       type="radio"
+      //       name="test"
+      //       value={val.val}
+      //       id={id}
+      //       onChange={(e) => {
+      //         dispatch(firstPick(e.target.value));
+      //         changePattern(e.target.value);
+      //       }}
+      //       checked={true}
+      //     />
+      //   </>
+      // );
     } else {
-      return (
-        <>
-          <label htmlFor={id}>{text}</label>
-          <input
-            type="radio"
-            name="test"
-            value={val.val}
-            id={id}
-            onChange={(e) => {
-              dispatch(firstPick(e.target.value));
-              changePattern(e.target.value);
-            }}
-            checked={false}
-          />
-        </>
-      );
+      checked = false;
+      // return (
+      //   <>
+      //     <label htmlFor={id}>{text}</label>
+      //     <input
+      //       type="radio"
+      //       name="test"
+      //       value={val.val}
+      //       id={id}
+      //       onChange={(e) => {
+      //         dispatch(firstPick(e.target.value));
+      //         changePattern(e.target.value);
+      //       }}
+      //       checked={false}
+      //     />
+      //   </>
+      // );
     }
+    return (
+      <>
+        <label htmlFor={id}>{text}</label>
+        <input
+          type="radio"
+          name="test"
+          value={val.val}
+          id={id}
+          onChange={(e) => {
+            dispatch(firstPick(e.target.value));
+            changePattern(e.target.value);
+          }}
+          checked={checked}
+        />
+      </>
+    );
   };
 
   const AllyEnemyPick = () => {
@@ -210,18 +229,18 @@ export default function Page({
   };
 
   const ChampPickComponent = () => {
-    //CONTROLLING PAGES
-    if (draftPage === 0) {
-      //RENDERING FIRST PICK PAGE
-      return (
-        <div>
-          <RadioButton val={"0"} />
-          <RadioButton val={"1"} />
-        </div>
-      );
-    } else {
-      // console.log(currTeamPattern);
-      //RENDERING PICKING PAGE
+    // //CONTROLLING PAGES
+    // if (draftPage === 0) {
+    //   //RENDERING FIRST PICK PAGE
+    //   return (
+    //     <div>
+    //       <RadioButton val={"0"} />
+    //       <RadioButton val={"1"} />
+    //     </div>
+    //   );
+    // } else {
+    //   // console.log(currTeamPattern);
+    //   //RENDERING PICKING PAGE
       return (
         <div>
           <AllyEnemyPick />
@@ -349,7 +368,7 @@ export default function Page({
           </div>
         </div>
       );
-    }
+    // }
   };
 
   return (
