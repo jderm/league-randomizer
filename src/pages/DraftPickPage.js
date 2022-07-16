@@ -229,15 +229,30 @@ export default function Page({
   };
 
   const ChampPickComponent = () => {
-    // //CONTROLLING PAGES
+      if(draftPicks.length === 0)
+    {
+      setDraftPage(0);
+    }
+    else
+    {
+      if(draftPicks.length === 10)
+      {
+        setDraftPage(10);
+      }
+      else
+      {
+        setDraftPage(playersWithoutPick[0].page);
+      }
+    }
+    //CONTROLLING PAGES
     // if (draftPage === 0) {
     //   //RENDERING FIRST PICK PAGE
-    //   return (
-    //     <div>
-    //       <RadioButton val={"0"} />
-    //       <RadioButton val={"1"} />
-    //     </div>
-    //   );
+    //   // return (
+    //   //   <div>
+    //   //     <RadioButton val={"0"} />
+    //   //     <RadioButton val={"1"} />
+    //   //   </div>
+    //   // );
     // } else {
     //   // console.log(currTeamPattern);
     //   //RENDERING PICKING PAGE
@@ -370,44 +385,65 @@ export default function Page({
       );
     // }
   };
+  
 
 
   //PROBLEM -> NEED TO RUN ONLY AFTER FIRST RUN OF SCRIPT CUZ IT WILL RUN EVERYTIME AFTER UPDATE OF ANY VARIABLE IN SCRIPT
+  // if(firstTeamPick !== null)
+  // {
+  //   if(draftPicks.length === 0)
+  //   {
+  //     setDraftPage(0);
+  //     return(
+  //       <div>
+  //         <NavButtons/>
+  //         <ChampPickComponent/>
+  //       </div>
+  //     )
+  //   }
+  //   else
+  //   {
+  //     if(draftPicks.length === 10)
+  //     {
+  //       setDraftPage(10);
+  //       return(
+  //         <div>
+  //           <NavButtons/>
+  //           <ChampPickComponent/>
+  //         </div>
+  //       )
+  //     }
+  //     else
+  //     {
+  //       setDraftPage(playersWithoutPick[0].page);
+  //       return(
+  //         <div>
+  //           <NavButtons/>
+  //           <ChampPickComponent/>
+  //         </div>
+  //       )
+  //     }
+  //   }
+  // }
+  // else
+  // {
+  //   return(
+  //     <div>
+  //       <NavButtons/>
+  //       <RadioButton/>
+  //     </div>
+  //   )
+  // }
+
+
   if(firstTeamPick !== null)
   {
-    if(draftPicks.length === 0)
-    {
-      setDraftPage(0);
-      return(
-        <div>
-          <NavButtons/>
-          <ChampPickComponent/>
-        </div>
-      )
-    }
-    else
-    {
-      if(draftPicks.length === 10)
-      {
-        setDraftPage(10);
-        return(
-          <div>
-            <NavButtons/>
-            <ChampPickComponent/>
-          </div>
-        )
-      }
-      else
-      {
-        setDraftPage(playersWithoutPick[0].page);
-        return(
-          <div>
-            <NavButtons/>
-            <ChampPickComponent/>
-          </div>
-        )
-      }
-    }
+    return(
+      <div>
+        <NavButtons/>
+        <ChampPickComponent/>
+      </div>
+    )
   }
   else
   {
@@ -418,6 +454,7 @@ export default function Page({
       </div>
     )
   }
+
 
 
   // return (
