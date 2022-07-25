@@ -14,7 +14,7 @@ const initialState = {
   banPhase3: [],
   pickedChamps: [],
   settings: {
-    normOrDraft: false,
+    // normOrDraft: false,
     players: [{ id: 0, name: "Player 1" }],
     availableLanes: defaultLaneNames,
     gameType: false,
@@ -40,11 +40,12 @@ export const listSlice = createSlice({
           state.settings.availableLanes[payload.id].name = payload.laneName;
           break;
 
+        //SOMEHOW FUCKED UP AND NEEDS TO FIX, ESPECIALLY DRAFT CHECK
         case "CHANGE_NUMBER_OF_PLAYERS":
           var playersArrayLenght = state.settings.players.length;
           var availableLanesLength = state.settings.availableLanes.length;
           var payloadLength = payload.count;
-          if (playersArrayLenght < payloadLength && state.settings.gameType === "false") {
+          if (playersArrayLenght < payloadLength && state.settings.gameType === false) {
             if (availableLanesLength < payloadLength) {
               for (
                 availableLanesLength;
@@ -67,7 +68,7 @@ export const listSlice = createSlice({
                 name: "Player " + (playersArrayLenght + 1),
               });
             }
-          } else if (playersArrayLenght > payloadLength && state.settings.gameType === "false") {
+          } else if (playersArrayLenght > payloadLength && state.settings.gameType === false) {
             if (availableLanesLength < payloadLength) {
               for (
                 availableLanesLength;
@@ -94,7 +95,7 @@ export const listSlice = createSlice({
           var availableLanesLength = state.settings.availableLanes.length;
           var payloadLength = payload.count;
 
-          if (availableLanesLength < payloadLength && state.settings.gameType === "false") {
+          if (availableLanesLength < payloadLength && state.settings.gameType === false) {
             for (
               availableLanesLength;
               availableLanesLength < payloadLength;
@@ -105,7 +106,7 @@ export const listSlice = createSlice({
                 name: defaultLaneNames[availableLanesLength].name,
               });
             }
-          } else if (availableLanesLength > payloadLength && state.settings.gameType === "false") {
+          } else if (availableLanesLength > payloadLength && state.settings.gameType === false) {
             if (playersArrayLenght >= payloadLength) {
               var tmp = playersArrayLenght - payloadLength;
               state.settings.players.splice(payloadLength, tmp);
@@ -163,6 +164,7 @@ export const listSlice = createSlice({
           } else {
               state.draftPicks.push({ pickPos: payload.pickPos, team: payload.team, id: payload.id, name: payload.name });
           }
+          state.draftPicks.sort((a, b) => a.pickPos - b.pickPos);
     },
 
     ban: (state, { payload }) => {
