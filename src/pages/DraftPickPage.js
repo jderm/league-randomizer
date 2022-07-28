@@ -16,10 +16,6 @@ const enemyTeamPattern = [1, 0, 0, 1, 1, 0, 0, 1, 1, 0];
 
 export default function Page({
   prev,
-  current,
-  banArrayType,
-  numberOfBans,
-  title,
   arrayOfPicks,
   firstTeamPick,
 }) {
@@ -152,23 +148,65 @@ export default function Page({
     }
   };
 
-  return (
-    <div>
-      <NavButtons />
-      <DraftPageController
-        draftPage={draftPage}
-        setSearchTerm={setSearchTerm}
-        searchFilteredChampArr={searchFilteredChampArr}
-        dispatch={dispatch}
-        draftPick={draftPick}
-        arrayOfPicks={arrayOfPicks}
-        firstTeamPick={firstTeamPick}
-        firstPick={firstPick}
-        changePattern={changePattern}
-        searchTerm={searchTerm}
-      />
-    </div>
-  );
+  // return (
+  //   <div>
+  //     <NavButtons />
+  //     <DraftPageController
+  //       draftPage={draftPage}
+  //       setSearchTerm={setSearchTerm}
+  //       searchFilteredChampArr={searchFilteredChampArr}
+  //       dispatch={dispatch}
+  //       draftPick={draftPick}
+  //       arrayOfPicks={arrayOfPicks}
+  //       firstTeamPick={firstTeamPick}
+  //       firstPick={firstPick}
+  //       changePattern={changePattern}
+  //       searchTerm={searchTerm}
+  //     />
+  //   </div>
+  // );
+  if (draftPage === 0) {
+    return (
+      <div>
+        <NavButtons />
+        <RadioButton
+          val={"0"}
+          firstTeamPick={firstTeamPick}
+          dispatch={dispatch}
+          firstPick={firstPick}
+          changePattern={changePattern}
+        />
+        <RadioButton
+          val={"1"}
+          firstTeamPick={firstTeamPick}
+          dispatch={dispatch}
+          firstPick={firstPick}
+          changePattern={changePattern}
+        />
+      </div>
+    );
+  } else {
+    return (
+      <div>
+        <NavButtons />
+        <AllyEnemyPick
+          currTeamPattern={currTeamPattern}
+          draftPage={draftPage}
+        />
+        <ChampSearchComponent
+          setSearchTerm={setSearchTerm}
+          searchTerm={searchTerm}
+        />
+        <ChampPickComponent
+          searchFilteredChampArr={searchFilteredChampArr}
+          dispatch={dispatch}
+          draftPick={draftPick}
+          draftPage={draftPage}
+          arrayOfPicks={arrayOfPicks}
+        />
+      </div>
+    );
+  }
 }
 
 //LOOKS OK

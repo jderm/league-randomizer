@@ -1,3 +1,4 @@
+import { breadcrumbsClasses } from "@mui/material";
 import { createSlice } from "@reduxjs/toolkit";
 
 const defaultLaneNames = [
@@ -9,10 +10,10 @@ const defaultLaneNames = [
 ];
 
 const initialState = {
-  banPhase1: [],
-  banPhase2: [],
-  banPhase3: [],
-  pickedChamps: [],
+  // banPhase1: [],
+  // banPhase2: [],
+  // banPhase3: [],
+  // pickedChamps: [],
   settings: {
     // normOrDraft: false,
     players: [{ id: 0, name: "Player 1" }],
@@ -21,9 +22,17 @@ const initialState = {
     optBans: false,
   },
 
+  normal:{
+    normPicks: [],
+    optBans: [],
+  },
+  draft: {
+    enemyBans: [],
+    allyBans: [],
+    draftPicks: [],
+    firstPickTeam: null
+  },
 
-  draftPicks: [],
-  firstPickTeam: null
 };
 
 export const listSlice = createSlice({
@@ -245,6 +254,62 @@ export const listSlice = createSlice({
               state.pickedChamps.push({ id: payload.id, name: payload.name });
             }
           }
+          break;
+
+        case "OPT_BANS":
+          var resp = state.optBans.some((e) => e.id === payload.id);
+          if (resp) {
+            const tempArr = state.optBans.filter(
+              (item) => item.id !== payload.id
+            );
+            state.optBans = tempArr;
+          } else {
+            if (state.optBans.length < state.settings.players.length) {
+              state.optBans.push({ id: payload.id, name: payload.name });
+            }
+          }
+          break;
+
+        case "ALLY_BANS":
+          var resp = state.allyBans.some((e) => e.id === payload.id);
+          if (resp) {
+            const tempArr = state.allyBans.filter(
+              (item) => item.id !== payload.id
+            );
+            state.allyBans = tempArr;
+          } else {
+            if (state.allyBans.length < 5) {
+              state.allyBans.push({ id: payload.id, name: payload.name });
+            }
+          }
+          resp = state.enemyBans.some((e) => e.id === payload.id);
+          if (resp) {
+            const tempArr = state.enemyBans.filter(
+              (item) => item.id !== payload.id
+            );
+            state.enemyBans = tempArr;
+          }
+          break;
+
+        case "ENEMY_BANS":
+          var resp = state.enemyBans.some((e) => e.id === payload.id);
+          if (resp) {
+            const tempArr = state.enemyBans.filter(
+              (item) => item.id !== payload.id
+            );
+            state.enemyBans = tempArr;
+          } else {
+            if (state.enemyBans.length < 5) {
+              state.enemyBans.push({ id: payload.id, name: payload.name });
+            }
+          }
+          // resp = state.pickedChamps.some((e) => e.id === payload.id);
+          // if (resp) {
+          //   const tempArr = state.pickedChamps.filter(
+          //     (item) => item.id !== payload.id
+          //   );
+          //   state.pickedChamps = tempArr;
+          // }
           break;
       }
     },

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { selectList } from "./redux/listReducer";
+import { draftPick, selectList } from "./redux/listReducer";
 import "./App.css";
 import Page from "./pages/ChampListPage";
 import DraftPickPage from "./pages/DraftPickPage";
@@ -180,89 +180,170 @@ export default function App() {
 //ENEMY BANS
 //BOTH TEAM PICKS
 //RANDOMIZER
-const ButtonNavigation = ({ fnc, page, maxBans, numberOfPickedCHamps }) => {
-  if (page === 0) {
-    return (
-      <div className="NavigationButtons">
-        <Button
-          variant="contained"
-          style={{ backgroundColor: "#72737369", color: "#000" }}
-          size="large"
-          onClick={() => fnc(+1)}
-        >
-          next
-        </Button>
-      </div>
-    );
-  } else if (page === 4) {
-    if (maxBans - numberOfPickedCHamps.length !== 0) {
-      return (
-        <div className="NavigationButtons">
-          <Button
-            variant="contained"
-            style={{ backgroundColor: "#72737369", color: "#000" }}
-            size="large"
-            onClick={() => fnc(-1)}
-          >
-            back
-          </Button>
-        </div>
-      );
-    } else {
-      return (
-        <div className="NavigationButtons">
-          <Button
-            variant="contained"
-            style={{ backgroundColor: "#72737369", color: "#000" }}
-            size="large"
-            onClick={() => fnc(+1)}
-          >
-            next
-          </Button>
-          <Button
-            variant="contained"
-            style={{ backgroundColor: "#72737369", color: "#000" }}
-            size="large"
-            onClick={() => fnc(-1)}
-          >
-            back
-          </Button>
-        </div>
-      );
+const ButtonNavigation = ({ fnc, page, maxBans, numberOfPickedCHamps, gameType, optBans, normPicks, allyBan, enemyBan }) => {
+  // if(page === 0)
+  // {
+
+  // }
+  if(gameType === false)
+  {
+    if(optBans === true)
+    {
+      if(optBans === 10)
+      {
+        if(normPicks === 10)
+        {
+          <>
+            <NavButton fnc={fnc} val={-1} text={"back"}/>
+            <NavButton fnc={fnc} val={+1} text={"next"}/>
+          </>
+        }
+        else{
+          <>
+            <NavButton fnc={fnc} val={-1} text={"back"}/>
+            <NavButton fnc={fnc} val={+1} text={"next"}/>
+          </>
+        }
+      }
+      else{
+        <NavButton fnc={fnc} val={-1} text={"back"}/>
+      }
     }
-  } else if (page === 5) {
-    return (
-      <div className="NavigationButtons">
-        <Button
-          variant="contained"
-          style={{ backgroundColor: "#72737369", color: "#000" }}
-          size="large"
-          onClick={() => fnc(-1)}
-        >
-          back
-        </Button>
-      </div>
-    );
-  } else if (page > 0) {
-    return (
-      <div className="NavigationButtons">
-        <Button
-          variant="contained"
-          style={{ backgroundColor: "#72737369", color: "#000" }}
-          size="large"
-          onClick={() => fnc(+1)}
-        >
-          next
-        </Button>
-        <Button
-          variant="contained"
-          style={{ backgroundColor: "#72737369", color: "#000" }}
-          size="large"
-          onClick={() => fnc(-1)}
-        >
-          back
-        </Button>
-      </div>
-    );
+    else{
+      if(normPicks === 10)
+      {
+        <>
+        <NavButton fnc={fnc} val={-1} text={"back"}/>
+        <NavButton fnc={fnc} val={+1} text={"next"}/>
+      </>
+      }
+    }
   }
+  else
+  {
+    if(allyBan.lenght === 5)
+    {
+      if(enemyBan.lenght === 5)
+      {
+        if(draftPick.length === 10)
+        {
+          <>
+            <NavButton fnc={fnc} val={-1} text={"back"}/>
+            <NavButton fnc={fnc} val={+1} text={"next"}/>
+          </>
+        }
+        else{
+          <>
+            <NavButton fnc={fnc} val={-1} text={"back"}/>
+            <NavButton fnc={fnc} val={+1} text={"next"}/>
+          </>
+        }
+      }
+      else{
+        <>
+            <NavButton fnc={fnc} val={-1} text={"back"}/>
+            <NavButton fnc={fnc} val={+1} text={"next"}/>
+          </>
+      }
+    }
+    else{
+      <NavButton fnc={fnc} val={-1} text={"back"}/>
+    }
+  }
+  // if (page === 0) {
+  //   return (
+  //     <div className="NavigationButtons">
+  //       <Button
+  //         variant="contained"
+  //         style={{ backgroundColor: "#72737369", color: "#000" }}
+  //         size="large"
+  //         onClick={() => fnc(+1)}
+  //       >
+  //         next
+  //       </Button>
+  //     </div>
+  //   );
+  // } else if (page === 4) {
+  //   if (maxBans - numberOfPickedCHamps.length !== 0) {
+  //     return (
+  //       <div className="NavigationButtons">
+  //         <Button
+  //           variant="contained"
+  //           style={{ backgroundColor: "#72737369", color: "#000" }}
+  //           size="large"
+  //           onClick={() => fnc(-1)}
+  //         >
+  //           back
+  //         </Button>
+  //       </div>
+  //     );
+  //   } else {
+  //     return (
+  //       <div className="NavigationButtons">
+  //         <Button
+  //           variant="contained"
+  //           style={{ backgroundColor: "#72737369", color: "#000" }}
+  //           size="large"
+  //           onClick={() => fnc(+1)}
+  //         >
+  //           next
+  //         </Button>
+  //         <Button
+  //           variant="contained"
+  //           style={{ backgroundColor: "#72737369", color: "#000" }}
+  //           size="large"
+  //           onClick={() => fnc(-1)}
+  //         >
+  //           back
+  //         </Button>
+  //       </div>
+  //     );
+  //   }
+  // } else if (page === 5) {
+  //   return (
+  //     <div className="NavigationButtons">
+  //       <Button
+  //         variant="contained"
+  //         style={{ backgroundColor: "#72737369", color: "#000" }}
+  //         size="large"
+  //         onClick={() => fnc(-1)}
+  //       >
+  //         back
+  //       </Button>
+  //     </div>
+  //   );
+  // } else if (page > 0) {
+  //   return (
+  //     <div className="NavigationButtons">
+  //       <Button
+  //         variant="contained"
+  //         style={{ backgroundColor: "#72737369", color: "#000" }}
+  //         size="large"
+  //         onClick={() => fnc(+1)}
+  //       >
+  //         next
+  //       </Button>
+  //       <Button
+  //         variant="contained"
+  //         style={{ backgroundColor: "#72737369", color: "#000" }}
+  //         size="large"
+  //         onClick={() => fnc(-1)}
+  //       >
+  //         back
+  //       </Button>
+  //     </div>
+  //   );
+  // }
 };
+
+
+const NavButton = ({fnc, val, text}) => {
+  <Button
+  variant="contained"
+  style={{ backgroundColor: "#72737369", color: "#000" }}
+  size="large"
+  onClick={() => fnc(val)}
+>
+  {text}
+</Button>
+}
