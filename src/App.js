@@ -8,7 +8,7 @@ import Settings from "./pages/SettingsPage";
 import Randomize from "./pages/RandomizePage";
 import { Button } from "@mui/material";
 
-var availablePages = [0, 4, 5];
+var availablePages = [0, 2, 6];
 //0 = SETTINGS
 //1 = ALLY TEAM BANS
 //2 = ENEMY BANS
@@ -21,25 +21,42 @@ export default function App() {
   var [page, setPage] = useState(0);
 
   //MANAGING AVAILABLE PAGES AND THEIR ORDER
+  //BAD I GUESS
   function changePagesOrder(type, val) {
     if (type === 0) {
+      if(list.settings.optBans === true)
+      {
+        if(val === "true")
+        {
+          availablePages = availablePages.filter((item) => item !== 1);
+        }
+        else
+        {
+          availablePages.push(1);
+          availablePages.sort();
+        }
+      }
       if (val === "true") {
-        availablePages.push(1, 2);
+        availablePages.push(3, 4, 5);
+        availablePages = availablePages.filter((item) => item !== 2);
         availablePages.sort();
       } else if (val === "false") {
-        var values = [1, 2];
+        var values = [3, 4, 5];
         availablePages = availablePages.filter(
           (item) => !values.includes(item)
         );
+        availablePages.push(2);
+        availablePages.sort();
       }
     } else if (type === 1) {
       if (val === "false") {
-        availablePages.push(3);
+        availablePages.push(1);
         availablePages.sort();
       } else if (val === "true") {
-        availablePages = availablePages.filter((item) => item !== 3);
+        availablePages = availablePages.filter((item) => item !== 1);
       }
     }
+    //console.log(availablePages);
   }
 
   //CHANGE PAGE FUNCTION
@@ -48,66 +65,22 @@ export default function App() {
     setPage(e);
   }
 
+
   switch (availablePages[page]) {
     //SETTINGS PAGE
     case 0:
       return (
         <div id="Page">
-          <ButtonNavigation fnc={changePage} page={availablePages[page]} />
+          {/* <ButtonNavigation fnc={changePage} page={availablePages[page]} /> */}
+          <ButtonNavigation fnc={changePage} page={availablePages[page]} allyBan={list.draft.allyBans} enemyBan={list.draft.enemyBans} draftPick={list.draft.draftPicks}/>
           <div id="SettingsPage">
             <Settings changePagesOrder={changePagesOrder} />
           </div>
         </div>
       );
 
-    case 1:
-      return(
-        <div id="Page">
-          <ButtonNavigation fnc={changePage} page={availablePages[page]} maxBans={10}
-            numberOfPickedCHamps={list.draftPicks}/>
-          <div>
-            <DraftPickPage prev={[]} arrayOfPicks={list.draftPicks} firstTeamPick={list.firstPickTeam}/>
-          </div>
-        </div>
-      )
-
-    //ALLY TEAM BANS PAGE
-    // case 1:
-    //   return (
-    //     <div id="Page">
-    //       <ButtonNavigation fnc={changePage} page={availablePages[page]} />
-    //       <div id="AllyBans">
-    //         <Page
-    //           prev={[]}
-    //           current={list.banPhase1}
-    //           numberOfBans={5}
-    //           banArrayType="BAN_ARRAY_1"
-    //           title="Your team bans:"
-    //         />
-    //       </div>
-    //     </div>
-    //   );
-
-    //ENEMY TEAM BANS PAGE
-    case 2:
-      return (
-        <div id="Page">
-          <ButtonNavigation fnc={changePage} page={availablePages[page]} />
-
-          <div id="EnemyBans">
-            <Page
-              prev={list.banPhase1}
-              current={list.banPhase2}
-              numberOfBans={5}
-              banArrayType="BAN_ARRAY_2"
-              title="Enemy bans:"
-            />
-          </div>
-        </div>
-      );
-
     //OPTIONAL BANS PAGE
-    case 3:
+    case 1:
       return (
         <div id="Page">
           <ButtonNavigation fnc={changePage} page={availablePages[page]} />
@@ -123,8 +96,8 @@ export default function App() {
         </div>
       );
 
-    //PICKING CHAMPIONS PAGE
-    case 4:
+    //NORMAL PICK PAGE
+    case 2:
       return (
         <div id="Page">
           <ButtonNavigation
@@ -145,8 +118,92 @@ export default function App() {
         </div>
       );
 
-    //RANDOMIZE PAGE
+    //ALLY BANS
+    case 3:
+      return (
+        <div id="Page">
+          <ButtonNavigation fnc={changePage} page={availablePages[page]} allyBan={list.draft.allyBans} enemyBan={list.draft.enemyBans} draftPick={list.draft.draftPicks}/>
+          <div id="EnemyBans">
+            <Page
+              prev={list.banPhase1}
+              current={list.banPhase2}
+              numberOfBans={5}
+              banArrayType="BAN_ARRAY_2"
+              title="Enemy bans:"
+            />
+          </div>
+        </div>
+      );
+
+    //ENEMY BANS
+    case 4:
+      return (
+        <div id="Page">
+          <ButtonNavigation fnc={changePage} page={availablePages[page]} allyBan={list.draft.allyBans} enemyBan={list.draft.enemyBans} draftPick={list.draft.draftPicks}/>
+          <div id="EnemyBans">
+            <Page
+              prev={list.banPhase1}
+              current={list.banPhase2}
+              numberOfBans={5}
+              banArrayType="BAN_ARRAY_2"
+              title="Enemy bans:"
+            />
+          </div>
+        </div>
+      );
+
+    //DRAFT PICK PAGE
     case 5:
+      return (
+        <div id="Page">
+          <ButtonNavigation fnc={changePage} page={availablePages[page]} allyBan={list.draft.allyBans} enemyBan={list.draft.enemyBans} draftPick={list.draft.draftPicks}/>
+          <div>
+            <DraftPickPage
+              prev={[]}
+              arrayOfPicks={list.draftPicks}
+              firstTeamPick={list.firstPickTeam}
+            />
+          </div>
+        </div>
+      );
+
+    //ALLY TEAM BANS PAGE
+    // case 1:
+    //   return (
+    //     <div id="Page">
+    //       <ButtonNavigation fnc={changePage} page={availablePages[page]} />
+    //       <div id="AllyBans">
+    //         <Page
+    //           prev={[]}
+    //           current={list.banPhase1}
+    //           numberOfBans={5}
+    //           banArrayType="BAN_ARRAY_1"
+    //           title="Your team bans:"
+    //         />
+    //       </div>
+    //     </div>
+    //   );
+
+    //ENEMY TEAM BANS PAGE
+    // case 2:
+    //   return (
+    //     <div id="Page">
+    //       <ButtonNavigation fnc={changePage} page={availablePages[page]} />
+
+    //       <div id="EnemyBans">
+    //         <Page
+    //           prev={list.banPhase1}
+    //           current={list.banPhase2}
+    //           numberOfBans={5}
+    //           banArrayType="BAN_ARRAY_2"
+    //           title="Enemy bans:"
+    //         />
+    //       </div>
+    //     </div>
+    //   );
+
+    //RANDOMIZE PAGE
+    case 6:
       return (
         <div id="Page">
           <ButtonNavigation fnc={changePage} page={availablePages[page]} />
@@ -180,74 +237,69 @@ export default function App() {
 //ENEMY BANS
 //BOTH TEAM PICKS
 //RANDOMIZER
-const ButtonNavigation = ({ fnc, page, maxBans, numberOfPickedCHamps, gameType, optBans, normPicks, allyBan, enemyBan }) => {
+const ButtonNavigation = ({
+  fnc,
+  page,
+  maxBans,
+  numberOfPickedCHamps,
+  gameType,
+  optBans,
+  normPicks,
+  allyBan,
+  enemyBan,
+}) => {
   // if(page === 0)
   // {
 
   // }
-  if(gameType === false)
-  {
-    if(optBans === true)
-    {
-      if(optBans === 10)
-      {
-        if(normPicks === 10)
-        {
+  //THIS IS WEIRD
+  if (gameType === false) {
+    if (optBans === true) {
+      if (optBans === 10) {
+        if (normPicks === 10) {
           <>
-            <NavButton fnc={fnc} val={-1} text={"back"}/>
-            <NavButton fnc={fnc} val={+1} text={"next"}/>
-          </>
-        }
-        else{
+            <NavButton fnc={fnc} val={-1} text={"back"} />
+            <NavButton fnc={fnc} val={+1} text={"next"} />
+          </>;
+        } else {
           <>
-            <NavButton fnc={fnc} val={-1} text={"back"}/>
-            <NavButton fnc={fnc} val={+1} text={"next"}/>
-          </>
+            <NavButton fnc={fnc} val={-1} text={"back"} />
+            <NavButton fnc={fnc} val={+1} text={"next"} />
+          </>;
         }
+      } else {
+        <NavButton fnc={fnc} val={-1} text={"back"} />;
       }
-      else{
-        <NavButton fnc={fnc} val={-1} text={"back"}/>
-      }
-    }
-    else{
-      if(normPicks === 10)
-      {
+    } else {
+      if (normPicks === 10) {
         <>
-        <NavButton fnc={fnc} val={-1} text={"back"}/>
-        <NavButton fnc={fnc} val={+1} text={"next"}/>
-      </>
+          <NavButton fnc={fnc} val={-1} text={"back"} />
+          <NavButton fnc={fnc} val={+1} text={"next"} />
+        </>;
       }
     }
-  }
-  else
-  {
-    if(allyBan.lenght === 5)
-    {
-      if(enemyBan.lenght === 5)
-      {
-        if(draftPick.length === 10)
-        {
+  } else {
+    if (allyBan.lenght === 5) {
+      if (enemyBan.lenght === 5) {
+        if (draftPick.length === 10) {
           <>
-            <NavButton fnc={fnc} val={-1} text={"back"}/>
-            <NavButton fnc={fnc} val={+1} text={"next"}/>
-          </>
-        }
-        else{
+            <NavButton fnc={fnc} val={-1} text={"back"} />
+            <NavButton fnc={fnc} val={+1} text={"next"} />
+          </>;
+        } else {
           <>
-            <NavButton fnc={fnc} val={-1} text={"back"}/>
-            <NavButton fnc={fnc} val={+1} text={"next"}/>
-          </>
+            <NavButton fnc={fnc} val={-1} text={"back"} />
+            <NavButton fnc={fnc} val={+1} text={"next"} />
+          </>;
         }
-      }
-      else{
+      } else {
         <>
-            <NavButton fnc={fnc} val={-1} text={"back"}/>
-            <NavButton fnc={fnc} val={+1} text={"next"}/>
-          </>
+          <NavButton fnc={fnc} val={-1} text={"back"} />
+          <NavButton fnc={fnc} val={+1} text={"next"} />
+        </>;
       }
-    }
-    else{
-      <NavButton fnc={fnc} val={-1} text={"back"}/>
+    } else {
+      <NavButton fnc={fnc} val={-1} text={"back"} />;
     }
   }
   // if (page === 0) {
@@ -336,14 +388,13 @@ const ButtonNavigation = ({ fnc, page, maxBans, numberOfPickedCHamps, gameType, 
   // }
 };
 
-
-const NavButton = ({fnc, val, text}) => {
+const NavButton = ({ fnc, val, text }) => {
   <Button
-  variant="contained"
-  style={{ backgroundColor: "#72737369", color: "#000" }}
-  size="large"
-  onClick={() => fnc(val)}
->
-  {text}
-</Button>
-}
+    variant="contained"
+    style={{ backgroundColor: "#72737369", color: "#000" }}
+    size="large"
+    onClick={() => fnc(val)}
+  >
+    {text}
+  </Button>;
+};

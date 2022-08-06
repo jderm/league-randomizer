@@ -394,56 +394,56 @@ const ChampSearchComponent = ({ setSearchTerm, searchTerm }) => {
 
 //LOOKS OK
 //draftPage
-const DraftPageController = ({
-  draftPage,
-  setSearchTerm,
-  searchFilteredChampArr,
-  dispatch,
-  draftPick,
-  arrayOfPicks,
-  firstTeamPick,
-  firstPick,
-  changePattern,
-  searchTerm,
-}) => {
-  if (draftPage === 0) {
-    return (
-      <div>
-        <RadioButton
-          val={"0"}
-          firstTeamPick={firstTeamPick}
-          dispatch={dispatch}
-          firstPick={firstPick}
-          changePattern={changePattern}
-        />
-        <RadioButton
-          val={"1"}
-          firstTeamPick={firstTeamPick}
-          dispatch={dispatch}
-          firstPick={firstPick}
-          changePattern={changePattern}
-        />
-      </div>
-    );
-  } else {
-    return (
-      <div>
-        <AllyEnemyPick
-          currTeamPattern={currTeamPattern}
-          draftPage={draftPage}
-        />
-        <ChampSearchComponent
-          setSearchTerm={setSearchTerm}
-          searchTerm={searchTerm}
-        />
-        <ChampPickComponent
-          searchFilteredChampArr={searchFilteredChampArr}
-          dispatch={dispatch}
-          draftPick={draftPick}
-          draftPage={draftPage}
-          arrayOfPicks={arrayOfPicks}
-        />
-      </div>
-    );
-  }
-};
+// const DraftPageController = ({
+//   draftPage,
+//   setSearchTerm,
+//   searchFilteredChampArr,
+//   dispatch,
+//   draftPick,
+//   arrayOfPicks,
+//   firstTeamPick,
+//   firstPick,
+//   changePattern,
+//   searchTerm,
+// }) => {
+//   if (draftPage === 0) {
+//     return (
+//       <div>
+//         <RadioButton
+//           val={"0"}
+//           firstTeamPick={firstTeamPick}
+//           dispatch={dispatch}
+//           firstPick={firstPick}
+//           changePattern={changePattern}
+//         />
+//         <RadioButton
+//           val={"1"}
+//           firstTeamPick={firstTeamPick}
+//           dispatch={dispatch}
+//           firstPick={firstPick}
+//           changePattern={changePattern}
+//         />
+//       </div>
+//     );
+//   } else {
+//     return (
+//       <div>
+//         <AllyEnemyPick
+//           currTeamPattern={currTeamPattern}
+//           draftPage={draftPage}
+//         />
+//         <ChampSearchComponent
+//           setSearchTerm={setSearchTerm}
+//           searchTerm={searchTerm}
+//         />
+//         <ChampPickComponent
+//           searchFilteredChampArr={searchFilteredChampArr}
+//           dispatch={dispatch}
+//           draftPick={draftPick}
+//           draftPage={draftPage}
+//           arrayOfPicks={arrayOfPicks}
+//         />
+//       </div>
+//     );
+//   }
+// };

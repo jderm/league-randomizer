@@ -1,4 +1,4 @@
-import { breadcrumbsClasses } from "@mui/material";
+//import { breadcrumbsClasses } from "@mui/material";
 import { createSlice } from "@reduxjs/toolkit";
 
 const defaultLaneNames = [
@@ -23,14 +23,14 @@ const initialState = {
   },
 
   normal:{
-    normPicks: [],
     optBans: [],
+    normPicks: []
   },
   draft: {
-    enemyBans: [],
     allyBans: [],
-    draftPicks: [],
-    firstPickTeam: null
+    enemyBans: [],
+    firstPickTeam: null,
+    draftPicks: []
   },
 
 };
