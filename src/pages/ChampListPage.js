@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { ban } from "../redux/listReducer";
+import { banOrPick } from "../redux/listReducer";
 import champ from "../champions.json";
 import { AutoSizer, List } from "react-virtualized";
 import "../Style.css";
@@ -103,7 +103,7 @@ export default function Page({
                             )}
                             onChange={() =>
                               dispatch(
-                                ban({
+                                banOrPick({
                                   id: searchFilteredChampArr[i].id,
                                   name: searchFilteredChampArr[i].name,
                                   type: banArrayType,
@@ -116,7 +116,7 @@ export default function Page({
                             className="labelClass"
                             onClick={() =>
                               dispatch(
-                                ban({
+                                banOrPick({
                                   id: searchFilteredChampArr[i].id,
                                   name: searchFilteredChampArr[i].name,
                                   type: banArrayType,

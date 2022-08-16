@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { draftPick, selectList } from "./redux/listReducer";
+import { selectList } from "./redux/listReducer";
 import "./App.css";
 import Page from "./pages/ChampListPage";
 import DraftPickPage from "./pages/DraftPickPage";
@@ -10,28 +10,24 @@ import { Button } from "@mui/material";
 
 var availablePages = [0, 2, 6];
 //0 = SETTINGS
-//1 = ALLY TEAM BANS
-//2 = ENEMY BANS
-//3 = OPTIONAL BANS
-//4 = CHAMP PICKS
-//5 = RANDOMIZE
+//1 = OPTIONAL BANS
+//2 = NORMAL PICKS
+//3 = ALLY BANS
+//4 = ENEMY BANS
+//5 = DRAFT PICK
+//6 = RANDOMIZE
+//DEFAULT = DEFAULT
 export default function App() {
   const list = useSelector(selectList);
-
   var [page, setPage] = useState(0);
 
-  //MANAGING AVAILABLE PAGES AND THEIR ORDER
-  //BAD I GUESS
+  //CHANGE ORDER OF PAGES
   function changePagesOrder(type, val) {
     if (type === 0) {
-      if(list.settings.optBans === true)
-      {
-        if(val === "true")
-        {
+      if (list.settings.optBans === true) {
+        if (val === "true") {
           availablePages = availablePages.filter((item) => item !== 1);
-        }
-        else
-        {
+        } else {
           availablePages.push(1);
           availablePages.sort();
         }
@@ -56,7 +52,6 @@ export default function App() {
         availablePages = availablePages.filter((item) => item !== 1);
       }
     }
-    //console.log(availablePages);
   }
 
   //CHANGE PAGE FUNCTION
@@ -65,14 +60,13 @@ export default function App() {
     setPage(e);
   }
 
-
   switch (availablePages[page]) {
     //SETTINGS PAGE
     case 0:
       return (
         <div id="Page">
           {/* <ButtonNavigation fnc={changePage} page={availablePages[page]} /> */}
-          <ButtonNavigation fnc={changePage} page={availablePages[page]} allyBan={list.draft.allyBans} enemyBan={list.draft.enemyBans} draftPick={list.draft.draftPicks}/>
+          <ButtonNavigation fnc={changePage} page={availablePages[page]} />
           <div id="SettingsPage">
             <Settings changePagesOrder={changePagesOrder} />
           </div>
@@ -83,13 +77,17 @@ export default function App() {
     case 1:
       return (
         <div id="Page">
-          <ButtonNavigation fnc={changePage} page={availablePages[page]} />
+          <ButtonNavigation
+            fnc={changePage}
+            page={availablePages[page]}
+            optBans={list.normal.optBans.length}
+          />
           <div id="OptionalBans">
             <Page
-              prev={list.banPhase1.concat(list.banPhase2)}
-              current={list.banPhase3}
+              prev={[]}
+              current={list.normal.optBans}
               numberOfBans={5}
-              banArrayType="BAN_ARRAY_3"
+              banArrayType="NORMAL_OPTIONAL_BANS"
               title="Optional bans:"
             />
           </div>
@@ -103,15 +101,15 @@ export default function App() {
           <ButtonNavigation
             fnc={changePage}
             page={availablePages[page]}
-            maxBans={list.settings.players.length}
-            numberOfPickedCHamps={list.pickedChamps}
+            normPicks={list.normal.normPicks.length}
+            normNumOfPlayers={list.settings.players.length}
           />
           <div id="ChampPicks">
             <Page
-              prev={list.banPhase1.concat(list.banPhase2, list.banPhase3)}
-              current={list.pickedChamps}
+              prev={list.normal.optBans}
+              current={list.normal.normPicks}
               numberOfBans={list.settings.players.length}
-              banArrayType="BAN_ARRAY_4"
+              banArrayType="NORMAL_PICKS"
               title="Player picks:"
             />
           </div>
@@ -122,14 +120,18 @@ export default function App() {
     case 3:
       return (
         <div id="Page">
-          <ButtonNavigation fnc={changePage} page={availablePages[page]} allyBan={list.draft.allyBans} enemyBan={list.draft.enemyBans} draftPick={list.draft.draftPicks}/>
+          <ButtonNavigation
+            fnc={changePage}
+            page={availablePages[page]}
+            allyBans={list.draft.allyBans.length}
+          />
           <div id="EnemyBans">
             <Page
-              prev={list.banPhase1}
-              current={list.banPhase2}
+              prev={[]}
+              current={list.draft.allyBans}
               numberOfBans={5}
-              banArrayType="BAN_ARRAY_2"
-              title="Enemy bans:"
+              banArrayType="DRAFT_ALLY_BANS"
+              title="Ally bans:"
             />
           </div>
         </div>
@@ -139,13 +141,17 @@ export default function App() {
     case 4:
       return (
         <div id="Page">
-          <ButtonNavigation fnc={changePage} page={availablePages[page]} allyBan={list.draft.allyBans} enemyBan={list.draft.enemyBans} draftPick={list.draft.draftPicks}/>
+          <ButtonNavigation
+            fnc={changePage}
+            page={availablePages[page]}
+            enemyBans={list.draft.enemyBans.length}
+          />
           <div id="EnemyBans">
             <Page
-              prev={list.banPhase1}
-              current={list.banPhase2}
+              prev={[]}
+              current={list.draft.enemyBans}
               numberOfBans={5}
-              banArrayType="BAN_ARRAY_2"
+              banArrayType="DRAFT_ENEMY_BANS"
               title="Enemy bans:"
             />
           </div>
@@ -156,57 +162,22 @@ export default function App() {
     case 5:
       return (
         <div id="Page">
-          <ButtonNavigation fnc={changePage} page={availablePages[page]} allyBan={list.draft.allyBans} enemyBan={list.draft.enemyBans} draftPick={list.draft.draftPicks}/>
+          <ButtonNavigation
+            fnc={changePage}
+            page={availablePages[page]}
+            draftPicks={list.draft.draftPicks.length}
+          />
           <div>
-            <DraftPickPage
-              prev={[]}
-              arrayOfPicks={list.draftPicks}
-              firstTeamPick={list.firstPickTeam}
-            />
+            <DraftPickPage />
           </div>
         </div>
       );
-
-    //ALLY TEAM BANS PAGE
-    // case 1:
-    //   return (
-    //     <div id="Page">
-    //       <ButtonNavigation fnc={changePage} page={availablePages[page]} />
-    //       <div id="AllyBans">
-    //         <Page
-    //           prev={[]}
-    //           current={list.banPhase1}
-    //           numberOfBans={5}
-    //           banArrayType="BAN_ARRAY_1"
-    //           title="Your team bans:"
-    //         />
-    //       </div>
-    //     </div>
-    //   );
-
-    //ENEMY TEAM BANS PAGE
-    // case 2:
-    //   return (
-    //     <div id="Page">
-    //       <ButtonNavigation fnc={changePage} page={availablePages[page]} />
-
-    //       <div id="EnemyBans">
-    //         <Page
-    //           prev={list.banPhase1}
-    //           current={list.banPhase2}
-    //           numberOfBans={5}
-    //           banArrayType="BAN_ARRAY_2"
-    //           title="Enemy bans:"
-    //         />
-    //       </div>
-    //     </div>
-    //   );
 
     //RANDOMIZE PAGE
     case 6:
       return (
         <div id="Page">
-          <ButtonNavigation fnc={changePage} page={availablePages[page]} />
+          <ButtonNavigation fnc={changePage} />
           <div id="Randomize">
             <Randomize />
           </div>
@@ -217,184 +188,136 @@ export default function App() {
     default:
       return (
         <div id="Page">
-          <ButtonNavigation fnc={changePage} page={availablePages[page]} />
+          <ButtonNavigation fnc={changePage} />
           <h3>Default page</h3>
         </div>
       );
   }
 }
 
-//NEED TO UPDATE NAV BUTTONS CODE AFTER ADDING DRAFT AND CLASH OPTION, MAYBE ADD IT INTO MAIN FUNCTION, MAYBE SHORTEN REDECLARING OF BUTTONS TO SHORTEN CODE
-//NAVIGATION BUTTONS
-
-//IF NORMAL
-//NORMAL PICKS COUNT
-//OPTIONAL BANS
-//RANDOMIZER
-
-//IF DRAFT
-//ALLY BANS
-//ENEMY BANS
-//BOTH TEAM PICKS
-//RANDOMIZER
 const ButtonNavigation = ({
   fnc,
   page,
-  maxBans,
-  numberOfPickedCHamps,
-  gameType,
   optBans,
+  normNumOfPlayers,
   normPicks,
-  allyBan,
-  enemyBan,
+  allyBans,
+  enemyBans,
+  draftPicks,
 }) => {
-  // if(page === 0)
-  // {
+  switch (page) {
+    case 0:
+      return (
+        <div className="NavigationButtons">
+          <NavButton fnc={fnc} val={+1} text={"next"} />
+        </div>
+      );
 
-  // }
-  //THIS IS WEIRD
-  if (gameType === false) {
-    if (optBans === true) {
-      if (optBans === 10) {
-        if (normPicks === 10) {
-          <>
+    case 1:
+      if (optBans === 5) {
+        return (
+          <div className="NavigationButtons">
             <NavButton fnc={fnc} val={-1} text={"back"} />
             <NavButton fnc={fnc} val={+1} text={"next"} />
-          </>;
-        } else {
-          <>
-            <NavButton fnc={fnc} val={-1} text={"back"} />
-            <NavButton fnc={fnc} val={+1} text={"next"} />
-          </>;
-        }
+          </div>
+        );
       } else {
-        <NavButton fnc={fnc} val={-1} text={"back"} />;
+        return (
+          <div className="NavigationButtons">
+            <NavButton fnc={fnc} val={-1} text={"back"} />
+          </div>
+        );
       }
-    } else {
-      if (normPicks === 10) {
-        <>
-          <NavButton fnc={fnc} val={-1} text={"back"} />
-          <NavButton fnc={fnc} val={+1} text={"next"} />
-        </>;
-      }
-    }
-  } else {
-    if (allyBan.lenght === 5) {
-      if (enemyBan.lenght === 5) {
-        if (draftPick.length === 10) {
-          <>
+
+    case 2:
+      if (normPicks === normNumOfPlayers) {
+        return (
+          <div className="NavigationButtons">
             <NavButton fnc={fnc} val={-1} text={"back"} />
             <NavButton fnc={fnc} val={+1} text={"next"} />
-          </>;
-        } else {
-          <>
-            <NavButton fnc={fnc} val={-1} text={"back"} />
-            <NavButton fnc={fnc} val={+1} text={"next"} />
-          </>;
-        }
+          </div>
+        );
       } else {
-        <>
-          <NavButton fnc={fnc} val={-1} text={"back"} />
-          <NavButton fnc={fnc} val={+1} text={"next"} />
-        </>;
+        return (
+          <div className="NavigationButtons">
+            <NavButton fnc={fnc} val={-1} text={"back"} />
+          </div>
+        );
       }
-    } else {
-      <NavButton fnc={fnc} val={-1} text={"back"} />;
-    }
+
+    case 3:
+      if (allyBans === 5) {
+        return (
+          <div className="NavigationButtons">
+            <NavButton fnc={fnc} val={-1} text={"back"} />
+            <NavButton fnc={fnc} val={+1} text={"next"} />
+          </div>
+        );
+      } else {
+        return (
+          <div className="NavigationButtons">
+            <NavButton fnc={fnc} val={-1} text={"back"} />
+          </div>
+        );
+      }
+
+    case 4:
+      if (enemyBans === 5) {
+        return (
+          <div className="NavigationButtons">
+            <NavButton fnc={fnc} val={-1} text={"back"} />
+            <NavButton fnc={fnc} val={+1} text={"next"} />
+          </div>
+        );
+      } else {
+        return (
+          <div className="NavigationButtons">
+            <NavButton fnc={fnc} val={-1} text={"back"} />
+          </div>
+        );
+      }
+
+    case 5:
+      if (draftPicks === 10) {
+        return (
+          <div className="NavigationButtons">
+            <NavButton fnc={fnc} val={-1} text={"back"} />
+            <NavButton fnc={fnc} val={+1} text={"randomize"} />
+          </div>
+        );
+      } else {
+        return (
+          <div className="NavigationButtons">
+            <NavButton fnc={fnc} val={-1} text={"back"} />
+          </div>
+        );
+      }
+
+    case 6:
+      return (
+        <div className="NavigationButtons">
+          <NavButton fnc={fnc} val={-1} text={"back"} />
+        </div>
+      );
+
+    default:
+      return (
+        <div className="NavigationButtons">
+          <NavButton fnc={fnc} val={-1} text={"back"} />
+        </div>
+      );
   }
-  // if (page === 0) {
-  //   return (
-  //     <div className="NavigationButtons">
-  //       <Button
-  //         variant="contained"
-  //         style={{ backgroundColor: "#72737369", color: "#000" }}
-  //         size="large"
-  //         onClick={() => fnc(+1)}
-  //       >
-  //         next
-  //       </Button>
-  //     </div>
-  //   );
-  // } else if (page === 4) {
-  //   if (maxBans - numberOfPickedCHamps.length !== 0) {
-  //     return (
-  //       <div className="NavigationButtons">
-  //         <Button
-  //           variant="contained"
-  //           style={{ backgroundColor: "#72737369", color: "#000" }}
-  //           size="large"
-  //           onClick={() => fnc(-1)}
-  //         >
-  //           back
-  //         </Button>
-  //       </div>
-  //     );
-  //   } else {
-  //     return (
-  //       <div className="NavigationButtons">
-  //         <Button
-  //           variant="contained"
-  //           style={{ backgroundColor: "#72737369", color: "#000" }}
-  //           size="large"
-  //           onClick={() => fnc(+1)}
-  //         >
-  //           next
-  //         </Button>
-  //         <Button
-  //           variant="contained"
-  //           style={{ backgroundColor: "#72737369", color: "#000" }}
-  //           size="large"
-  //           onClick={() => fnc(-1)}
-  //         >
-  //           back
-  //         </Button>
-  //       </div>
-  //     );
-  //   }
-  // } else if (page === 5) {
-  //   return (
-  //     <div className="NavigationButtons">
-  //       <Button
-  //         variant="contained"
-  //         style={{ backgroundColor: "#72737369", color: "#000" }}
-  //         size="large"
-  //         onClick={() => fnc(-1)}
-  //       >
-  //         back
-  //       </Button>
-  //     </div>
-  //   );
-  // } else if (page > 0) {
-  //   return (
-  //     <div className="NavigationButtons">
-  //       <Button
-  //         variant="contained"
-  //         style={{ backgroundColor: "#72737369", color: "#000" }}
-  //         size="large"
-  //         onClick={() => fnc(+1)}
-  //       >
-  //         next
-  //       </Button>
-  //       <Button
-  //         variant="contained"
-  //         style={{ backgroundColor: "#72737369", color: "#000" }}
-  //         size="large"
-  //         onClick={() => fnc(-1)}
-  //       >
-  //         back
-  //       </Button>
-  //     </div>
-  //   );
-  // }
 };
 
 const NavButton = ({ fnc, val, text }) => {
-  <Button
-    variant="contained"
-    style={{ backgroundColor: "#72737369", color: "#000" }}
-    size="large"
-    onClick={() => fnc(val)}
-  >
-    {text}
-  </Button>;
+  return (
+    <Button
+      variant="contained"
+      style={{ backgroundColor: "#72737369", color: "#000" }}
+      size="large"
+      onClick={() => fnc(val)}
+    >
+      {text}
+    </Button>
+  );
 };

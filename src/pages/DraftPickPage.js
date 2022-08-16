@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { ban, draftPick, firstPick } from "../redux/listReducer";
+import { useDispatch, useSelector } from "react-redux";
+import { draftPick, firstPick, selectList } from "../redux/listReducer";
 import champ from "../champions.json";
 import { AutoSizer, List } from "react-virtualized";
 import "../Style.css";
 import "../App.css";
-import { TextField } from "@mui/material";
+import { TextField, Radio, Button } from "@mui/material";
 
 var playersWithoutPick = [];
 
@@ -14,25 +14,19 @@ var currTeamPattern = [];
 const allyTeamPattern = [0, 1, 1, 0, 0, 1, 1, 0, 0, 1];
 const enemyTeamPattern = [1, 0, 0, 1, 1, 0, 0, 1, 1, 0];
 
-export default function Page({
-  prev,
-  arrayOfPicks,
-  firstTeamPick,
-}) {
+export default function Page() {
+  const list = useSelector(selectList);
   const [searchTerm, setSearchTerm] = useState("");
   const dispatch = useDispatch();
-  var [draftPage, setDraftPage] = useState(setPageFnc(arrayOfPicks));
-
-  //LOOKS OK
+  var [draftPage, setDraftPage] = useState(setPageFnc(list.draft.draftPicks));
   //CHAMP LIST FILTERED OF BANS
+  var prev = list.draft.allyBans.concat(list.draft.enemyBans);
   var banFilteredChampArr = champ.filter((val) =>
     prev.every((e) => e.id !== val.id)
   );
 
-  //LOOKS OK
-  var pickFiltereredChampArr = filterOfPicks();
+  var pickFiltereredChampArr = filterOfPicks(list.draft.draftPicks);
 
-  //LOOKS OK
   //CHAMP LIST FILTERED OF SEARCHBAR
   var searchFilteredChampArr = pickFiltereredChampArr.filter((val) => {
     if (searchTerm == "") {
@@ -42,8 +36,7 @@ export default function Page({
     }
   });
 
-  //LOOKS OK
-  //arrayOfPicks, playersWithoutPick
+  //SET DEFAULT PAGE ON LOAD
   function setPageFnc(arrayOfPicks) {
     var defPlayerWithoutPick = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
     if (arrayOfPicks.length === 10) {
@@ -58,7 +51,6 @@ export default function Page({
       playersWithoutPick = defPlayerWithoutPick.filter((val) =>
         tempPlayersWithPicks.every((e) => e !== val)
       );
-      console.log("Players without pick: " + playersWithoutPick);
       return playersWithoutPick[0];
     } else {
       playersWithoutPick = defPlayerWithoutPick;
@@ -66,9 +58,8 @@ export default function Page({
     }
   }
 
-  //LOOKS OK
-  //arrayOfPicks, draftPage, banFilteredChampArr,
-  function filterOfPicks() {
+  //FILTER CHAMPIONS OF PICKED CHAMPS
+  function filterOfPicks(arrayOfPicks) {
     var temp = [];
     if (arrayOfPicks.length >= draftPage) {
       for (var a = 0; a < draftPage - 1; a++) {
@@ -77,9 +68,7 @@ export default function Page({
       var filtered = banFilteredChampArr.filter((val) =>
         temp.every((e) => e.id !== val.id)
       );
-      //return filtered;
     } else {
-      //var temp = [];
       for (var a = 0; a < arrayOfPicks.length; a++) {
         temp.push(arrayOfPicks[a]);
       }
@@ -90,109 +79,129 @@ export default function Page({
     return filtered;
   }
 
-  //LOOKS OK
-  //val, draftPage, setDraftPage
+  //CHANGE PAGE
   function changePage(val) {
     var e = draftPage + val;
     setDraftPage(e);
   }
 
-  //LOOKS OK
-  //val, currTeamPattern, allyTeamPattern, enemyTeamPattern
+  //CHANGE PICK PATTERN
   function changePattern(val) {
     if (val === "0") {
       currTeamPattern = allyTeamPattern;
-      //setCurrTeamPattern(allyTeamPattern);
+      playersWithoutPick = [];
     } else if (val === "1") {
       currTeamPattern = enemyTeamPattern;
-      //setCurrTeamPattern(enemyTeamPattern);
+      playersWithoutPick = [];
     }
-    // console.log(currTeamPattern);
   }
 
-  //LOOKS OK
-  //draftPage, currTeamPattern, firstTeamPick, changePage, playersWithoutPick
+  //NAVIGATION BUTTONS
   const NavButtons = () => {
-    // console.log(draftPage);
-    // console.log(currTeamPattern);
-    // console.log(playersWithoutPick);
     if (draftPage === 0) {
-      if (firstTeamPick !== null) {
+      if (list.draft.firstPickTeam !== null) {
         return (
           <div>
-            <button onClick={() => changePage(1)}>next</button>
+            <Button
+              variant="contained"
+              style={{ backgroundColor: "#72737369", color: "#000" }}
+              size="small"
+              onClick={() => changePage(1)}
+            >
+              next
+            </Button>
           </div>
         );
       }
     } else if (draftPage === 10) {
       return (
         <div>
-          <button onClick={() => changePage(-1)}>back</button>
+          <Button
+            variant="contained"
+            style={{ backgroundColor: "#72737369", color: "#000" }}
+            size="small"
+            onClick={() => changePage(-1)}
+          >
+            back
+          </Button>
         </div>
       );
     } else if (draftPage > 0 && draftPage < 10) {
       if (playersWithoutPick.includes(draftPage)) {
         return (
           <div>
-            <button onClick={() => changePage(-1)}>back</button>
+            <Button
+              variant="contained"
+              style={{ backgroundColor: "#72737369", color: "#000" }}
+              size="small"
+              onClick={() => changePage(-1)}
+            >
+              back
+            </Button>
           </div>
         );
       } else {
         return (
           <div>
-            <button onClick={() => changePage(-1)}>back</button>
-            <button onClick={() => changePage(1)}>next</button>
+            <Button
+              variant="contained"
+              style={{ backgroundColor: "#72737369", color: "#000" }}
+              size="small"
+              onClick={() => changePage(-1)}
+            >
+              back
+            </Button>
+            <Button
+              variant="contained"
+              style={{ backgroundColor: "#72737369", color: "#000" }}
+              size="small"
+              onClick={() => changePage(1)}
+            >
+              next
+            </Button>
           </div>
         );
       }
     }
   };
 
-  // return (
-  //   <div>
-  //     <NavButtons />
-  //     <DraftPageController
-  //       draftPage={draftPage}
-  //       setSearchTerm={setSearchTerm}
-  //       searchFilteredChampArr={searchFilteredChampArr}
-  //       dispatch={dispatch}
-  //       draftPick={draftPick}
-  //       arrayOfPicks={arrayOfPicks}
-  //       firstTeamPick={firstTeamPick}
-  //       firstPick={firstPick}
-  //       changePattern={changePattern}
-  //       searchTerm={searchTerm}
-  //     />
-  //   </div>
-  // );
   if (draftPage === 0) {
     return (
       <div>
+        <div className="NavigationButtons">
         <NavButtons />
+        </div>
+        <div className="NavigationButtons">
         <RadioButton
           val={"0"}
-          firstTeamPick={firstTeamPick}
+          firstTeamPick={list.draft.firstPickTeam}
           dispatch={dispatch}
           firstPick={firstPick}
           changePattern={changePattern}
         />
+        </div>
+        <div className="NavigationButtons">
         <RadioButton
           val={"1"}
-          firstTeamPick={firstTeamPick}
+          firstTeamPick={list.draft.firstPickTeam}
           dispatch={dispatch}
           firstPick={firstPick}
           changePattern={changePattern}
         />
+        </div>
       </div>
     );
   } else {
     return (
       <div>
+        <div className="NavigationButtons">
         <NavButtons />
+        </div>
         <AllyEnemyPick
           currTeamPattern={currTeamPattern}
           draftPage={draftPage}
         />
+        
         <ChampSearchComponent
           setSearchTerm={setSearchTerm}
           searchTerm={searchTerm}
@@ -202,15 +211,14 @@ export default function Page({
           dispatch={dispatch}
           draftPick={draftPick}
           draftPage={draftPage}
-          arrayOfPicks={arrayOfPicks}
+          arrayOfPicks={list.draft.draftPicks}
         />
       </div>
     );
   }
 }
 
-//LOOKS OK
-//val, firstTeamPick, dispatch, firstPick, changePattern
+//RADIO BUTTON COMPONENT
 const RadioButton = ({
   val,
   firstTeamPick,
@@ -235,34 +243,32 @@ const RadioButton = ({
   }
   return (
     <>
-      <label htmlFor={id}>{text}</label>
-      <input
-        type="radio"
-        name="test"
-        value={val}
-        id={id}
+      <Radio
+        checked={checked}
         onChange={(e) => {
           dispatch(firstPick(e.target.value));
-          changePattern(e.target.value);
+          changePattern(val);
         }}
-        checked={checked}
+        value={val}
+        name="test"
+        id={id}
+        inputProps={{ "aria-label": { val } }}
       />
+      <label htmlFor={id}>{text}</label>
     </>
   );
 };
 
-//LOOKS OK
-//currTeamPattern, draftPage
+//ALLY OR ENEMY PICK TEXT
 const AllyEnemyPick = ({ currTeamPattern, draftPage }) => {
   if (currTeamPattern[draftPage - 1] === 0) {
-    return <div>Ally pick</div>;
+    return <h3>Ally pick</h3>;
   } else {
-    return <div>Enemy pick</div>;
+    return <h3>Enemy pick</h3>;
   }
 };
 
-//LOOKS OK
-//ITEM_SIZE, searchFilteredChampArr, dispatch, draftPick, draftPage, currTeamPattern, arrayOfPicks
+//CHAMPION PICK COMPONENT
 const ChampPickComponent = ({
   searchFilteredChampArr,
   dispatch,
@@ -273,7 +279,6 @@ const ChampPickComponent = ({
   const ITEM_SIZE = 150;
   return (
     <div>
-      {/* <AllyEnemyPick /> */}
       <div
         id="ChampionSelector"
         style={{ display: "flex", justifyContent: "center" }}
@@ -325,8 +330,8 @@ const ChampPickComponent = ({
                             onChange={() =>
                               dispatch(
                                 draftPick({
-                                  pickPos: draftPage--,
-                                  team: currTeamPattern[draftPage--],
+                                  pickPos: draftPage,
+                                  team: currTeamPattern[draftPage - 1],
                                   id: searchFilteredChampArr[i].id,
                                   name: searchFilteredChampArr[i].name,
                                 })
@@ -339,8 +344,8 @@ const ChampPickComponent = ({
                             onClick={() =>
                               dispatch(
                                 draftPick({
-                                  pickPos: draftPage--,
-                                  team: currTeamPattern[draftPage--],
+                                  pickPos: draftPage,
+                                  team: currTeamPattern[draftPage - 1],
                                   id: searchFilteredChampArr[i].id,
                                   name: searchFilteredChampArr[i].name,
                                 })
@@ -370,11 +375,9 @@ const ChampPickComponent = ({
       </div>
     </div>
   );
-  // }
 };
 
-//LOOKS OK
-//setSearchTerm
+//CHAMPION SEARCH COMPONENT
 const ChampSearchComponent = ({ setSearchTerm, searchTerm }) => {
   return (
     <div className="CenterContent">
@@ -391,59 +394,3 @@ const ChampSearchComponent = ({ setSearchTerm, searchTerm }) => {
     </div>
   );
 };
-
-//LOOKS OK
-//draftPage
-// const DraftPageController = ({
-//   draftPage,
-//   setSearchTerm,
-//   searchFilteredChampArr,
-//   dispatch,
-//   draftPick,
-//   arrayOfPicks,
-//   firstTeamPick,
-//   firstPick,
-//   changePattern,
-//   searchTerm,
-// }) => {
-//   if (draftPage === 0) {
-//     return (
-//       <div>
-//         <RadioButton
-//           val={"0"}
-//           firstTeamPick={firstTeamPick}
-//           dispatch={dispatch}
-//           firstPick={firstPick}
-//           changePattern={changePattern}
-//         />
-//         <RadioButton
-//           val={"1"}
-//           firstTeamPick={firstTeamPick}
-//           dispatch={dispatch}
-//           firstPick={firstPick}
-//           changePattern={changePattern}
-//         />
-//       </div>
-//     );
-//   } else {
-//     return (
-//       <div>
-//         <AllyEnemyPick
-//           currTeamPattern={currTeamPattern}
-//           draftPage={draftPage}
-//         />
-//         <ChampSearchComponent
-//           setSearchTerm={setSearchTerm}
-//           searchTerm={searchTerm}
-//         />
-//         <ChampPickComponent
-//           searchFilteredChampArr={searchFilteredChampArr}
-//           dispatch={dispatch}
-//           draftPick={draftPick}
-//           draftPage={draftPage}
-//           arrayOfPicks={arrayOfPicks}
-//         />
-//       </div>
-//     );
-//   }
-// };

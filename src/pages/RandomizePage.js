@@ -10,10 +10,18 @@ export default function Randomize() {
   var [players] = useState(CreatePlayersList);
   var [lanes, setLanes] = useState(CreateLanesList);
 
+  //CREATE LIST OF CHAMPIONS
   function CreateChampionsList() {
     var arr = [];
+    // var picks = [];
+    var allyTeamPicks;
+    if (!list.settings.gameType) {
+      allyTeamPicks = list.normal.normPicks;
+    } else {
+      allyTeamPicks = list.draft.draftPicks.filter((e) => e.team === 0);
+    }
 
-    list.pickedChamps.forEach((element) => {
+    allyTeamPicks.forEach((element) => {
       arr.push({
         id: element.id,
         name: element.name,
@@ -23,15 +31,16 @@ export default function Randomize() {
     return arr;
   }
 
+  //CREATE LIST OF PLAYERS
   function CreatePlayersList() {
     var arr = [];
-
     list.settings.players.forEach((element) => {
       arr.push({ id: element.id, name: element.name });
     });
     return arr;
   }
 
+  //CREATE LIST OF LANES
   function CreateLanesList() {
     var arr = [];
     list.settings.availableLanes.forEach((element) => {
@@ -40,6 +49,7 @@ export default function Randomize() {
     return arr;
   }
 
+  //RANDOMIZE CHAMPIONS
   function RandomizeChamps() {
     var tempArr = champions;
     var tempArr2 = [];
@@ -50,11 +60,11 @@ export default function Randomize() {
       tempArr2.push(tempArr[rand]);
       tempArr.splice(rand, 1);
     }
-
     tempArr = tempArr2;
     setChampions(tempArr);
   }
 
+  //RANDOMIZE LANES
   function RandomizeLanes() {
     var tempArr = lanes;
     var tempArr2 = [];
@@ -65,10 +75,10 @@ export default function Randomize() {
       tempArr2.push(tempArr[rand]);
       tempArr.splice(rand, 1);
     }
-
     tempArr = tempArr2;
     setLanes(tempArr);
   }
+
   return (
     <div className="CenterContent">
       <div
@@ -85,7 +95,6 @@ export default function Randomize() {
           lanes={lanes}
         />
       </div>
-
       <Button
         variant="contained"
         style={{ backgroundColor: "#72737369", color: "#000", margin: "30px" }}
@@ -106,6 +115,7 @@ export default function Randomize() {
   );
 }
 
+//CREATE RANDOMIZED TABLE
 const CreateTable = ({ numOfCells, champions, players, lanes }) => {
   let table = [];
   for (var a = 0; a < numOfCells; a++) {
@@ -122,31 +132,5 @@ const CreateTable = ({ numOfCells, champions, players, lanes }) => {
       </div>
     );
   }
-  // for (var a = 0; a < numOfCells; a++) {
-  //   tempTable.push(<th>{champions[a].name}</th>);
-  // }
-  // table.push(<tr>{tempTable}</tr>);
-  // tempTable = [];
-
-  // for (var a = 0; a < numOfCells; a++) {
-  //   tempTable.push(
-  //     <td>
-  //       <img src={champions[a].icon}></img>
-  //     </td>
-  //   );
-  // }
-  // table.push(<tr>{tempTable}</tr>);
-  // tempTable = [];
-
-  // for (var a = 0; a < numOfCells; a++) {
-  //   tempTable.push(<td>{players[a].name}</td>);
-  // }
-  // table.push(<tr>{tempTable}</tr>);
-  // tempTable = [];
-
-  // for (var a = 0; a < numOfCells; a++) {
-  //   tempTable.push(<td>{lanes[a].name}</td>);
-  // }
-  // table.push(<tr>{tempTable}</tr>);
   return table;
 };

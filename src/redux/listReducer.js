@@ -1,4 +1,3 @@
-//import { breadcrumbsClasses } from "@mui/material";
 import { createSlice } from "@reduxjs/toolkit";
 
 const defaultLaneNames = [
@@ -10,29 +9,23 @@ const defaultLaneNames = [
 ];
 
 const initialState = {
-  // banPhase1: [],
-  // banPhase2: [],
-  // banPhase3: [],
-  // pickedChamps: [],
   settings: {
-    // normOrDraft: false,
     players: [{ id: 0, name: "Player 1" }],
     availableLanes: defaultLaneNames,
     gameType: false,
     optBans: false,
   },
 
-  normal:{
+  normal: {
     optBans: [],
-    normPicks: []
+    normPicks: [],
   },
   draft: {
     allyBans: [],
     enemyBans: [],
     firstPickTeam: null,
-    draftPicks: []
+    draftPicks: [],
   },
-
 };
 
 export const listSlice = createSlice({
@@ -46,15 +39,17 @@ export const listSlice = createSlice({
           break;
 
         case "CHANGE_LANE_NAME":
-          state.settings.availableLanes[payload.id].name = payload.laneName;
+          state.settings.availableLanes[payload.id].name = payload.name;
           break;
 
-        //SOMEHOW FUCKED UP AND NEEDS TO FIX, ESPECIALLY DRAFT CHECK
         case "CHANGE_NUMBER_OF_PLAYERS":
           var playersArrayLenght = state.settings.players.length;
           var availableLanesLength = state.settings.availableLanes.length;
           var payloadLength = payload.count;
-          if (playersArrayLenght < payloadLength && state.settings.gameType === false) {
+          if (
+            playersArrayLenght < payloadLength &&
+            state.settings.gameType === false
+          ) {
             if (availableLanesLength < payloadLength) {
               for (
                 availableLanesLength;
@@ -77,7 +72,10 @@ export const listSlice = createSlice({
                 name: "Player " + (playersArrayLenght + 1),
               });
             }
-          } else if (playersArrayLenght > payloadLength && state.settings.gameType === false) {
+          } else if (
+            playersArrayLenght > payloadLength &&
+            state.settings.gameType === false
+          ) {
             if (availableLanesLength < payloadLength) {
               for (
                 availableLanesLength;
@@ -93,9 +91,9 @@ export const listSlice = createSlice({
             var tmp = playersArrayLenght - payloadLength;
             state.settings.players.splice(payloadLength, tmp);
           }
-          if (state.settings.players.length < state.pickedChamps.length) {
+          if (state.settings.players.length < state.normal.normPicks.length) {
             var tmp = playersArrayLenght - payloadLength;
-            state.pickedChamps.splice(payloadLength, tmp);
+            state.normal.normPicks.splice(payloadLength, tmp);
           }
           break;
 
@@ -104,7 +102,10 @@ export const listSlice = createSlice({
           var availableLanesLength = state.settings.availableLanes.length;
           var payloadLength = payload.count;
 
-          if (availableLanesLength < payloadLength && state.settings.gameType === false) {
+          if (
+            availableLanesLength < payloadLength &&
+            state.settings.gameType === false
+          ) {
             for (
               availableLanesLength;
               availableLanesLength < payloadLength;
@@ -115,7 +116,10 @@ export const listSlice = createSlice({
                 name: defaultLaneNames[availableLanesLength].name,
               });
             }
-          } else if (availableLanesLength > payloadLength && state.settings.gameType === false) {
+          } else if (
+            availableLanesLength > payloadLength &&
+            state.settings.gameType === false
+          ) {
             if (playersArrayLenght >= payloadLength) {
               var tmp = playersArrayLenght - payloadLength;
               state.settings.players.splice(payloadLength, tmp);
@@ -124,18 +128,17 @@ export const listSlice = createSlice({
             state.settings.availableLanes.splice(payloadLength, tmp);
           }
           if (
-            state.settings.availableLanes.length < state.pickedChamps.length
+            state.settings.availableLanes.length < state.normal.normPicks.length
           ) {
             var tmp = playersArrayLenght - payloadLength;
-            state.pickedChamps.splice(payloadLength, tmp);
+            state.normal.normPicks.splice(payloadLength, tmp);
           }
           break;
 
         case "CHANGE_GAME_TYPE":
           if (payload.value === "true") {
             state.settings.gameType = true;
-            if(state.settings.players.length < 5)
-            {
+            if (state.settings.players.length < 5) {
               var playersArrayLenght = state.settings.players.length;
               for (
                 playersArrayLenght;
@@ -160,164 +163,117 @@ export const listSlice = createSlice({
     },
 
     firstPick: (state, payload) => {
-      state.firstPickTeam = payload.payload;
+      state.draft.firstPickTeam = payload.payload;
+      state.draft.draftPicks = [];
     },
 
-    draftPick: (state, {payload}) => {
-      var resp = state.draftPicks.some((e) => e.id === payload.id);
-          if (resp) {
-            const tempArr = state.draftPicks.filter(
-              (item) => item.id !== payload.id
-            );
-            state.draftPicks = tempArr;
-          } else {
-              state.draftPicks.push({ pickPos: payload.pickPos, team: payload.team, id: payload.id, name: payload.name });
-          }
-          state.draftPicks.sort((a, b) => a.pickPos - b.pickPos);
+    draftPick: (state, { payload }) => {
+      var resp = state.draft.draftPicks.some((e) => e.id === payload.id);
+      if (resp) {
+        const tempArr = state.draft.draftPicks.filter(
+          (item) => item.id !== payload.id
+        );
+        state.draft.draftPicks = tempArr;
+      } else {
+        var resp = state.draft.draftPicks.some(
+          (e) => e.pickPos === payload.pickPos
+        );
+        if (!resp) {
+          state.draft.draftPicks.push({
+            pickPos: payload.pickPos,
+            team: payload.team,
+            id: payload.id,
+            name: payload.name,
+          });
+        }
+      }
+      state.draft.draftPicks.sort((a, b) => a.pickPos - b.pickPos);
     },
 
-    ban: (state, { payload }) => {
+    banOrPick: (state, { payload }) => {
       switch (payload.type) {
-        //ALLY TEAM BANS
-        case "BAN_ARRAY_1":
-          var resp = state.banPhase1.some((e) => e.id === payload.id);
+        case "NORMAL_OPTIONAL_BANS":
+          var resp = state.normal.optBans.some((e) => e.id === payload.id);
           if (resp) {
-            const tempArr = state.banPhase1.filter(
+            const tempArr = state.normal.optBans.filter(
               (item) => item.id !== payload.id
             );
-            state.banPhase1 = tempArr;
+            state.normal.optBans = tempArr;
           } else {
-            if (state.banPhase1.length < 5) {
-              state.banPhase1.push({ id: payload.id, name: payload.name });
+            if (state.normal.optBans.length < 5) {
+              state.normal.optBans.push({ id: payload.id, name: payload.name });
             }
           }
-          resp = state.banPhase2.some((e) => e.id === payload.id);
+          resp = state.normal.normPicks.some((e) => e.id === payload.id);
           if (resp) {
-            const tempArr = state.banPhase2.filter(
+            const tempArr = state.normal.normPicks.filter(
               (item) => item.id !== payload.id
             );
-            state.banPhase2 = tempArr;
+            state.normal.normPicks = tempArr;
           }
           break;
-        //ENEMY TEAM BANS
-        case "BAN_ARRAY_2":
-          var resp = state.banPhase2.some((e) => e.id === payload.id);
+
+        case "NORMAL_PICKS":
+          var resp = state.normal.normPicks.some((e) => e.id === payload.id);
           if (resp) {
-            const tempArr = state.banPhase2.filter(
+            const tempArr = state.normal.normPicks.filter(
               (item) => item.id !== payload.id
             );
-            state.banPhase2 = tempArr;
+            state.normal.normPicks = tempArr;
           } else {
-            if (state.banPhase2.length < 5) {
-              state.banPhase2.push({ id: payload.id, name: payload.name });
-            }
-          }
-          resp = state.banPhase3.some((e) => e.id === payload.id);
-          if (resp) {
-            const tempArr = state.banPhase3.filter(
-              (item) => item.id !== payload.id
-            );
-            state.banPhase3 = tempArr;
-          }
-          break;
-        //OPTIONAL BANS
-        case "BAN_ARRAY_3":
-          var resp = state.banPhase3.some((e) => e.id === payload.id);
-          if (resp) {
-            const tempArr = state.banPhase3.filter(
-              (item) => item.id !== payload.id
-            );
-            state.banPhase3 = tempArr;
-          } else {
-            if (state.banPhase3.length < 5) {
-              state.banPhase3.push({ id: payload.id, name: payload.name });
-            }
-          }
-          resp = state.pickedChamps.some((e) => e.id === payload.id);
-          if (resp) {
-            const tempArr = state.pickedChamps.filter(
-              (item) => item.id !== payload.id
-            );
-            state.pickedChamps = tempArr;
-          }
-          break;
-        //PLAYER PICKS
-        case "BAN_ARRAY_4":
-          var resp = state.pickedChamps.some((e) => e.id === payload.id);
-          if (resp) {
-            const tempArr = state.pickedChamps.filter(
-              (item) => item.id !== payload.id
-            );
-            state.pickedChamps = tempArr;
-          } else {
-            if (state.pickedChamps.length < state.settings.players.length) {
-              state.pickedChamps.push({ id: payload.id, name: payload.name });
+            if (state.normal.normPicks.length < state.settings.players.length) {
+              state.normal.normPicks.push({
+                id: payload.id,
+                name: payload.name,
+              });
             }
           }
           break;
 
-        case "OPT_BANS":
-          var resp = state.optBans.some((e) => e.id === payload.id);
+        case "DRAFT_ALLY_BANS":
+          var resp = state.draft.allyBans.some((e) => e.id === payload.id);
           if (resp) {
-            const tempArr = state.optBans.filter(
+            const tempArr = state.draft.allyBans.filter(
               (item) => item.id !== payload.id
             );
-            state.optBans = tempArr;
+            state.draft.allyBans = tempArr;
           } else {
-            if (state.optBans.length < state.settings.players.length) {
-              state.optBans.push({ id: payload.id, name: payload.name });
+            if (state.draft.allyBans.length < 5) {
+              state.draft.allyBans.push({ id: payload.id, name: payload.name });
             }
           }
           break;
 
-        case "ALLY_BANS":
-          var resp = state.allyBans.some((e) => e.id === payload.id);
+        case "DRAFT_ENEMY_BANS":
+          var resp = state.draft.enemyBans.some((e) => e.id === payload.id);
           if (resp) {
-            const tempArr = state.allyBans.filter(
+            const tempArr = state.draft.enemyBans.filter(
               (item) => item.id !== payload.id
             );
-            state.allyBans = tempArr;
+            state.draft.enemyBans = tempArr;
           } else {
-            if (state.allyBans.length < 5) {
-              state.allyBans.push({ id: payload.id, name: payload.name });
+            if (state.draft.enemyBans.length < 5) {
+              state.draft.enemyBans.push({
+                id: payload.id,
+                name: payload.name,
+              });
             }
           }
-          resp = state.enemyBans.some((e) => e.id === payload.id);
-          if (resp) {
-            const tempArr = state.enemyBans.filter(
-              (item) => item.id !== payload.id
-            );
-            state.enemyBans = tempArr;
-          }
-          break;
-
-        case "ENEMY_BANS":
-          var resp = state.enemyBans.some((e) => e.id === payload.id);
-          if (resp) {
-            const tempArr = state.enemyBans.filter(
-              (item) => item.id !== payload.id
-            );
-            state.enemyBans = tempArr;
-          } else {
-            if (state.enemyBans.length < 5) {
-              state.enemyBans.push({ id: payload.id, name: payload.name });
-            }
-          }
-          // resp = state.pickedChamps.some((e) => e.id === payload.id);
-          // if (resp) {
-          //   const tempArr = state.pickedChamps.filter(
-          //     (item) => item.id !== payload.id
-          //   );
-          //   state.pickedChamps = tempArr;
-          // }
           break;
       }
     },
   },
 });
 
-export const { add, deleteRandom, changeNumOfPlayers, ban, draftPick, firstPick, editSettings } =
-  listSlice.actions;
+export const {
+  add,
+  deleteRandom,
+  changeNumOfPlayers,
+  banOrPick,
+  draftPick,
+  firstPick,
+  editSettings,
+} = listSlice.actions;
 
 export const selectList = (state) => state.list;
 

@@ -81,6 +81,8 @@ h1 {
 .NavigationButtons {
   display: flex;
   justify-content: center;
+  align-items: center;
+  margin-top: 10px;
 }
 
 h1 {
@@ -138,6 +140,11 @@ html {
   -moz-animation: AnimationName 60s ease infinite;
   -o-animation: AnimationName 60s ease infinite;
   animation: AnimationName 60s ease infinite;
+}
+
+.randItem {
+  display: grid;
+  justify-items: center;
 }
 
 @-webkit-keyframes AnimationName {
