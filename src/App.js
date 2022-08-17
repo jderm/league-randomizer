@@ -70,6 +70,9 @@ export default function App() {
           <div id="SettingsPage">
             <Settings changePagesOrder={changePagesOrder} />
           </div>
+          <div className="CenterContent">
+            <Footer />
+          </div>
         </div>
       );
 
@@ -90,6 +93,9 @@ export default function App() {
               banArrayType="NORMAL_OPTIONAL_BANS"
               title="Optional bans:"
             />
+          </div>
+          <div className="CenterContent">
+            <Footer />
           </div>
         </div>
       );
@@ -113,6 +119,9 @@ export default function App() {
               title="Player picks:"
             />
           </div>
+          <div className="CenterContent">
+            <Footer />
+          </div>
         </div>
       );
 
@@ -133,6 +142,9 @@ export default function App() {
               banArrayType="DRAFT_ALLY_BANS"
               title="Ally bans:"
             />
+          </div>
+          <div className="CenterContent">
+            <Footer />
           </div>
         </div>
       );
@@ -155,6 +167,9 @@ export default function App() {
               title="Enemy bans:"
             />
           </div>
+          <div className="CenterContent">
+            <Footer />
+          </div>
         </div>
       );
 
@@ -170,6 +185,9 @@ export default function App() {
           <div>
             <DraftPickPage />
           </div>
+          <div className="CenterContent">
+            <Footer />
+          </div>
         </div>
       );
 
@@ -181,6 +199,9 @@ export default function App() {
           <div id="Randomize">
             <Randomize />
           </div>
+          <div className="CenterContent">
+            <Footer />
+          </div>
         </div>
       );
 
@@ -190,6 +211,9 @@ export default function App() {
         <div id="Page">
           <ButtonNavigation fnc={changePage} />
           <h3>Default page</h3>
+          <div className="CenterContent">
+            <Footer />
+          </div>
         </div>
       );
   }
@@ -208,9 +232,11 @@ const ButtonNavigation = ({
   switch (page) {
     case 0:
       return (
-        <div className="NavigationButtons">
-          <NavButton fnc={fnc} val={+1} text={"next"} />
-        </div>
+        <>
+          <div className="NavigationButtons">
+            <NavButton fnc={fnc} val={+1} text={"next"} />
+          </div>
+        </>
       );
 
     case 1:
@@ -319,5 +345,15 @@ const NavButton = ({ fnc, val, text }) => {
     >
       {text}
     </Button>
+  );
+};
+
+const Footer = () => {
+  const d = new Date();
+  let year = d.getFullYear();
+  return (
+    <div>
+      Jakub Dermek, {year}, <a href="https://jderm.github.io/">Web</a>
+    </div>
   );
 };
