@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { banOrPick } from "../redux/listReducer";
-import champ from "../champions.json";
+// import champ from "../champions.json";
 import { AutoSizer, List } from "react-virtualized";
 import "../Style.css";
 import "../App.css";
@@ -14,6 +14,7 @@ export default function Page({
   banArrayType,
   numberOfBans,
   title,
+  champ
 }) {
   const [searchTerm, setSearchTerm] = useState("");
   const dispatch = useDispatch();

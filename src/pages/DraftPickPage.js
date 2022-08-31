@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { draftPick, firstPick, selectList } from "../redux/listReducer";
-import champ from "../champions.json";
+// import champ from "../champions.json";
 import { AutoSizer, List } from "react-virtualized";
 import "../Style.css";
 import "../App.css";
@@ -14,7 +14,7 @@ var currTeamPattern = [];
 const allyTeamPattern = [0, 1, 1, 0, 0, 1, 1, 0, 0, 1];
 const enemyTeamPattern = [1, 0, 0, 1, 1, 0, 0, 1, 1, 0];
 
-export default function Page() {
+export default function Page({champ}) {
   const list = useSelector(selectList);
   const [searchTerm, setSearchTerm] = useState("");
   const dispatch = useDispatch();

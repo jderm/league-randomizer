@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { selectList } from "../redux/listReducer";
-import champ from "../champions.json";
+// import champ from "../champions.json";
 import { Button } from "@mui/material";
 
-export default function Randomize() {
+export default function Randomize({champ}) {
   const list = useSelector(selectList);
   var [champions, setChampions] = useState(CreateChampionsList);
   var [players] = useState(CreatePlayersList);
@@ -13,14 +13,12 @@ export default function Randomize() {
   //CREATE LIST OF CHAMPIONS
   function CreateChampionsList() {
     var arr = [];
-    // var picks = [];
     var allyTeamPicks;
     if (!list.settings.gameType) {
       allyTeamPicks = list.normal.normPicks;
     } else {
       allyTeamPicks = list.draft.draftPicks.filter((e) => e.team === 0);
     }
-
     allyTeamPicks.forEach((element) => {
       arr.push({
         id: element.id,

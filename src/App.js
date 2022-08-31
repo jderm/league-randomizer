@@ -20,6 +20,16 @@ var availablePages = [0, 2, 6];
 export default function App() {
   const list = useSelector(selectList);
   var [page, setPage] = useState(0);
+  
+  const [champ, setChamps] = React.useState([]);
+
+  React.useEffect(() => {
+    fetch("champions.json")
+      .then((res) => res.json())
+      .then((data) => {
+        setChamps(data);
+      });
+  }, []);
 
   //CHANGE ORDER OF PAGES
   function changePagesOrder(type, val) {
@@ -92,6 +102,7 @@ export default function App() {
               numberOfBans={5}
               banArrayType="NORMAL_OPTIONAL_BANS"
               title="Optional bans:"
+              champ={champ}
             />
           </div>
           <div className="CenterContent">
@@ -117,6 +128,7 @@ export default function App() {
               numberOfBans={list.settings.players.length}
               banArrayType="NORMAL_PICKS"
               title="Player picks:"
+              champ={champ}
             />
           </div>
           <div className="CenterContent">
@@ -141,6 +153,7 @@ export default function App() {
               numberOfBans={5}
               banArrayType="DRAFT_ALLY_BANS"
               title="Ally bans:"
+              champ={champ}
             />
           </div>
           <div className="CenterContent">
@@ -165,6 +178,7 @@ export default function App() {
               numberOfBans={5}
               banArrayType="DRAFT_ENEMY_BANS"
               title="Enemy bans:"
+              champ={champ}
             />
           </div>
           <div className="CenterContent">
@@ -183,7 +197,7 @@ export default function App() {
             draftPicks={list.draft.draftPicks.length}
           />
           <div>
-            <DraftPickPage />
+            <DraftPickPage champ={champ}/>
           </div>
           <div className="CenterContent">
             <Footer />
@@ -197,7 +211,7 @@ export default function App() {
         <div id="Page">
           <ButtonNavigation fnc={changePage} />
           <div id="Randomize">
-            <Randomize />
+            <Randomize champ={champ}/>
           </div>
           <div className="CenterContent">
             <Footer />
