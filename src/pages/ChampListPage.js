@@ -8,19 +8,20 @@ import "../App.css";
 
 import { TextField } from "@mui/material";
 
-export default function Page({
-  prev,
-  current,
-  banArrayType,
-  numberOfBans,
-  title,
-  champ
-}) {
+// export default function Page({
+//   prev,
+//   current,
+//   banArrayType,
+//   numberOfBans,
+//   title,
+//   champ
+// }) {
+  export default function ChampListPage(props) {
   const [searchTerm, setSearchTerm] = useState("");
   const dispatch = useDispatch();
 
-  var banFilteredChampArr = champ.filter((val) =>
-    prev.every((e) => e.id !== val.id)
+  var banFilteredChampArr = props.champ.filter((val) =>
+    props.prev.every((e) => e.id !== val.id)
   );
 
   const ITEM_SIZE = 150;
@@ -37,7 +38,7 @@ export default function Page({
   return (
     <div>
       <div className="CenterContent">
-        <h3>{title}</h3>
+        <h3>{props.title}</h3>
         <TextField
           id="filter"
           variant="filled"
@@ -50,11 +51,11 @@ export default function Page({
         />
         <h4>Selected champions:</h4>
         <ol>
-          {current.map((item) => (
+          {props.current.map((item) => (
             <li key={item.id}>{item.name}</li>
           ))}
         </ol>
-        <h4>Picks/bans remaining: ({numberOfBans - current.length})</h4>
+        <h4>Picks/bans remaining: ({props.numberOfBans - props.current.length})</h4>
       </div>
       <div
         id="ChampionSelector"
@@ -99,7 +100,7 @@ export default function Page({
                             type="checkbox"
                             id={i}
                             labelid={"Item" + searchFilteredChampArr[i].id}
-                            checked={current.some(
+                            checked={props.current.some(
                               (e) => e.id === searchFilteredChampArr[i].id
                             )}
                             onChange={() =>
@@ -107,7 +108,7 @@ export default function Page({
                                 banOrPick({
                                   id: searchFilteredChampArr[i].id,
                                   name: searchFilteredChampArr[i].name,
-                                  type: banArrayType,
+                                  type: props.banArrayType,
                                 })
                               )
                             }
@@ -120,7 +121,7 @@ export default function Page({
                                 banOrPick({
                                   id: searchFilteredChampArr[i].id,
                                   name: searchFilteredChampArr[i].name,
-                                  type: banArrayType,
+                                  type: props.banArrayType,
                                 })
                               )
                             }

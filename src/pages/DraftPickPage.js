@@ -14,14 +14,14 @@ var currTeamPattern = [];
 const allyTeamPattern = [0, 1, 1, 0, 0, 1, 1, 0, 0, 1];
 const enemyTeamPattern = [1, 0, 0, 1, 1, 0, 0, 1, 1, 0];
 
-export default function Page({champ}) {
+export default function Page(props) {
   const list = useSelector(selectList);
   const [searchTerm, setSearchTerm] = useState("");
   const dispatch = useDispatch();
   var [draftPage, setDraftPage] = useState(setPageFnc(list.draft.draftPicks));
   //CHAMP LIST FILTERED OF BANS
   var prev = list.draft.allyBans.concat(list.draft.enemyBans);
-  var banFilteredChampArr = champ.filter((val) =>
+  var banFilteredChampArr = props.champ.filter((val) =>
     prev.every((e) => e.id !== val.id)
   );
 

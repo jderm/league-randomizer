@@ -9,7 +9,7 @@ import {
   FormControlLabel,
 } from "@mui/material";
 
-export default function Settings({ changePagesOrder }) {
+export default function Settings(props) {
   const list = useSelector(selectList);
   const dispatch = useDispatch();
 
@@ -26,7 +26,7 @@ export default function Settings({ changePagesOrder }) {
             dispatch(
               editSettings({ type: "CHANGE_GAME_TYPE", value: e.target.value })
             );
-            changePagesOrder(0, e.target.value);
+            props.changePagesOrder(0, e.target.value);
           }}
         >
           <MenuItem value="false">Normal</MenuItem>
@@ -44,7 +44,7 @@ export default function Settings({ changePagesOrder }) {
               checked={list.settings.optBans}
               onChange={(e) => {
                 dispatch(editSettings({ type: "OPTIONAL_BANS" }));
-                changePagesOrder(1, e.target.value);
+                props.changePagesOrder(1, e.target.value);
               }}
               disabled={list.settings.gameType}
             />

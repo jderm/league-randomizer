@@ -4,7 +4,7 @@ import { selectList } from "../redux/listReducer";
 // import champ from "../champions.json";
 import { Button } from "@mui/material";
 
-export default function Randomize({champ}) {
+export default function Randomize(props) {
   const list = useSelector(selectList);
   var [champions, setChampions] = useState(CreateChampionsList);
   var [players] = useState(CreatePlayersList);
@@ -23,7 +23,7 @@ export default function Randomize({champ}) {
       arr.push({
         id: element.id,
         name: element.name,
-        icon: champ[element.id].icon,
+        icon: props.champ[element.id].icon,
       });
     });
     return arr;
